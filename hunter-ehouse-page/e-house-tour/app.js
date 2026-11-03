@@ -491,7 +491,7 @@ S_(sy.obj,'FIRE ALARM',0.5,0.12,X0+0.03,F+2.05,-1.65,{ry:Math.PI/2,bg:'#b3202a',
 
 /* ---------------- CSI inspection crew + testing specialist ---------------- */
 const csiTex=new THREE.TextureLoader().load(new URL('./brand/CSI-Engineering-Logo-Blue.webp',import.meta.url).href,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;t.needsUpdate=true});
-const csiLogoMat=new THREE.MeshStandardMaterial({map:csiTex,transparent:true,roughness:.7,alphaTest:.05});
+const csiLogoMat=new THREE.MeshStandardMaterial({map:csiTex,transparent:true,roughness:.85,alphaTest:.05,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
 // worker(P, x, z, facing, {pose, kneel, vest, hat, skin, glove, logo})  facing: radians, 0 = looking toward +z
 function worker(P,x,z,face,o={}){
  const m=new THREE.Matrix4().makeRotationY(face).setPosition(x,F,z);
@@ -534,10 +534,22 @@ function worker(P,x,z,face,o={}){
    P.cyl(0.022,0.16,0.14,sh-0.33,0.52,'black','z',10);P.cyl(0.026,0.012,0.14,sh-0.33,0.605,'lamp','z',10);
   }else{arm(-1,[-0.25,sh-0.28,0.02],[-0.24,sh-0.55,0.05]);arm(1,[0.25,sh-0.28,0.02],[0.24,sh-0.55,0.05])}
  });
- if(o.logo){ // CSI logo printed on the vest, chest and back
+ if(o.logo){ // CSI logo printed on the vest: wrapped onto the vest's curved surface, inside the yellow panel
   const g=new THREE.Group();g.applyMatrix4(m);P.obj.add(g);
-  const chest=new THREE.Mesh(new THREE.PlaneGeometry(0.12,0.059),csiLogoMat);chest.position.set(-0.07,hp+0.44,0.137);chest.rotation.y=-0.25;g.add(chest);
-  const back=new THREE.Mesh(new THREE.PlaneGeometry(0.27,0.133),csiLogoMat);back.position.set(0,hp+0.38,-0.132);back.rotation.y=Math.PI;g.add(back);
+  // vest = open cylinder, radius 0.18 (bottom, hp+0.14) to 0.212 (top, hp+0.54), squashed to 0.64 in depth
+  const rAt=y=>0.18+0.032*((y-hp-0.14)/0.4);
+  const wrap=(w,h,yc,a0,side)=>{ // w,h in metres, yc centre height, a0 centre angle (rad), side +1 front / -1 back
+   const geo=new THREE.PlaneGeometry(w,h,24,4),pos=geo.attributes.position;
+   for(let i=0;i<pos.count;i++){
+    const u=pos.getX(i),v=pos.getY(i),y=yc+v,r=rAt(y)+0.004,th=a0+side*u/r;
+    pos.setXYZ(i,r*Math.sin(th),y,side*0.64*r*Math.cos(th));
+   }
+   geo.computeVertexNormals();
+   const mesh=new THREE.Mesh(geo,csiLogoMat);
+   g.add(mesh);
+  };
+  wrap(0.17,0.084,hp+0.335,0,-1);       // back, centred between the two reflective bands
+  wrap(0.075,0.037,hp+0.49,-0.55,1);    // front left chest, above the upper band
  }
 }
 const crew=new Part('crew');

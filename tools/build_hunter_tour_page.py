@@ -77,7 +77,7 @@ body{{font-family:"Signika","Open Sans",system-ui,sans-serif;color:var(--ink);-w
  .hb-menu a{{color:var(--g);text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-size:14px;padding:10px 0;border-bottom:1px solid rgba(0,99,65,.1)}}
  .hb-menu a.q{{background:var(--o);color:var(--n);font-family:"Anton",sans-serif;text-align:center;border:0;margin-top:8px}}}}
 /* ---------- light Hunter theme for the tour ---------- */
-#ehx{{--hh:160px}}
+#ehx{{--hh:0px}}
 #ehx #stage{{top:var(--hh);height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));background:linear-gradient(180deg,#ffffff 0%,#f1f5f2 55%,#dbe5df 100%)}}
 /* split layout: text column on the left, the 3D view on the right; nothing overlaps the model */
 #ehx #stage{{background:#fff}}
@@ -120,7 +120,7 @@ body.dark-on #ehx .panel h2{{color:#fff}}body.dark-on #ehx .panel p{{color:#d5e2
 body.dark-on #ehx .panel li{{color:#d5efe2;border-color:rgba(127,211,168,.5);background:rgba(0,99,65,.35)}}
 body.dark-on #ehx #count{{color:#fff}}body.dark-on #ehx #dots i{{background:#0b1a14}}
 @media(max-width:700px){{#ehx #plan{{top:10px}}#ehx #docs .scr{{height:min(32vh,260px)}}#ehx .panel h2{{font-size:28px}}#ehx .panel p{{font-size:14px}}}}
-@media(max-width:900px){{#ehx{{--hh:94px}}}}
+
 /* recording mode: no site header, no CSS transitions (frames are rendered one by one) */
 body.rec .hb{{display:none}}body.rec #ehx *{{transition:none!important;animation:none!important}}
 '''
@@ -153,7 +153,6 @@ page = f'''<!DOCTYPE html>
 </style>
 </head>
 <body data-tour="hunter">
-{header}
 <main id="ehx">
 {body}
 </main>
@@ -161,10 +160,7 @@ page = f'''<!DOCTYPE html>
 <script type="module" src="/e-house-tour/app.js"></script>
 <script>
 (function(){{
-  var h=document.getElementById('hb'),b=document.getElementById('hbBurger'),m=document.getElementById('ehx');
-  function set(){{m.style.setProperty('--hh',h.offsetHeight+'px');document.body.style.paddingTop=h.offsetHeight+'px';}}
-  set();addEventListener('resize',set);addEventListener('load',set);
-  b.addEventListener('click',function(){{var o=h.classList.toggle('open');b.setAttribute('aria-expanded',o);}});
+
 }})();
 </script>
 </body>
