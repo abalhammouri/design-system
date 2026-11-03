@@ -580,20 +580,40 @@ html{scroll-behavior:auto}
 #ehx #dots i{width:9px;height:9px}
 #ehx .spot span{font-size:11px;padding:4px 7px}}
 #ehx #dark{position:absolute;inset:0;background:#000;opacity:0;z-index:3;pointer-events:none}
-#ehx #docs{position:absolute;z-index:4;right:clamp(20px,4vw,64px);top:50%;width:min(56vw,860px);transform:translateY(-50%);opacity:0;pointer-events:none}
-#ehx #docs .mon{background:#0d0f12;border-radius:14px;padding:12px;box-shadow:0 0 0 1px #2a2f36,0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(90,165,217,.15);transform-origin:50% 50%}
-#ehx #docs .scr{background:#f4f7fb;color:#0f2340;border-radius:6px;overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column;font:13px/1.4 Inter,system-ui,sans-serif}
-#ehx #docs .stand{width:80px;height:46px;margin:0 auto;background:linear-gradient(#1a1d22,#0d0f12)}
-#ehx #docs .foot{width:220px;height:10px;margin:0 auto;border-radius:6px;background:#15181c}
-#ehx .appbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#173E6A;color:#fff}
-#ehx .appbar .logo{font-weight:800;letter-spacing:.12em;background:#fff;color:#173E6A;padding:2px 7px;border-radius:4px;font-size:12px}
-#ehx .appbar .ttl{flex:1;font-size:13px;color:#c9dbef}
-#ehx .appbar .ttl b{color:#fff;margin-left:6px}
-#ehx .appbar .sync{font-size:11px;color:#9fe0b8}
-#ehx .appbar .sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:6px}
-#ehx .tabs{display:flex;gap:2px;padding:0 12px;background:#e3ebf4;border-bottom:1px solid #cfdbe8}
-#ehx .tabs span{padding:9px 12px;font-size:12px;font-weight:600;color:#5b7190;cursor:pointer;border-bottom:2px solid transparent}
-#ehx .tabs span.on{color:#173E6A;border-color:#5AA5D9;background:#f4f7fb}
+#ehx #docs{position:absolute;z-index:4;right:clamp(48px,6vw,110px);top:50%;width:min(54vw,860px);transform:translateY(-50%);opacity:0;pointer-events:none}
+#ehx #docs .laptop{transform-origin:50% 60%}
+#ehx #docs .lid{position:relative;background:#16191e;border-radius:16px 16px 4px 4px;padding:18px 18px 22px;box-shadow:0 0 0 1px #2c3138,inset 0 0 0 2px #0b0d10,0 40px 90px rgba(0,0,0,.65),0 0 70px rgba(90,165,217,.14)}
+#ehx #docs .cam{position:absolute;top:7px;left:50%;width:5px;height:5px;margin-left:-2px;border-radius:50%;background:#2e3a48}
+#ehx #docs .base{position:relative;height:16px;margin:0 -7%;background:linear-gradient(#c9ced5,#8e959e);border-radius:0 0 18px 18px;box-shadow:0 18px 30px rgba(0,0,0,.5)}
+#ehx #docs .base i{position:absolute;left:50%;top:0;width:16%;height:6px;margin-left:-8%;background:#a8aeb6;border-radius:0 0 8px 8px}
+#ehx #docs .scr{background:#f4f7fb;color:#0f2340;border-radius:3px;overflow:hidden;aspect-ratio:16/10;font:12px/1.4 Inter,system-ui,sans-serif}
+#ehx .app{display:grid;grid-template-columns:22% 1fr;height:100%}
+#ehx .side{background:#173E6A;color:#c9dbef;padding:14px 12px;display:flex;flex-direction:column;gap:14px;min-width:0}
+#ehx .side .lg{width:74%;max-width:120px;height:auto;display:block}
+#ehx .proj small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8fb2d6}
+#ehx .proj b{color:#fff;font-size:12.5px}
+#ehx .nav{display:grid;gap:2px}
+#ehx .nav a,#ehx .nav span{display:block;padding:7px 9px;border-radius:6px;font-size:11.5px;color:#c9dbef;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ehx .nav span{opacity:.5;cursor:default}
+#ehx .nav a.on{background:#fff;color:#173E6A;font-weight:700}
+#ehx .who{margin-top:auto;display:flex;gap:8px;align-items:center;font-size:11px;color:#fff}
+#ehx .who i{flex:0 0 26px;height:26px;border-radius:50%;background:#5AA5D9;color:#0a1a30;font-style:normal;font-weight:800;display:grid;place-items:center;font-size:10px}
+#ehx .who small{display:block;color:#8fb2d6;font-size:10px}
+#ehx .mainp{display:flex;flex-direction:column;min-width:0}
+#ehx .top{display:flex;align-items:center;gap:12px;padding:9px 14px;border-bottom:1px solid #dbe4ee;background:#fff}
+#ehx .top .lgm{display:none}
+#ehx .crumb{flex:1;font-size:11.5px;color:#6c819d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ehx .crumb b{color:#0f2340}
+#ehx .srch{font-size:11px;color:#8aa0bb;border:1px solid #d5e0ec;border-radius:6px;padding:4px 10px;min-width:130px}
+#ehx .sync{font-size:10.5px;color:#16794a;white-space:nowrap}
+#ehx .sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:5px}
+#ehx .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 14px 0}
+#ehx .kpis div{background:#fff;border:1px solid #dbe4ee;border-radius:8px;padding:7px 10px}
+#ehx .kpis small{display:block;font-size:10px;color:#6c819d}
+#ehx .kpis b{font-size:15px;color:#0f2340;font-variant-numeric:tabular-nums}
+#ehx .kpis b.g{color:#16794a}
+#ehx .foot2{display:flex;align-items:center;gap:10px;padding:6px 14px 8px;font-size:10px;color:#8aa0bb}
+#ehx .foot2 .prog{flex:1}
 #ehx .views{position:relative;flex:1;overflow:hidden}
 #ehx .view{position:absolute;inset:0;padding:14px 16px;opacity:0;transition:opacity .35s;overflow:hidden}
 #ehx .view.on{opacity:1}
@@ -627,19 +647,32 @@ html{scroll-behavior:auto}
 #ehx .sg .mono{color:#16794a;font-weight:700}
 #ehx .stamp{margin-top:14px;display:inline-block;border:2px solid #16794a;color:#16794a;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:6px;transform:rotate(-2deg)}
 #ehx .stamp small{display:block;font-weight:600;letter-spacing:0;text-transform:none;font-size:11px}
-#ehx .prog{height:3px;background:#d5e0ec}
+#ehx .prog{height:3px;background:#d5e0ec;border-radius:2px;overflow:hidden}
 #ehx .prog i{display:block;height:100%;width:0;background:#5AA5D9}
 @media(max-width:700px){#ehx #docs{left:12px;right:12px;width:auto;top:70px;transform:none}
-#ehx #docs .scr{aspect-ratio:1/1;font-size:12px}
-#ehx #docs .stand,#ehx #docs .foot{display:none}
+#ehx #docs .lid{padding:10px 10px 12px;border-radius:12px 12px 3px 3px}
+#ehx #docs .base{height:10px}
+#ehx #docs .scr{aspect-ratio:auto;height:min(40vh,340px)}
+#ehx .app{grid-template-columns:1fr}
+#ehx .side{display:none}
+#ehx .top{background:#173E6A;border:0;padding:8px 10px}
+#ehx .top .lgm{display:block;height:20px;width:auto}
+#ehx .crumb{color:#c9dbef}
+#ehx .crumb b{color:#fff}
+#ehx .srch{display:none}
+#ehx .sync{color:#9fe0b8}
+#ehx .kpis{grid-template-columns:repeat(2,1fr);gap:6px;padding:8px 10px 0}
+#ehx .kpis div:nth-child(n+3){display:none}
+#ehx .kpis div{padding:5px 8px}
+#ehx .kpis b{font-size:13px}
 #ehx .hide-s{display:none}
+#ehx .view{padding:10px}
 #ehx .view tbody tr:nth-child(n+5){display:none}
 #ehx .qc li:nth-child(n+4){display:none}
 #ehx .qc{grid-template-columns:1fr}
 #ehx .ph{grid-template-columns:repeat(3,1fr)}
 #ehx .ph figcaption{display:none}
-#ehx .appbar .ttl b{display:block;margin:0}
-#ehx .tabs span{padding:8px 7px;font-size:11px}}
+#ehx .sig .sg:nth-child(n+3){display:none}}
 body.poster #ehx #panels,body.poster #ehx #hud,body.poster #ehx header,body.poster #ehx #hint,body.poster #ehx #plan,body.poster #ehx #spots{display:none}
 body.poster #ehx #stage::after{display:none}
 body.embed #ehx header .brand{visibility:hidden}
@@ -659,7 +692,7 @@ html,body.index-one{overflow:visible!important;overflow-x:clip!important}
 #ehx #plan{top:20px}
 #ehx #docs .scr,#ehx .spot span{font-family:"DM Sans",system-ui,sans-serif}
 #ehx .go{color:#0a1a30}
-@media(max-width:700px){#ehx #plan{top:12px}#ehx #docs{top:16px}}
+@media(max-width:700px){#ehx #plan{top:12px}#ehx #docs{top:12px}#ehx #docs .scr{height:min(36vh,300px)}}
 
 </style>
 </head>
@@ -902,14 +935,21 @@ html,body.index-one{overflow:visible!important;overflow-x:clip!important}
   <canvas id="c"></canvas>
   <div id="spots"></div>
   <div id="dark"></div>
-  <div id="docs" aria-label="CSI digital QC and documentation records">
-   <div class="mon"><div class="scr">
-    <div class="appbar"><span class="logo">CSI</span><span class="ttl">Project records <b>PDC-01 · E-House</b></span><span class="sync">Synced</span></div>
-    <div class="tabs"><span>Register</span><span>QC checklist</span><span>FAT report</span><span>Sign-off</span></div>
-    <div class="views"><div class="view"></div><div class="view"></div><div class="view"></div><div class="view"></div></div>
-    <div class="prog"><i></i></div>
-   </div></div>
-   <div class="stand"></div><div class="foot"></div>
+  <div id="docs" aria-label="CSI client portal showing QC and documentation records">
+   <div class="laptop"><div class="lid"><i class="cam"></i><div class="scr"><div class="app">
+    <aside class="side">
+     <img class="lg" src="/e-house-tour/brand/CSI-Engineering-Logo-White.webp" alt="CSI Engineering">
+     <div class="proj"><small>Client portal</small><b>PDC-01 · E-House</b></div>
+     <nav class="nav"><a data-i="0">Document register</a><a data-i="1">QC checklists</a><a data-i="2">FAT reports</a><a data-i="3">Sign-off</a><span>Drawings</span><span>Photos</span><span>Punch list</span></nav>
+     <div class="who"><i>OE</i><span>Owner's engineer<small>Read-only access</small></span></div>
+    </aside>
+    <section class="mainp">
+     <div class="top"><img class="lgm" src="/e-house-tour/brand/CSI-Engineering-Logo-White.webp" alt="CSI Engineering"><div class="crumb">PDC-01 E-House / <b id="crumb">Document register</b></div><div class="srch">Search records</div><span class="sync">Synced</span></div>
+     <div class="kpis"><div><small>Records</small><b>142</b></div><div><small>QC checks passed</small><b>1,286</b></div><div><small>Open punch items</small><b class="g">0</b></div><div><small>FAT status</small><b class="g">Witnessed</b></div></div>
+     <div class="views"><div class="view"></div><div class="view"></div><div class="view"></div><div class="view"></div></div>
+     <div class="foot2"><span>Sample project data</span><div class="prog"><i></i></div></div>
+    </section>
+   </div></div></div><div class="base"><i></i></div></div>
   </div>
   <div id="plan"><div class="t"><span>Floor plan</span><span id="planLbl">Entry</span></div><svg id="planSvg" viewBox="-9.6 -3.6 19.2 7.2"></svg></div>
   <div id="panels"></div>

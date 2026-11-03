@@ -33,7 +33,8 @@ tail_scripts = src[src.rindex('<script>\n    /* ── Dropdown hover-delay fix'
 # ---------- pieces of the walkthrough ----------
 css = re.search(r'<style>(.*?)</style>', tour, re.S).group(1)
 body = tour[tour.index('<div id="track">'):tour.index('<script type="importmap">')]
-body = re.sub(r'\s*<header>.*?</header>', '', body, count=1, flags=re.S)   # the site header replaces it
+body = re.sub(r'\s*<header>.*?</header>', '', body, count=1, flags=re.S)
+body = body.replace('src="./brand/', 'src="/e-house-tour/brand/')   # the site header replaces it
 
 def scope(css, pre='#ehx'):
     out, i = [], 0
@@ -86,7 +87,7 @@ html,body.index-one{overflow:visible!important;overflow-x:clip!important}
 #ehx #plan{top:20px}
 #ehx #docs .scr,#ehx .spot span{font-family:"DM Sans",system-ui,sans-serif}
 #ehx .go{color:#0a1a30}
-@media(max-width:700px){#ehx #plan{top:12px}#ehx #docs{top:16px}}
+@media(max-width:700px){#ehx #plan{top:12px}#ehx #docs{top:12px}#ehx #docs .scr{height:min(36vh,300px)}}
 '''
 
 page = f'''<!DOCTYPE html>

@@ -507,10 +507,11 @@ const K=[
  {u:125,p:[-4.0,2.15,-0.75],t:[-6.7,1.5,2.0],s:1,o:0},
  {u:130,p:[-2.4,2.0,0.25], t:[-8.5,3.0,0.0],s:1,o:0},
  {u:135,p:[-3.1,2.0,0.25], t:[-8.8,3.1,0.0],s:1,o:0},
- {u:140,p:[-8.5,3.55,0.2],  t:[-9.6,3.55,0.2],s:1,o:0},
- {u:143,p:[-8.5,3.55,0.2],  t:[-9.6,3.55,0.2],s:1,o:0},
- {u:157,p:[-7.0,2.25,0.2],  t:[2,1.9,0.2],   s:1,o:0},
- {u:162,p:[-10.8,2.3,0.2],  t:[0,1.9,0.2],   s:0,o:.5},
+ {u:138.5,p:[-6.4,2.2,0.2], t:[-12,2.15,0.2], s:0,o:0},
+ {u:141,p:[-9.05,2.25,0.2], t:[-13,2.15,0.2], s:1,o:0},
+ {u:143,p:[-9.1,2.25,0.2],  t:[-13,2.15,0.2], s:1,o:0},
+ {u:157,p:[-14.5,2.6,2.6],  t:[-9,2.1,0.2],   s:1,o:1},
+ {u:161,p:[-15.5,2.9,3.2],  t:[-8,2.0,0.2],   s:0,o:1},
  {u:166,p:[-17,3.6,3],      t:[-6,2.0,0],    s:0,o:1},
  {u:171,p:[-19,10,19],      t:[-4.5,1.6,0],  s:1,o:1},
  {u:175,p:[-16,10.5,21],    t:[-4.5,1.6,0],  s:1,o:1},
@@ -604,8 +605,8 @@ const planRects={};for(const [k,[a,b,c,d]] of Object.entries(FOOT))planRects[k]=
 const cone=el('path',{fill:'rgba(90,165,217,.35)'});const me=el('circle',{r:.32,fill:'#fff',stroke:'#5AA5D9','stroke-width':.15});
 
 /* ---------------- records screen (QC + documentation) ---------------- */
-const darkEl=document.getElementById('dark'),docsEl=document.getElementById('docs'),monEl=docsEl.querySelector('.mon');
-const views=[...docsEl.querySelectorAll('.view')],tabs=[...docsEl.querySelectorAll('.tabs span')];
+const darkEl=document.getElementById('dark'),docsEl=document.getElementById('docs'),monEl=docsEl.querySelector('.laptop'),crumbEl=document.getElementById('crumb');
+const views=[...docsEl.querySelectorAll('.view')],tabs=[...docsEl.querySelectorAll('.nav a')];
 const DOCS={
  reg:[['ITP-PDC01-001','Inspection & test plan','QA/QC','Approved'],['QC-PDC01-014','Bus & cable torque record','Electrical','Complete'],['QC-PDC01-022','Point-to-point wiring check','Controls','Complete'],['RLY-PDC01-007','Relay settings & test sheets','Protection','Complete'],['FAT-PDC01-003','Factory acceptance test','Testing','Witnessed'],['NETA-PDC01-ATS','Site acceptance (ANSI/NETA ATS)','Testing','Scheduled'],['TOP-PDC01','Turnover package & as-builts','Handover','In progress']],
  qc:[['Bus joint torque, sections 1–7','75 ft·lb spec · 75 ft·lb recorded'],['Torque marks applied to every joint','42 of 42 joints'],['Cable lug terminations torqued','Per vendor table T-3'],['Ground bus continuity','0.4 mΩ'],['Labels and nameplates match drawings','Rev C'],['Photo evidence attached','3 photos']],
@@ -622,7 +623,7 @@ tabs.forEach((t,i)=>t.onclick=()=>scrollTo({top:uToScroll(142+12.5*(i+0.15)/4),b
 let docTab=-1;
 function docsStep(q){
  const t=Math.min(3,Math.floor(q*4)),local=q*4-t;
- if(t!==docTab){docTab=t;views.forEach((v,i)=>v.classList.toggle('on',i===t));tabs.forEach((x,i)=>x.classList.toggle('on',i===t))}
+ if(t!==docTab){docTab=t;views.forEach((v,i)=>v.classList.toggle('on',i===t));tabs.forEach((x,i)=>x.classList.toggle('on',i===t));crumbEl.textContent=tabs[t].textContent}
  const list=rows[t],n=Math.ceil(clamp(local/0.45)*list.length);
  list.forEach((r,i)=>r.classList.toggle('in',i<n));
  docsEl.querySelector('.prog i').style.width=(q*100)+'%';
@@ -726,11 +727,11 @@ function frame(now){
  }
 
  // records screen: wall goes dark, the monitor powers on, the record steps through
- const dark=ramp(u,137.5,140.3)*(1-ramp(u,156,157.5));
+ const dark=ramp(u,138.8,140.9)*(1-ramp(u,156,157.6));
  darkEl.style.opacity=dark;
  const on=ramp(u,140.6,142.2)*(1-ramp(u,154.8,156.2));
  docsEl.style.opacity=on;docsEl.style.pointerEvents=on>0.5?'auto':'none';
- monEl.style.transform=`scale(${0.92+0.08*on},${0.04+0.96*Math.min(1,on*1.6)})`;
+ monEl.style.transform=`translateY(${(1-on)*28}px) scale(${0.95+0.05*on})`;
  if(on>0)docsStep(clamp((u-142)/12.5));
  fillBar.style.width=(cur*100)+'%';hint.style.opacity=cur>0.01?0:1;
  renderer.render(scene,camera);
