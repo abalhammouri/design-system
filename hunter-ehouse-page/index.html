@@ -235,6 +235,8 @@ body.dark-on #ehx .panel li{color:#d5efe2;border-color:rgba(127,211,168,.5);back
 body.dark-on #ehx #count{color:#fff}body.dark-on #ehx #dots i{background:#0b1a14}
 @media(max-width:700px){#ehx #plan{top:10px}#ehx #docs .scr{height:min(32vh,260px)}#ehx .panel h2{font-size:28px}#ehx .panel p{font-size:14px}}
 @media(max-width:900px){#ehx{--hh:94px}}
+/* recording mode: no site header, no CSS transitions (frames are rendered one by one) */
+body.rec .hb{display:none}body.rec #ehx *{transition:none!important;animation:none!important}
 
 </style>
 </head>

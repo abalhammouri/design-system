@@ -598,6 +598,7 @@ const K=[
  {u:36, p:[-10.7,2.3,0.2], t:[-6,2.15,0.2], s:0,o:.4},
  {u:41, p:[-8.3,2.25,0.2], t:[3,1.9,0.2],   s:1,o:0},
  {u:45, p:[-7.9,2.25,0.25],t:[3,1.9,0.12],  s:1,o:0},
+ {u:47.5,p:[-5.6,2.3,1.2], t:[0,1.85,0.1],  s:0,o:0},
  {u:50, p:[-2.7,2.25,1.2], t:[-6.4,1.7,-1.6],s:1,o:0},
  {u:55, p:[-3.1,2.25,1.15],t:[-6.8,1.7,-1.6],s:1,o:0},
  {u:60, p:[-1.7,2.2,1.2], t:[0.4,1.6,-1.4], s:1,o:0},
@@ -829,6 +830,7 @@ function frame(now){
  if(a!==active){active=a;els.forEach((e,i)=>e.classList.toggle('on',i===a));dEls.forEach((d,i)=>d.classList.toggle('done',i<=a));count.textContent=String(a+1).padStart(2,'0')+' / '+STAGES.length;planLbl.textContent=STAGES[a].room;
   for(const k in planRects)planRects[k].classList.toggle('on',STAGES[a].glow===k)}
  const S=STAGES[a];
+ if(REC)els.forEach((e,i)=>{const st=STAGES[i],v=clamp(Math.min(i===0?9:(u-st.u[0])/1.6,i===STAGES.length-1?9:(st.u[1]-u)/1.6));e.style.opacity=v;e.style.visibility=v>0?'visible':'hidden'});
  const inStage=clamp(Math.min((u-S.u[0])/2.5,(S.u[1]-u)/2.5));
  const pulse=0.5+0.5*Math.sin(now/520);
  for(const p of allParts)p.glow(p.name===S.glow?inStage*(0.14+0.12*pulse):0);
@@ -866,9 +868,13 @@ function frame(now){
  fillBar.style.width=(cur*100)+'%';hint.style.opacity=cur>0.01?0:1;
  renderer.render(scene,camera);
  if(qs.has('u')&&++stillFrames>3){window.__ready=true;return}
+ if(REC)return;
  requestAnimationFrame(frame);
 }
 let stillFrames=0;
+// recording mode (?rec): the page renders only when asked, one frame per call
+const REC=qs.has('rec');
+if(REC){document.body.classList.add('rec');window.__renderAt=u=>{target=cur=clamp(u/U);frame(u*120)};window.__U=U;window.__ready=true}
 requestAnimationFrame(frame);
 addEventListener('keydown',e=>{
  if(!['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','PageDown','PageUp'].includes(e.key))return;
