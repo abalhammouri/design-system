@@ -51,6 +51,42 @@ header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space
 #hint{position:absolute;right:clamp(20px,4vw,56px);top:50%;font:500 11px ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:#9fb8d4;writing-mode:vertical-rl;z-index:4;transition:opacity .4s}
 #loading{position:absolute;inset:0;display:grid;place-items:center;z-index:9;background:var(--ink);font:500 12px ui-monospace,monospace;letter-spacing:.2em;color:#9fb8d4;transition:opacity .6s}
 @media(max-width:700px){.panel{right:20px;bottom:76px}.panel h2{font-size:27px;margin:8px 0}.panel p{font-size:14.5px;line-height:1.5}.panel .why{display:none}.panel ul{margin-top:10px;gap:6px}.panel li{font-size:11px;padding:5px 9px}#hint{display:none}#hud{bottom:22px}#dots i{width:9px;height:9px}.spot span{font-size:11px;padding:4px 7px}}
+#dark{position:absolute;inset:0;background:#000;opacity:0;z-index:3;pointer-events:none}
+#docs{position:absolute;z-index:4;right:clamp(20px,4vw,64px);top:50%;width:min(56vw,860px);transform:translateY(-50%);opacity:0;pointer-events:none}
+#docs .mon{background:#0d0f12;border-radius:14px;padding:12px;box-shadow:0 0 0 1px #2a2f36,0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(90,165,217,.15);transform-origin:50% 50%}
+#docs .scr{background:#f4f7fb;color:#0f2340;border-radius:6px;overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column;font:13px/1.4 Inter,system-ui,sans-serif}
+#docs .stand{width:80px;height:46px;margin:0 auto;background:linear-gradient(#1a1d22,#0d0f12)}#docs .foot{width:220px;height:10px;margin:0 auto;border-radius:6px;background:#15181c}
+.appbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#173E6A;color:#fff}
+.appbar .logo{font-weight:800;letter-spacing:.12em;background:#fff;color:#173E6A;padding:2px 7px;border-radius:4px;font-size:12px}
+.appbar .ttl{flex:1;font-size:13px;color:#c9dbef}.appbar .ttl b{color:#fff;margin-left:6px}
+.appbar .sync{font-size:11px;color:#9fe0b8}.appbar .sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:6px}
+.tabs{display:flex;gap:2px;padding:0 12px;background:#e3ebf4;border-bottom:1px solid #cfdbe8}
+.tabs span{padding:9px 12px;font-size:12px;font-weight:600;color:#5b7190;cursor:pointer;border-bottom:2px solid transparent}
+.tabs span.on{color:#173E6A;border-color:#5AA5D9;background:#f4f7fb}
+.views{position:relative;flex:1;overflow:hidden}
+.view{position:absolute;inset:0;padding:14px 16px;opacity:0;transition:opacity .35s;overflow:hidden}.view.on{opacity:1}
+.vh{font-size:12px;color:#5b7190;margin-bottom:10px}.vh b{color:#0f2340}
+.view table{width:100%;border-collapse:collapse;font-size:12px}
+.view th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6c819d;font-weight:600;padding:6px 8px;border-bottom:1px solid #d5e0ec}
+.view td{padding:7px 8px;border-bottom:1px solid #e3ebf4}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:11.5px}
+.view em{font-style:normal;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
+em.ok{background:#dcf5e7;color:#16794a}em.wait{background:#fff1d6;color:#9a6400}
+.view tbody tr,.qc li,.view figure,.sg,.stamp{opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.view .in{opacity:1!important;transform:none!important}
+.qc{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}.qc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:start}
+.qc li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px}.qc li small{display:block;color:#6c819d;font-size:11px}
+.qc li i,.sg i{flex:0 0 18px;height:18px;border-radius:50%;background:#16a35f;position:relative}
+.qc li i::after,.sg i::after{content:"";position:absolute;left:6px;top:3px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ph{display:grid;gap:8px;grid-template-columns:1fr 1fr;align-content:start}.ph figure{margin:0;position:relative}.ph img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:4px}
+.ph figcaption{position:absolute;left:6px;bottom:5px;font:10px ui-monospace,monospace;color:#fff;background:rgba(0,0,0,.55);padding:2px 5px;border-radius:3px}
+.inst{margin:10px 0 0;font-size:11px;color:#6c819d}
+.sig{display:grid;gap:10px}.sg{display:flex;align-items:center;gap:12px;padding:10px 12px;background:#fff;border:1px solid #d5e0ec;border-radius:8px}
+.sg div{flex:1}.sg b{display:block;font-size:13px}.sg small{color:#6c819d;font-size:11px}.sg .mono{color:#16794a;font-weight:700}
+.stamp{margin-top:14px;display:inline-block;border:2px solid #16794a;color:#16794a;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:6px;transform:rotate(-2deg)}
+.stamp small{display:block;font-weight:600;letter-spacing:0;text-transform:none;font-size:11px}
+.prog{height:3px;background:#d5e0ec}.prog i{display:block;height:100%;width:0;background:#5AA5D9}
+@media(max-width:700px){#docs{left:12px;right:12px;width:auto;top:70px;transform:none}#docs .scr{aspect-ratio:1/1;font-size:12px}#docs .stand,#docs .foot{display:none}.hide-s{display:none}.view tbody tr:nth-child(n+5){display:none}.qc li:nth-child(n+4){display:none}.qc{grid-template-columns:1fr}.ph{grid-template-columns:repeat(3,1fr)}.ph figcaption{display:none}.appbar .ttl b{display:block;margin:0}.tabs span{padding:8px 7px;font-size:11px}}
 body.poster #panels,body.poster #hud,body.poster header,body.poster #hint,body.poster #plan,body.poster #spots{display:none}
 body.poster #stage::after{display:none}
 body.embed header .brand{visibility:hidden}
@@ -63,6 +99,16 @@ body.embed header .brand{visibility:hidden}
   <div id="loading">LOADING E-HOUSE...</div>
   <canvas id="c"></canvas>
   <div id="spots"></div>
+  <div id="dark"></div>
+  <div id="docs" aria-label="CSI digital QC and documentation records">
+   <div class="mon"><div class="scr">
+    <div class="appbar"><span class="logo">CSI</span><span class="ttl">Project records <b>PDC-01 · E-House</b></span><span class="sync">Synced</span></div>
+    <div class="tabs"><span>Register</span><span>QC checklist</span><span>FAT report</span><span>Sign-off</span></div>
+    <div class="views"><div class="view"></div><div class="view"></div><div class="view"></div><div class="view"></div></div>
+    <div class="prog"><i></i></div>
+   </div></div>
+   <div class="stand"></div><div class="foot"></div>
+  </div>
   <header><div class="brand">CSI <b>ENGINEERING</b></div><a class="cta" href="#contact">Talk to an engineer</a></header>
   <div id="plan"><div class="t"><span>Floor plan</span><span id="planLbl">Entry</span></div><svg id="planSvg" viewBox="-9.6 -3.6 19.2 7.2"></svg></div>
   <div id="panels"></div>

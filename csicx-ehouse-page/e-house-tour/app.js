@@ -507,14 +507,15 @@ const K=[
  {u:125,p:[-4.0,2.15,-0.75],t:[-6.7,1.5,2.0],s:1,o:0},
  {u:130,p:[-2.4,2.0,0.25], t:[-8.5,3.0,0.0],s:1,o:0},
  {u:135,p:[-3.1,2.0,0.25], t:[-8.8,3.1,0.0],s:1,o:0},
- {u:138,p:[-4.2,2.15,0.2],  t:[-4.6,2.0,-2.9],s:0,o:0},
- {u:141,p:[-6.8,2.25,0.2], t:[2,1.9,0.2],   s:0,o:0},
- {u:145,p:[-10.8,2.3,0.2], t:[0,1.9,0.2],   s:0,o:.5},
- {u:149,p:[-17,3.6,3],     t:[-6,2.0,0],    s:0,o:1},
- {u:154,p:[-19,10,19],     t:[-4.5,1.6,0],  s:1,o:1},
- {u:158,p:[-16,10.5,21],   t:[-4.5,1.6,0],  s:1,o:1},
- {u:165,p:[13,4.6,21],     t:[-1.2,2.0,0],  s:1,o:1},
- {u:172,p:[15.5,4.3,19],   t:[-1.2,2.0,0],  s:1,o:1}
+ {u:140,p:[-8.5,3.55,0.2],  t:[-9.6,3.55,0.2],s:1,o:0},
+ {u:143,p:[-8.5,3.55,0.2],  t:[-9.6,3.55,0.2],s:1,o:0},
+ {u:157,p:[-7.0,2.25,0.2],  t:[2,1.9,0.2],   s:1,o:0},
+ {u:162,p:[-10.8,2.3,0.2],  t:[0,1.9,0.2],   s:0,o:.5},
+ {u:166,p:[-17,3.6,3],      t:[-6,2.0,0],    s:0,o:1},
+ {u:171,p:[-19,10,19],      t:[-4.5,1.6,0],  s:1,o:1},
+ {u:175,p:[-16,10.5,21],    t:[-4.5,1.6,0],  s:1,o:1},
+ {u:182,p:[13,4.6,21],      t:[-1.2,2.0,0],  s:1,o:1},
+ {u:189,p:[15.5,4.3,19],    t:[-1.2,2.0,0],  s:1,o:1}
 ];
 const U=K[K.length-1].u;
 
@@ -566,10 +567,13 @@ const STAGES=[
   p:'Redundant HVAC holds temperature and humidity, cable tray keeps every run organized overhead, and smoke detection is tied to a clean-agent system that will not harm the electronics.',
   why:'<b>Life of the gear:</b> clean, dry, cool equipment lasts longer and fails less.',chips:['Redundant HVAC','Cable tray','Clean-agent suppression','Fire alarm'],
   spots:[['Cable tray',[-5.2,C-0.55,-1.45]],['LED lighting',[-5.0,C-0.1,0.75]],['Clean-agent cylinders',[-8.6,F+1.0,-2.55]],['Fire alarm panel',[X0+0.1,F+1.62,-1.65]],['HVAC supply',[-5.2,C-0.05,0.2]]],room:'Building systems'},
- {u:[137,158],eb:'12 · Factory acceptance',h:'Proven on our floor, witnessed by yours.',
+ {u:[137,158],eb:'12 · Records & evidence',h:'Every check leaves a record.',docs:1,
+  p:'Each inspection, torque value, test result and photo is captured in CSI\'s digital QC system as the work happens, linked to the drawing, the instrument and the person who signed it.',
+  why:'<b>For your QA team and auditors:</b> evidence you can trace line by line, not a binder assembled at the end.',chips:['Digital ITP','QC checklists','Photo evidence','Signed FAT reports'],room:'Records'},
+ {u:[158,175],eb:'13 · Factory acceptance',h:'Proven on our floor, witnessed by yours.',
   p:'Before it ships, the complete e-house is inspected, functionally tested and commissioned in the factory, with your team invited to witness and sign off.',
   why:'<b>Lower risk:</b> integration problems are found here, not during startup.',chips:['QC inspection','FAT','Off-site commissioning','Documentation'],room:'Outside'},
- {u:[158,173],eb:'13 · Site acceptance',h:'Set on site. Verified. Energized.',
+ {u:[175,190],eb:'14 · Site acceptance',h:'Set on site. Verified. Energized.',
   p:'After transport and placement, site acceptance and NETA testing confirm it performs exactly as it did in the factory. Test reports, as-builts and manuals ship with the building.',
   chips:['SAT','NETA testing','Energization'],cta:'Walk through your project with an engineer',room:'Outside'}
 ];
@@ -598,6 +602,31 @@ el('line',{x1:FRONT_DOOR[0],y1:ZE1,x2:FRONT_DOOR[1],y2:ZE1,stroke:'#5AA5D9','str
 const FOOT={mv:[-8,-3,-1.7,-1],pc:[-1.4,-1.8,1.6,-1],xfmr:[2,-2.9,4.4,-1.2],batt:[8.1,-2.7,8.85,2.7],ups:[3.4,1.4,5,2.3],vfd:[-0.4,1.4,3.2,2.1],mcc:[-4.2,1.4,-0.6,1.95],lv:[-8,1.4,-4.4,2.9],sys:[-8.8,-2.95,-8.4,-2.2]};
 const planRects={};for(const [k,[a,b,c,d]] of Object.entries(FOOT))planRects[k]=el('rect',{class:'eq',x:a,y:b,width:c-a,height:d-b,rx:.08});
 const cone=el('path',{fill:'rgba(90,165,217,.35)'});const me=el('circle',{r:.32,fill:'#fff',stroke:'#5AA5D9','stroke-width':.15});
+
+/* ---------------- records screen (QC + documentation) ---------------- */
+const darkEl=document.getElementById('dark'),docsEl=document.getElementById('docs'),monEl=docsEl.querySelector('.mon');
+const views=[...docsEl.querySelectorAll('.view')],tabs=[...docsEl.querySelectorAll('.tabs span')];
+const DOCS={
+ reg:[['ITP-PDC01-001','Inspection & test plan','QA/QC','Approved'],['QC-PDC01-014','Bus & cable torque record','Electrical','Complete'],['QC-PDC01-022','Point-to-point wiring check','Controls','Complete'],['RLY-PDC01-007','Relay settings & test sheets','Protection','Complete'],['FAT-PDC01-003','Factory acceptance test','Testing','Witnessed'],['NETA-PDC01-ATS','Site acceptance (ANSI/NETA ATS)','Testing','Scheduled'],['TOP-PDC01','Turnover package & as-builts','Handover','In progress']],
+ qc:[['Bus joint torque, sections 1–7','75 ft·lb spec · 75 ft·lb recorded'],['Torque marks applied to every joint','42 of 42 joints'],['Cable lug terminations torqued','Per vendor table T-3'],['Ground bus continuity','0.4 mΩ'],['Labels and nameplates match drawings','Rev C'],['Photo evidence attached','3 photos']],
+ fat:[['Insulation resistance, MV bus (5 kV DC, 1 min)','≥ 5,000 MΩ','18,400 MΩ'],['AC withstand (hi-pot), 1 min','27 kV','No breakdown'],['Contact resistance, breaker 52-1','≤ 60 µΩ','38 µΩ'],['Relay 50/51 pickup','600 A ± 5%','603 A'],['UPS transfer on loss of input','No interruption','0 ms'],['HVAC lead / lag changeover','Automatic','Changed over']],
+ sign:[['CSI test engineer','Performed and recorded'],['Client witness','Witnessed on site at the factory'],['CSI QA manager','Reviewed and released']]
+};
+const tagCls={Approved:'ok',Complete:'ok',Witnessed:'ok',Scheduled:'wait','In progress':'wait'};
+views[0].innerHTML='<table><thead><tr><th>Record</th><th>Document</th><th class="hide-s">Discipline</th><th>Status</th></tr></thead><tbody>'+DOCS.reg.map(r=>`<tr><td class="mono">${r[0]}</td><td>${r[1]}</td><td class="hide-s">${r[2]}</td><td><em class="${tagCls[r[3]]}">${r[3]}</em></td></tr>`).join('')+'</tbody></table>';
+views[1].innerHTML='<div class="vh"><b>QC-PDC01-014</b> · MV switchgear SWGR-1 · bus and cable torque</div><div class="qc"><ul>'+DOCS.qc.map(r=>`<li><i></i><span>${r[0]}<small>${r[1]}</small></span></li>`).join('')+'</ul><div class="ph">'+['50','60','110'].map(n=>`<figure><img src="./evidence/e-${n}.webp" alt=""><figcaption>IMG_${n}4 · geotagged</figcaption></figure>`).join('')+'</div></div>';
+views[2].innerHTML='<div class="vh"><b>FAT-PDC01-003</b> · factory acceptance test · sample values</div><table><thead><tr><th>Test</th><th class="hide-s">Required</th><th>Measured</th><th>Result</th></tr></thead><tbody>'+DOCS.fat.map(r=>`<tr><td>${r[0]}</td><td class="hide-s mono">${r[1]}</td><td class="mono">${r[2]}</td><td><em class="ok">Pass</em></td></tr>`).join('')+'</tbody></table><p class="inst">Instruments: insulation tester and relay test set, calibration certificates attached.</p>';
+views[3].innerHTML='<div class="vh"><b>FAT-PDC01-003</b> · sign-off</div><div class="sig">'+DOCS.sign.map(r=>`<div class="sg"><i></i><div><b>${r[0]}</b><small>${r[1]}</small></div><span class="mono">signed</span></div>`).join('')+'</div><div class="stamp">FAT complete<small>0 open punch items · released for shipment</small></div>';
+const rows=views.map(v=>[...v.querySelectorAll('tbody tr, .qc li, figure, .sg, .stamp')]);
+tabs.forEach((t,i)=>t.onclick=()=>scrollTo({top:uToScroll(142+12.5*(i+0.15)/4),behavior:'smooth'}));
+let docTab=-1;
+function docsStep(q){
+ const t=Math.min(3,Math.floor(q*4)),local=q*4-t;
+ if(t!==docTab){docTab=t;views.forEach((v,i)=>v.classList.toggle('on',i===t));tabs.forEach((x,i)=>x.classList.toggle('on',i===t))}
+ const list=rows[t],n=Math.ceil(clamp(local/0.45)*list.length);
+ list.forEach((r,i)=>r.classList.toggle('in',i<n));
+ docsEl.querySelector('.prog i').style.width=(q*100)+'%';
+}
 
 /* ---------------- interpolation ---------------- */
 const V=a=>new THREE.Vector3(...a);
@@ -652,17 +681,17 @@ function frame(now){
  camera.position.copy(c.p);camera.lookAt(c.l);
 
  // doors, interior lights, beacon
- const open=ramp(u,26,34)*(1-ramp(u,147,152));
+ const open=ramp(u,26,34)*(1-ramp(u,163,168));
  setDoors(open*THREE.MathUtils.degToRad(100));
  const lit=clamp(0.08+ramp(u,27,36)*0.92);
  inLights.forEach(l=>l.intensity=lit*9);
  doorGlow.intensity=open*lit*8;
- const dusk=0.35+0.65*ramp(u,150,165);
+ const dusk=0.35+0.65*ramp(u,167,182);
  extLamps.forEach(l=>l.intensity=dusk*4);
  for(const m of LAMPS)m.emissiveIntensity=m.userData.key==='walllamp'?dusk*2.2:lit*1.3;
  for(const p of allParts){if(!p.interior)continue;for(const m of p.mats)m.envMapIntensity=0.2+0.45*lit}
  for(const m of SIGNMATS)m.envMapIntensity=0.3+0.4*lit;
- if(beaconMat){const g=ramp(u,160,163);beaconMat.emissive.setRGB(1-g*0.83,0.69+g*0.31*0.85,0.12+g*0.35);beaconMat.emissiveIntensity=2+Math.sin(now/300)*0.6}
+ if(beaconMat){const g=ramp(u,177,180);beaconMat.emissive.setRGB(1-g*0.83,0.69+g*0.31*0.85,0.12+g*0.35);beaconMat.emissiveIntensity=2+Math.sin(now/300)*0.6}
 
  // stage
  let a=STAGES.findIndex(s=>u>=s.u[0]&&u<s.u[1]);if(a<0)a=STAGES.length-1;
@@ -689,13 +718,20 @@ function frame(now){
 
  // floor plan
  const inside=1-c.o;
- planEl.style.opacity=inside>0.5?1:0;
+ planEl.style.opacity=inside>0.5&&!S.docs?1:0;
  if(inside>0.2){
   const x=camera.position.x,z=camera.position.z;me.setAttribute('cx',x);me.setAttribute('cy',z);
   const ang=Math.atan2(fwd.z,fwd.x),sp=0.5,r=3.2;
   cone.setAttribute('d',`M${x} ${z} L${x+r*Math.cos(ang-sp)} ${z+r*Math.sin(ang-sp)} L${x+r*Math.cos(ang+sp)} ${z+r*Math.sin(ang+sp)} Z`);
  }
 
+ // records screen: wall goes dark, the monitor powers on, the record steps through
+ const dark=ramp(u,137.5,140.3)*(1-ramp(u,156,157.5));
+ darkEl.style.opacity=dark;
+ const on=ramp(u,140.6,142.2)*(1-ramp(u,154.8,156.2));
+ docsEl.style.opacity=on;docsEl.style.pointerEvents=on>0.5?'auto':'none';
+ monEl.style.transform=`scale(${0.92+0.08*on},${0.04+0.96*Math.min(1,on*1.6)})`;
+ if(on>0)docsStep(clamp((u-142)/12.5));
  fillBar.style.width=(cur*100)+'%';hint.style.opacity=cur>0.01?0:1;
  renderer.render(scene,camera);
  if(qs.has('u')&&++stillFrames>3){window.__ready=true;return}
