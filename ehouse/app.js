@@ -620,6 +620,11 @@ const qs=new URLSearchParams(location.search);
 const read=()=>{target=clamp(scrollY/Math.max(1,maxScroll()))};
 addEventListener('scroll',read,{passive:true});
 if(qs.has('u')){scrollTo(0,uToScroll(+qs.get('u')));}
+else if(qs.has('stop')){const n=clamp(+qs.get('stop')||0,0,STAGES.length-1);scrollTo(0,uToScroll(STAGES[n].u[0]+(n?2.5:0)));}
+if(qs.has('poster'))document.body.classList.add('poster');
+if(qs.has('embed'))document.body.classList.add('embed');
+const CONTACT='https://www.csicx.com/en/contact-us';
+document.querySelectorAll('a[href="#contact"]').forEach(a=>{a.href=CONTACT;a.target='_top';a.rel='noopener'});
 read();cur=target;
 let W=1,H=1,portrait=false;
 function resize(){W=stage.clientWidth;H=stage.clientHeight;renderer.setSize(W,H,false);camera.aspect=W/H;portrait=camera.aspect<0.8}
@@ -642,7 +647,7 @@ function frame(now){
   const k=1+(Math.max(1,Math.tan(THREE.MathUtils.degToRad(29))/Math.tan(hf/2))-1)*c.o;
   c.p.sub(c.l).multiplyScalar(k).add(c.l);
   camera.setViewOffset(W,H,0,H*0.17,W,H);
- }else camera.setViewOffset(W,H,-W*0.1,0,W,H);
+ }else if(qs.has('poster'))camera.clearViewOffset();else camera.setViewOffset(W,H,-W*0.1,0,W,H);
  camera.updateProjectionMatrix();
  camera.position.copy(c.p);camera.lookAt(c.l);
 

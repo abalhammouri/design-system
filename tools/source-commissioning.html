@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-82HB8L57XZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-82HB8L57XZ');
+    </script>
+
+    <meta charset="UTF-8">
+    <script>try{localStorage.setItem('csi_locale','en');}catch(e){}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSI Engineering is a performance-driven firm transforming complex projects into clear structures and measurable results. From concept to completion, we combine disciplined execution, strict quality control, and deep technical knowledge to deliver excellence.">
+        <link rel="shortcut icon" type="image/x-icon" href="https://www.csicx.com/img/favicon.png">
+    <title>CSI Engineering - Commissioning Services</title>
+
+    <link rel="stylesheet" href="https://www.csicx.com/css/plugins/fontawesome.css">
+
+    
+    <link rel="stylesheet" href="https://www.csicx.com/css/plugins/swiper.css">
+    <link rel="stylesheet" href="https://www.csicx.com/css/plugins/metismenu.css">
+    <link rel="stylesheet" href="https://www.csicx.com/css/plugins/magnifying-popup.css">
+    <link rel="stylesheet" href="https://www.csicx.com/css/plugins/odometer.css">
+    <link rel="stylesheet" href="https://www.csicx.com/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.csicx.com/css/plugins/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.csicx.com/css/style.css">
+    <style>
+        /* Match Attachment 1: hide hamburger on desktop, show only when nav is collapsed */
+        @media (min-width: 1200px) {
+            .header-one #menu-btn {
+                display: none !important;
+            }
+        }
+        @media (max-width: 1199px) {
+            .header-one #menu-btn {
+                display: flex !important;
+            }
+        }
+        /* Contact Us button: white text on dark background for contrast */
+        .header-one .button-area .rts-btn.btn-primary.quote-btn {
+            color: #fff !important;
+        }
+        .header-one .button-area .rts-btn.btn-primary.quote-btn:hover {
+            color: var(--color-primary) !important;
+        }
+        /* Mobile: white app bar; logo left, Contact Us + hamburger right (img 2) */
+        @media (max-width: 1199px) {
+            .header-one .header-main,
+            .header-one .header-main-one-wrapper {
+                background: #fff !important;
+            }
+            /* Theme sets .nav-area { display: none } below 1200px — that hid Contact Us + menu. */
+            .header-one .nav-area {
+                display: flex !important;
+                align-items: center;
+                margin-right: 0 !important;
+            }
+            .header-one .main-header {
+                margin-left: auto;
+                flex: 1;
+                justify-content: flex-end;
+                display: flex;
+            }
+            .header-one .nav-area > ul {
+                justify-content: flex-end;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+            }
+            .header-one .nav-area > ul > li:not(.button-area) {
+                display: none !important;
+            }
+            .header-one .nav-area ul li.button-area {
+                display: flex !important;
+                align-items: center;
+                flex-wrap: nowrap;
+                gap: 8px;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .header-one.header--sticky {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                z-index: 999 !important;
+                background: #fff !important;
+                box-shadow: 0 1px 10px rgba(0,0,0,0.08);
+            }
+            body.index-one {
+                padding-top: 80px;
+            }
+        }
+        /* Home hero Swiper (fade): theme only animates .swiper-slide-active text; inactive slides stayed visible → stacked copy */
+        .banner-swiper-two #home-banner-swiper .swiper-wrapper {
+            position: relative;
+        }
+        .banner-swiper-two #home-banner-swiper .swiper-slide:not(.swiper-slide-active) {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+        .banner-swiper-two #home-banner-swiper .swiper-slide.swiper-slide-active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            z-index: 1 !important;
+        }
+        /* Services mega menu: column spacing + keep chevron on one line with label (no wrap / duplicate chevron) */
+        .header-one .has-dropdown.mega-menu .rts-mega-menu {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        .header-one .has-dropdown.mega-menu .rts-mega-menu .mega-menu-item.with-list li a {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            flex-wrap: nowrap !important;
+            white-space: nowrap !important;
+            transition: gap 0.3s ease !important;
+        }
+        .header-one .has-dropdown.mega-menu .rts-mega-menu .mega-menu-item.with-list li:hover a {
+            gap: 12px !important;
+        }
+        .header-one .has-dropdown.mega-menu .rts-mega-menu .mega-menu-item.with-list li a > i {
+            flex-shrink: 0 !important;
+            line-height: 1.2;
+        }
+        /* Nav pushed to the right, smaller text, tighter item spacing */
+        .header-one .header-main-one-wrapper {
+            display: flex !important;
+            align-items: center !important;
+        }
+        .header-one .main-header {
+            margin-left: auto;
+        }
+        /* Tighten the gap between nav items and push them toward the right edge */
+        .header-one .nav-area > ul {
+            gap: 32px !important;
+            justify-content: flex-end !important;
+        }
+        .header-one .nav-area > ul > li > a {
+            font-size: 14.5px !important;
+        }
+
+        /* About dropdown: same link treatment as Services mega (chevron, borders, gap hover, width for long labels) */
+        .header-one li.main-nav.has-dropdown:not(.mega-menu) .submenu.about-dropdown-menu {
+            min-width: 300px;
+            width: max-content;
+            max-width: min(420px, 92vw);
+            padding: 12px 16px !important;
+        }
+        .header-one li.main-nav.has-dropdown:not(.mega-menu) .submenu.about-dropdown-menu li {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .header-one li.main-nav.has-dropdown:not(.mega-menu) .submenu.about-dropdown-menu li a {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            flex-wrap: nowrap !important;
+            white-space: nowrap !important;
+            transition: gap 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+            padding: 12px 12px !important;
+            border: none !important;
+            border-bottom: 1px solid #f3f3f3 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            color: #1c2539 !important;
+            text-align: left !important;
+        }
+        .header-one li.main-nav.has-dropdown:not(.mega-menu) .submenu.about-dropdown-menu li:last-child a {
+            border-bottom: none !important;
+        }
+        .header-one li.main-nav.has-dropdown:not(.mega-menu) .submenu.about-dropdown-menu li:hover a {
+            gap: 12px !important;
+            border-bottom: 1px solid var(--color-primary) !important;
+            color: var(--color-primary) !important;
+            background: transparent !important;
+            opacity: 1 !important;
+        }
+        .header-one li.main-nav.has-dropdown:not(.mega-menu) .submenu.about-dropdown-menu li a > i {
+            flex-shrink: 0 !important;
+            font-size: 12px !important;
+            line-height: 1.2;
+        }
+
+        /* dd-open: JS-class equivalent of :hover for dropdown items (hover-delay fix) */
+        .header-one .nav-area > ul > li.has-dropdown.dd-open .submenu {
+            opacity: 1 !important;
+            visibility: visible !important;
+            top: 100% !important;
+            transform: scaleY(1) !important;
+        }
+        .header-one .nav-area > ul > li.has-dropdown.mega-menu.dd-open .csi-services-mega-panel {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: translateX(-50%) translateY(0) !important;
+            pointer-events: auto !important;
+        }
+
+        /* Inline chevron: hide the theme's ::after ghost now that <i> is inside the <a> */
+        .header-one .nav-area > ul > li.has-dropdown::after,
+        .header-one .nav-area > ul > li.has-dropdown.mega-menu > a::after {
+            display: none !important;
+        }
+        /* Rotate the inline chevron when the dropdown is open */
+        .header-one .nav-area > ul > li.has-dropdown:hover > a > i,
+        .header-one .nav-area > ul > li.has-dropdown.dd-open > a > i {
+            transform: rotate(180deg);
+        }
+        .header-one .nav-area > ul > li.has-dropdown > a > i {
+            transition: transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        /* Footer quick links & services: white on hover with transition */
+        .footer-one-single-wized .links,
+        .footer-one-single-wized .links li {
+            list-style: none !important;
+        }
+        .footer-one-single-wized .links li::before,
+        .footer-one-single-wized .links li::marker {
+            display: none !important;
+            content: none !important;
+        }
+        .footer-one-single-wized .links li a {
+            color: #8B8F99;
+            transition: color 0.4s ease;
+        }
+        .footer-one-single-wized .links li a:hover {
+            color: #ffffff !important;
+        }
+    </style>
+    <style>
+    /* ── CSI Services Mega-Menu (pillar layout) ─────────────────────────────── */
+    :root{
+        --csi-blue:#24499f;
+        --csi-blue-2:#0c67c7;
+        --csi-navy:#111827;
+        --csi-dark:#1d252d;
+        --csi-ink:#101323;
+        --csi-muted:#64748b;
+        --csi-line:#e5eaf2;
+        --csi-paper:#ffffff;
+        --csi-soft:#eef5ff;
+        --csi-soft-2:#f7f9fc;
+        --mega-ease:cubic-bezier(.2,.8,.2,1);
+    }
+
+    /* Wrapper & trigger */
+    .csi-services-mega-li{position:static!important}
+
+    /* Drop panel */
+    .csi-services-mega-panel{
+        position:absolute!important;
+        top:100%!important;
+        left:50%!important;
+        width:min(1200px,calc(100vw - 48px))!important;
+        transform:translateX(-50%) translateY(10px)!important;
+        opacity:0!important;
+        visibility:hidden!important;
+        pointer-events:none!important;
+        transition:opacity .18s var(--mega-ease),transform .22s var(--mega-ease),visibility .18s!important;
+        z-index:999!important;
+        padding:0!important;
+        background:none!important;
+        border:none!important;
+        box-shadow:none!important;
+    }
+    .csi-services-mega-li:hover .csi-services-mega-panel,
+    .csi-services-mega-li.is-open .csi-services-mega-panel{
+        opacity:1!important;visibility:visible!important;
+        transform:translateX(-50%) translateY(0)!important;
+        pointer-events:auto!important;
+    }
+
+    /* Card shell */
+    .csi-mega-inner{
+        background:var(--csi-paper);
+        border:1px solid var(--csi-line);
+        border-radius:22px;
+        box-shadow:0 24px 70px rgba(15,23,42,.16);
+        overflow:hidden;
+        display:grid;
+        grid-template-rows:auto auto;
+    }
+
+    /* Top: intro + pillars side-by-side */
+    .csi-mega-body{
+        display:grid;
+        grid-template-columns:300px 1fr;
+    }
+
+    /* Intro panel */
+    .csi-mega-intro{
+        position:relative;overflow:hidden;
+        padding:32px 28px;color:#fff;
+        background:radial-gradient(circle at 14% 16%,rgba(255,255,255,.22),transparent 28%),
+                   radial-gradient(circle at 120% 110%,rgba(255,255,255,.20),transparent 34%),
+                   linear-gradient(145deg,#1d3f93,#0c67c7 62%,#14213d);
+        display:flex;flex-direction:column;
+    }
+    .csi-mega-intro::before{
+        content:"";position:absolute;
+        inset:auto -90px -90px auto;
+        width:220px;height:220px;
+        border:34px solid rgba(255,255,255,.11);border-radius:999px;
+    }
+    .csi-mega-eyebrow{
+        position:relative;z-index:1;
+        display:inline-flex;align-items:center;gap:8px;
+        margin:0 0 16px;
+        font-size:11px;text-transform:uppercase;letter-spacing:.15em;font-weight:800;
+        color:rgba(255,255,255,.88);
+    }
+    .csi-mega-eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:999px}
+    .csi-mega-heading{
+        position:relative;z-index:1;
+        margin:0 0 20px;
+        font-size:26px;line-height:1.1;letter-spacing:-.035em;
+        font-family:var(--font-primary,"Red Hat Display",serif);
+    }
+    .csi-mega-desc{
+        position:relative;z-index:1;
+        margin:0;color:rgba(255,255,255,.82);font-size:13.5px;line-height:1.65;
+        max-width:240px;
+    }
+    .csi-mega-all-link{
+        position:relative;z-index:1;
+        display:inline-flex;align-items:center;gap:8px;
+        margin-top:auto;padding:12px 15px;
+        border-radius:12px;background:#fff;color:#082552;
+        font-weight:800;font-size:13px;
+        box-shadow:0 14px 28px rgba(0,0,0,.14);
+        transition:background .18s,color .18s;
+        text-decoration:none;width:fit-content;
+    }
+    .csi-mega-all-link:hover{background:#f0f4ff;color:var(--csi-blue)}
+
+    /* Pillar grid (3 cards) */
+    .csi-pillar-grid{
+        padding:20px 18px;
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:14px;
+        align-content:start;
+        align-items:stretch;
+    }
+    .csi-pillar-card{
+        padding:20px 17px 16px;
+        border:1px solid var(--csi-line);border-radius:18px;
+        background:linear-gradient(180deg,#fff,#fbfdff);
+        display:flex!important;
+        flex-direction:column!important;
+        transition:transform .2s var(--mega-ease),border-color .2s,box-shadow .2s;
+    }
+    .csi-pillar-card:hover{transform:translateY(-2px);border-color:#cfd8e8;box-shadow:0 14px 34px rgba(15,23,42,.09)}
+    .csi-pillar-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .csi-pillar-num{
+        flex:0 0 auto;
+        display:grid;place-items:center;
+        width:38px;height:38px;border-radius:12px;
+        background:var(--csi-soft);color:var(--csi-blue);
+        font-weight:900;font-size:13px;letter-spacing:-.02em;
+    }
+    .csi-pillar-title{
+        margin:0;
+        font-size:16px;line-height:1.2;letter-spacing:-.022em;
+        font-family:var(--font-primary,"Red Hat Display",serif);
+        color:#111827;
+    }
+    .csi-pillar-title a{
+        color:inherit;text-decoration:none;
+        transition:color .16s,padding-left .16s;
+        display:inline-block;
+    }
+    .csi-pillar-title a:hover{color:var(--csi-blue);padding-left:4px;}
+    .csi-pillar-summary{
+        margin:0 0 12px;color:var(--csi-muted);font-size:12.5px;line-height:1.55;
+    }
+    .csi-overview-link{
+        display:inline-flex;align-items:center;gap:6px;
+        margin:0 0 11px;color:var(--csi-blue);
+        font-size:12.5px;font-weight:800;text-decoration:none;
+        transition:gap .18s;
+    }
+    .csi-overview-link:hover{gap:10px}
+
+    /* Service list inside pillar — force vertical stacking over theme overrides */
+    .csi-service-list{
+        list-style:none!important;
+        margin:0!important;padding:0!important;
+        border-top:1px solid var(--csi-line)!important;
+        display:block!important;
+        width:100%!important;
+    }
+    .csi-service-list li{
+        display:block!important;
+        float:none!important;
+        width:100%!important;
+        margin:0!important;padding:0!important;
+    }
+    .csi-service-list li a{
+        display:flex!important;
+        align-items:center!important;
+        justify-content:space-between!important;
+        gap:10px!important;
+        padding:9px 0!important;
+        width:100%!important;
+        border:none!important;
+        border-bottom:1px solid var(--csi-line)!important;
+        border-radius:0!important;
+        background:transparent!important;
+        color:#1f2937!important;
+        font-size:13px!important;
+        font-weight:700!important;
+        text-decoration:none!important;
+        white-space:normal!important;
+        transition:color .16s,padding-left .16s!important;
+        opacity:1!important;
+    }
+    .csi-service-list li a span{
+        color:#94a3b8!important;font-size:18px!important;line-height:1!important;
+        flex-shrink:0!important;
+        transition:color .16s,transform .16s!important;
+        display:inline-block!important;
+    }
+    .csi-service-list li a:hover{color:var(--csi-blue)!important;padding-left:4px!important}
+    .csi-service-list li a:hover span{color:var(--csi-blue)!important;transform:translateX(2px)!important}
+    .csi-service-list li:last-child a{border-bottom:none!important}
+
+    /* Footer bar */
+    .csi-mega-footer{
+        display:flex;align-items:center;justify-content:space-between;gap:16px;
+        padding:16px 22px;
+        background:#f8fafc;border-top:1px solid var(--csi-line);
+    }
+    .csi-mega-footer>div{display:flex;flex-direction:column;gap:2px}
+    .csi-mega-footer strong{font-size:14px;color:#111827;font-weight:700}
+    .csi-mega-footer span{font-size:12px;color:var(--csi-muted)}
+    .csi-mega-footer>a:hover{background:#111820}
+    /* Talk to CSI — match Contact Us button exactly */
+    .csi-mega-footer .rts-btn.btn-primary.quote-btn{
+        background:#20282D!important;
+        color:#fff!important;
+        border-color:#20282D!important;
+    }
+    .csi-mega-footer .rts-btn.btn-primary.quote-btn:hover{
+        background:#111820!important;
+        color:#fff!important;
+        border-color:#111820!important;
+    }
+
+    .csi-academy-link{color:#3659c4!important;text-shadow:0 1px 8px rgba(54,89,196,.25);}
+    .csi-academy-link:hover{color:#1a337a!important;text-shadow:0 1px 12px rgba(54,89,196,.35);}
+
+    /* Keep the old theme's .rts-mega-menu display:block override from fighting us */
+    .csi-services-mega-panel.rts-mega-menu{display:block!important}
+
+    @media(max-width:1199px){.csi-services-mega-panel,.csi-mega-inner{display:none!important}}
+
+    /* ── Mobile sidebar: remove item left/right padding ────────── */
+    #side-bar .mainmenu > li > a,
+    #side-bar .mainmenu li .submenu li > a { padding-left: 0 !important; padding-right: 0 !important; }
+
+    /* ── Mobile services: uniform font size ─────────────────────── */
+    #side-bar .mainmenu li a { font-size: 15px !important; }
+
+    /* Pillar titles (2nd level under Services) */
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > a {
+        font-weight: 700;
+        color: #1a2e5e;
+        border-left: none !important;
+        padding-left: 0 !important;
+    }
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > a:hover { color: #264795; }
+
+    /* Service links (3rd level) */
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > ul.submenu > li > a {
+        color: #475569 !important;
+        padding-left: 32px !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        display: block !important;
+    }
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > ul.submenu > li > a:hover {
+        color: #264795 !important;
+    }
+
+    /* Block li:hover color cascade from bleeding into non-hovered siblings */
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > ul.submenu > li { color: inherit !important; }
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > ul.submenu > li::after { display: none !important; }
+
+    /* Pillar title: only highlight when that exact a.main is hovered, not when child is hovered */
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > a.main {
+        color: #1a2e5e !important;
+        padding-left: 16px !important;
+    }
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > a.main:hover { color: #264795 !important; }
+
+    /* Match pillar row height to top-level items by removing the submenu li margin */
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown { margin: 0 !important; }
+
+    /* Overview link — first child in each pillar submenu */
+    #side-bar .mainmenu > li > ul.submenu > li.has-droupdown > ul.submenu > li:first-child > a {
+        color: #264795 !important;
+        font-weight: 700 !important;
+        padding-left: 32px !important;
+    }
+    </style>
+        <link rel="stylesheet" href="https://www.csicx.com/css/service-scroll-reveal.css?v=6">
+        
+    <script src="https://www.csicx.com/js/api.js"></script>
+    <script>var LANG = 'en';</script>
+</head>
+<body class="index-one">
+    <header class="header-one header--sticky">
+
+        <div class="header-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header-main-one-wrapper">
+                            <div class="thumbnail">
+                                <a href="https://www.csicx.com/en"><img loading="lazy" style="height:65px;" src="https://www.csicx.com/img/Common-Items/Logo/CSI-Engineering-Logo-Blue.webp" alt="CSI Logo"></a>
+                            </div>
+                            <div class="main-header">
+                                <div class="nav-area">
+                                    <ul>
+                                        <li class="main-nav has-dropdown project-a-after">
+                                            <a href="#" style="display:inline-flex;align-items:center;gap:6px;">About <i class="fa-regular fa-chevron-down" style="font-size:11px;"></i></a>
+                                            <ul class="submenu parent-nav mega-menu-item with-list about-dropdown-menu">
+                                                <li><a href="https://www.csicx.com/en/about"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>About Us</a></li>
+                                                <li><a href="https://www.csicx.com/en/certifications"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Certifications & Accreditations</a></li>
+                                                <li><a href="https://www.csicx.com/en/our-people"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Our People</a></li>
+                                                <li><a href="https://www.csicx.com/en/our-digitalization"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Our Digitalization</a></li>
+                                                <li><a href="https://www.csicx.com/en/technical-bureau"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Technical Bureau</a></li>
+                                                <li><a href="https://www.csicx.com/en/our-responsibility"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Our Responsibility</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="main-nav has-dropdown mega-menu csi-services-mega-li">
+                                            <a href="#" style="display:inline-flex;align-items:center;gap:6px;">Services <i class="fa-regular fa-chevron-down" style="font-size:11px;"></i></a>
+                                            <div class="rts-mega-menu csi-services-mega-panel">
+                                                <div class="csi-mega-inner">
+                                                    <!-- Top: intro + pillar cards -->
+                                                    <div class="csi-mega-body">
+                                                    <!-- Left intro panel -->
+                                                    <div class="csi-mega-intro">
+                                                        <p class="csi-mega-eyebrow">SERVICE PILLARS</p>
+                                                        <h2 class="csi-mega-heading">Engineering support from concept to handover.</h2>
+                                                        <p class="csi-mega-desc">Explore CSI Engineering services by outcome: construction control, technical design, and specialist digital or mission-critical solutions.</p>
+                                                    </div>
+                                                    <!-- 3 Pillar cards -->
+                                                    <div class="csi-pillar-grid">
+                                                        <!-- Pillar 1: Construction Management -->
+                                                        <div class="csi-pillar-card">
+                                                            <div class="csi-pillar-top">
+                                                                <span class="csi-pillar-num">01</span>
+                                                                <h3 class="csi-pillar-title"><a href="https://www.csicx.com/en/services/overview/construction-management">Construction Management</a></h3>
+                                                            </div>
+                                                            <ul class="csi-service-list">
+                                                                <li><a href="https://www.csicx.com/en/services/design-verification">Design Verification <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/quality-control">Quality Control (QA/QC) <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/testing-diagnostic">Testing &amp; Diagnostics <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/NETA">NETA Certified Testing <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/commissioning">Commissioning &amp; Handover <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/civil-engineering">Civil Engineering <span>›</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <!-- Pillar 2: Design & Engineering -->
+                                                        <div class="csi-pillar-card">
+                                                            <div class="csi-pillar-top">
+                                                                <span class="csi-pillar-num">02</span>
+                                                                <h3 class="csi-pillar-title"><a href="https://www.csicx.com/en/services/overview/design">Design &amp; Engineering</a></h3>
+                                                            </div>
+                                                            <ul class="csi-service-list">
+                                                                <li><a href="https://www.csicx.com/en/services/mep-design">MEP Design <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/bim">BIM Management <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/sustainability-energy">Sustainability &amp; Energy <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/master-systems-integration">Master Systems Integration (MSI) <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/fire-life-safety">Fire Life Safety (FLS) <span>›</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <!-- Pillar 3: Solutions -->
+                                                        <div class="csi-pillar-card">
+                                                            <div class="csi-pillar-top">
+                                                                <span class="csi-pillar-num">03</span>
+                                                                <h3 class="csi-pillar-title"><a href="https://www.csicx.com/en/services/overview/solution">Solutions</a></h3>
+                                                            </div>
+                                                            <ul class="csi-service-list">
+                                                                <li><a href="https://www.csicx.com/en/services/digital-solutions-documentation">Digital Solutions &amp; Documentation <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/training-knowledge-transfer">Training &amp; Knowledge Transfer <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/mission-critical">Mission Critical <span>›</span></a></li>
+                                                                <li><a href="https://www.csicx.com/en/services/oil-gas-engineering">Oil &amp; Gas Engineering <span>›</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    </div><!-- /.csi-mega-body -->
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><a href="https://www.csicx.com/en/sectors-we-serve">Sectors</a></li>
+                                        <li><a href="https://www.csicx.com/en/projects">Projects</a></li>
+                                        <li><a href="https://www.csicx.com/en/documents">Documents</a></li>
+                                        <li><a href="https://www.csicx.com/en/news">News</a></li>
+                                        <li><a href="https://www.csicx.com/en/career">Career</a></li>
+                                        <li><a href="https://academy.csicx.com/" class="csi-academy-link" target="_blank" rel="noopener">CSI Academy</a></li>
+                                        <li><a href="https://www.csicx.com/en/contact-us">Contact Us</a></li>
+                                        <li class="main-nav has-dropdown project-a-after">
+                                                                                        <a href="#" style="display:inline-flex;align-items:center;gap:6px;">English <i class="fa-regular fa-chevron-down" style="font-size:11px;"></i></a>
+                                            <ul class="submenu parent-nav mega-menu-item with-list about-dropdown-menu">
+                                                                                                                                                                                                                <li><a href="https://www.csicx.com/en/services/commissioning" style="font-weight:700;color:var(--color-primary,#1a56db);"><i class="fa-sharp fa-regular fa-check" aria-hidden="true" style="color:var(--color-primary,#1a56db);margin-right:4px;"></i>English</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/fr/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Français</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/de/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Deutsch</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/it/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Italiano</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/pl/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Polski</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/ro/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Română</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/tr/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Türkçe</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/ar/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>العربية</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/ja/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>日本語</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/ko/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>한국어</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/zh/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>中文</a></li>
+                                                                                                                                                                                                                                                                    <li><a href="https://www.csicx.com/vi/services/commissioning"><i class="fa-sharp fa-regular fa-chevron-right" aria-hidden="true"></i>Tiếng Việt</a></li>
+                                                                                                                                                </ul>
+                                        </li>
+                                        <li class="button-area">
+                                            
+                                            <div class="d-xl-none csi-mobile-lang" style="position:relative;display:inline-flex;align-items:center;margin-right:8px;">
+                                                <button type="button" id="mobile-lang-btn" aria-label="Select language" style="background:none;border:1px solid #dde0e8;border-radius:6px;padding:5px 10px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px;color:#1c2539;">
+                                                    <i class="fa-regular fa-globe" style="font-size:13px;"></i>
+                                                    EN
+                                                    <i class="fa-regular fa-chevron-down" style="font-size:10px;"></i>
+                                                </button>
+                                                <ul id="mobile-lang-dropdown" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:1px solid #dde0e8;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:140px;z-index:9999;padding:6px 0;list-style:none;margin:0;">
+                                                                                                                                                                                                                                <li><a href="https://www.csicx.com/en/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--color-primary,#1a56db);text-decoration:none;"><i class="fa-sharp fa-regular fa-check" style="width:14px;"></i>English</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/fr/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Français</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/de/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Deutsch</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/it/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Italiano</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/pl/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Polski</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/ro/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Română</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/tr/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Türkçe</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/ar/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>العربية</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/ja/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>日本語</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/ko/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>한국어</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/zh/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>中文</a></li>
+                                                                                                                                                                                                                                                                                        <li><a href="https://www.csicx.com/vi/services/commissioning" style="display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#1c2539;text-decoration:none;"><span style="width:14px;display:inline-block;"></span>Tiếng Việt</a></li>
+                                                                                                                                                            </ul>
+                                            </div>
+                                            <button id="menu-btn" aria-label="Menu" class="menu-btn menu ml--20 ml_sm--5">
+                                                <img loading="lazy" class="menu-light" src="https://www.csicx.com/img/Common-Items/Icons/menu.svg" alt="Menu-icon">
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div id="side-bar" class="side-bar header-two">
+        <button type="button" class="close-icon-menu" title="Close menu" aria-label="Close menu"><i class="far fa-times"></i></button>
+        <div class="rts-sidebar-menu-desktop" style="padding:20px 24px 10px;">
+            <a href="https://www.csicx.com/en"><img loading="lazy" style="width:200px;max-width:100%;height:auto;" src="https://www.csicx.com/img/Common-Items/Logo/CSI-Engineering-Logo-Blue.webp" alt="CSI Engineering"></a>
+        </div>
+        <div class="mobile-menu" >
+            <nav class="nav-main mainmenu-nav mt--30">
+                <ul class="mainmenu metismenu" id="mobile-menu-active" style="padding:0px !important;">
+                    <li class="has-droupdown">
+                        <a href="#" class="main" aria-expanded="false">About</a>
+                        <ul class="submenu mm-collapse" style="padding:0px !important;">
+                            <li><a href="https://www.csicx.com/en/about">About Us</a></li>
+                            <li><a href="https://www.csicx.com/en/certifications">Certifications &amp; Accreditations</a></li>
+                            <li><a href="https://www.csicx.com/en/our-people">Our People</a></li>
+                            <li><a href="https://www.csicx.com/en/our-digitalization">Our Digitalization</a></li>
+                            <li><a href="https://www.csicx.com/en/technical-bureau">Technical Bureau</a></li>
+                            <li><a href="https://www.csicx.com/en/our-responsibility">Our Responsibility</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-droupdown">
+                        <a href="#" class="main" aria-expanded="false">Services</a>
+                        <ul class="submenu mm-collapse">
+                            
+                            <li class="has-droupdown">
+                                <a href="#" class="main" aria-expanded="false">Construction Management</a>
+                                <ul class="submenu mm-collapse">
+                                    <li><a href="https://www.csicx.com/en/services/overview/construction-management">Overview →</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/design-verification">Design Verification</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/quality-control">Quality Control (QA/QC)</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/testing-diagnostic">Testing &amp; Diagnostics</a></li>
+                                    <li><a href="https://www.csicx.com/en/NETA">NETA Certified Testing</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/commissioning">Commissioning &amp; Handover</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/civil-engineering">Civil Engineering</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="has-droupdown">
+                                <a href="#" class="main" aria-expanded="false">Design &amp; Engineering</a>
+                                <ul class="submenu mm-collapse">
+                                    <li><a href="https://www.csicx.com/en/services/overview/design">Overview →</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/mep-design">MEP Design</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/bim">BIM Management</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/sustainability-energy">Sustainability &amp; Energy</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/master-systems-integration">Master Systems Integration (MSI)</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/fire-life-safety">Fire Life Safety (FLS)</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="has-droupdown">
+                                <a href="#" class="main" aria-expanded="false">Solutions</a>
+                                <ul class="submenu mm-collapse">
+                                    <li><a href="https://www.csicx.com/en/services/overview/solution">Overview →</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/digital-solutions-documentation">Digital Solutions &amp; Documentation</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/training-knowledge-transfer">Training &amp; Knowledge Transfer</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/mission-critical">Mission Critical</a></li>
+                                    <li><a href="https://www.csicx.com/en/services/oil-gas-engineering">Oil &amp; Gas Engineering</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="https://www.csicx.com/en/sectors-we-serve" class="main">Sectors</a></li>
+                    <li><a href="https://www.csicx.com/en/projects" class="main">Projects</a></li>
+                    <li><a href="https://www.csicx.com/en/documents" class="main">Documents</a></li>
+                    <li><a href="https://www.csicx.com/en/news" class="main">News</a></li>
+                    <li><a href="https://www.csicx.com/en/career" class="main">Career</a></li>
+                    <li><a href="https://academy.csicx.com/" class="main csi-academy-link" target="_blank" rel="noopener">CSI Academy</a></li>
+                    <li><a href="https://www.csicx.com/en/contact-us" class="main">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-wrapper-one">
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/company/csiglobal/" target="_blank" rel="noopener" aria-label="linkedin">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="anywhere-home" class="" aria-hidden="true"></div>
+
+    <div class="csi-service-reveal">
+<style>
+.anchor-offset { scroll-margin-top: 500px !important; }
+@media (max-width: 1199px) { .breadcrumb-service-detals-one { margin-top: -80px; } }
+</style>
+
+<div class="breadcrumb-service-detals-one">
+    <div class="container-1754">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-inner-service-details-1 bg_image">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="title-area-left">
+                                    <span class="bg-title">Business</span>
+                                    <h1 class="title rts-text-anime-style-1" style="perspective: 400px;"><div class="split-line" style="display: block; text-align: start; position: relative;"><div style="position:relative;display:inline-block;"> <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">C</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">m</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">m</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">g</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">S</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">r</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">v</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">c</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div></div> </div></h1>
+                                    <p class="disc" style="padding-bottom:50px;">
+                                        At the heart of every successful project lies a robust commissioning process.
+                                        Our commissioning services ensure systems are designed, installed, tested, and maintained
+                                        to meet operational requirements and client expectations. We support clients across the
+                                        entire lifecycle, from early design to post-occupancy performance verification.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="rts-service-details-area-main-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="service-details-left-area">
+                    <div class="thumbnail">
+                        <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/1.webp" alt="">
+                    </div>
+                    <div>
+
+
+                        <h3 class="title mt-4">Key Benefits</h3>
+                        <ul class="disc ps-3">
+                            <li><strong>Optimized System Performance:</strong> We ensure all MEP systems are installed, integrated, and operating according to design intent and owner requirements.</li>
+                            <li><strong>Reduced Rework and Delays:</strong> Structured commissioning procedures identify issues early, preventing costly mistakes and schedule overruns.</li>
+                            <li><strong>Documentation and Verification:</strong> Complete commissioning records provide clear evidence of system performance, aiding handover and long-term maintenance.</li>
+                            <li><strong>Stakeholder Alignment:</strong> We coordinate closely with designers, contractors, and facility teams to deliver functional, efficient, and reliable building systems.</li>
+                        </ul>
+
+                        <h3 style="padding-top:35px;" class="title mt-4">Value Proposition Summary</h3>
+                        <p class="disc fw-bold mb-2">Why Clients Choose Us:</p>
+                        <ul class="disc ps-3">
+                            <li><strong>International and Mega-Project Expertise:</strong> Proven experience delivering complex infrastructure and mission-critical facilities.</li>
+                            <li><strong>Project-Goals Oriented:</strong> Directed by the project vision and committed to achieving defined objectives, performance benchmarks, and client expectations with precision and accountability.</li>
+                            <li><strong>Multidisciplinary Engineering Team:</strong> Engineers from mechanical, electrical, HVAC, controls, and energy fields work together to ensure all systems and site challenges are addressed comprehensively.</li>
+                            <li><strong>Data-Driven Decision Making:</strong> Collects and analyzes performance data to prevent post-handover issues and optimize system reliability.</li>
+                            <li><strong>End-to-End Accountability:</strong> Ensures consistent coordination and reporting from design through handover.</li>
+                        </ul>
+
+                    </div>
+                    <div class="container" style="padding-top:50px;">
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="new-construction-commissioning-cx">
+                                        New Construction Commissioning (Cx)
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+
+                                    <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/2.webp" alt="New Construction Commissioning" class="img-fluid rounded" style="object-fit: cover; height: 250px; width: 100%; padding-bottom:25px;">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            Our commissioning services for new construction projects ensure that all building systems are planned, installed, tested, and documented in compliance with project requirements and client expectations. Depending on the project structure and stakeholder needs, we provide commissioning support in the following models:
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- Commissioning Authority (CxA) -->
+                                    <h5>Commissioning Authority (CxA)</h5>
+                                    <p class="disc"><strong>Service Overview:</strong> Commissioning Authority (CxA) is a service where CSI leads and manages the entire commissioning process to ensure that all building systems perform as intended and meet the project requirements.</p>
+                                    <p class="disc"><strong>CSI Approach:</strong> CSI's expert team oversees the commissioning activities by verifying installations, witnessing testing procedures, and providing actionable recommendations. They collaborate with project stakeholders to ensure systems are properly installed, tested, and operational. They also assist facility teams in developing reports, managing documentation, and raising service requests for any unresolved issues.</p>
+                                    <p class="disc"><strong>Value to the project:</strong> This service ensures quality, compliance, and functionality across critical systems. It minimizes operational risks, reduces post-handover issues, and ensures a smooth transition to occupancy and operation ultimately safeguarding the project's long-term performance and reliability.</p>
+
+                                    <!-- FAQ -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionCxA" style="padding-bottom:50px;">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxA1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxA1" aria-expanded="true" aria-controls="collapseCxA1">
+                                                    01. What is the role of a Commissioning Authority (CxA)?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxA1" class="accordion-collapse collapse show" aria-labelledby="headingCxA1" data-bs-parent="#accordionCxA">
+                                                <div class="accordion-body">
+                                                    The Commissioning Authority oversees the commissioning process to ensure that all building systems are designed, installed, tested, and performing according to the project requirements. They also provide recommendations for improvement and support operational readiness.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxA2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxA2" aria-expanded="false" aria-controls="collapseCxA2">
+                                                    02. When is a Commissioning Authority typically involved in a project?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxA2" class="accordion-collapse collapse" aria-labelledby="headingCxA2" data-bs-parent="#accordionCxA">
+                                                <div class="accordion-body">
+                                                    Ideally, the CxA is involved from the design phase through construction and handover to ensure continuity, but they can also be engaged during later stages for performance verification.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxA3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxA3" aria-expanded="false" aria-controls="collapseCxA3">
+                                                    03. What value does the CxA bring to the project?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxA3" class="accordion-collapse collapse" aria-labelledby="headingCxA3" data-bs-parent="#accordionCxA">
+                                                <div class="accordion-body">
+                                                    The CxA ensures systems meet performance criteria, reducing operational risks, ensuring compliance with standards, and minimizing future maintenance issues or energy inefficiencies.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxA4">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxA4" aria-expanded="false" aria-controls="collapseCxA4">
+                                                    04. How does CSI's Commissioning Authority service benefit facility management teams?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxA4" class="accordion-collapse collapse" aria-labelledby="headingCxA4" data-bs-parent="#accordionCxA">
+                                                <div class="accordion-body">
+                                                    As CxA, we provide training, documentation, and support to ensure facility staff understand system operations, maintenance requirements, and troubleshooting procedures.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Commissioning Management (CxM) -->
+                                    <h5 class="mt-5">Commissioning Management (CxM)</h5>
+                                    <p class="disc"><strong>Service Overview:</strong> Commissioning Management is a service where CSI oversees the entire commissioning lifecycle planning, coordinating, and managing activities to ensure that all systems and equipment meet design intent and operational requirements.</p>
+                                    <p class="disc"><strong>CSI Approach:</strong> CSI's team develops commissioning plans, sets performance criteria, and coordinates efforts between design, construction, and operations teams. They monitor testing and verification activities, manage communication among stakeholders, and facilitate the final handover to ensure systems are ready for operation with complete documentation and training.</p>
+                                    <p class="disc"><strong>Value to the project:</strong> This service ensures that building systems function efficiently, reliably, and as designed. It reduces delays, limits rework, and enhances overall project quality, delivering a smooth, well-documented transition to building operation and long-term system performance.</p>
+
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionCxM" style="padding-bottom:50px;">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxM1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxM1" aria-expanded="true" aria-controls="collapseCxM1">
+                                                    01. How does Commissioning Management differ from Commissioning Execution?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxM1" class="accordion-collapse collapse show" aria-labelledby="headingCxM1" data-bs-parent="#accordionCxM">
+                                                <div class="accordion-body">
+                                                    Commissioning Management involves strategic oversight, coordination, and stakeholder alignment, while Commissioning Execution refers to hands-on technical tasks like checklist completion, equipment startup, and functional performance testing conducted by field staff.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxM2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxM2" aria-expanded="false" aria-controls="collapseCxM2">
+                                                    02. What documents are controlled under Commissioning Management?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxM2" class="accordion-collapse collapse" aria-labelledby="headingCxM2" data-bs-parent="#accordionCxM">
+                                                <div class="accordion-body">
+                                                    Documents managed under Commissioning Management include the Commissioning Plan, Schedule, Checklists (Pre-functional &amp; Functional), ATP records, Issue Logs, Meeting Minutes, and the Final Commissioning Report.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxM3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxM3" aria-expanded="false" aria-controls="collapseCxM3">
+                                                    03. How does a Commissioning Manager coordinate across disciplines?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxM3" class="accordion-collapse collapse" aria-labelledby="headingCxM3" data-bs-parent="#accordionCxM">
+                                                <div class="accordion-body">
+                                                    A Commissioning Manager coordinates across disciplines (e.g., MEP, controls, envelope, fire safety) by acting as a central point of communication, aligning test sequences, tracking readiness, and ensuring all commissioning activities are integrated into the project timeline.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxM4">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxM4" aria-expanded="false" aria-controls="collapseCxM4">
+                                                    04. What is a CMS and why is it important?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxM4" class="accordion-collapse collapse" aria-labelledby="headingCxM4" data-bs-parent="#accordionCxM">
+                                                <div class="accordion-body">
+                                                    CMS is Commissioning Management Software used for tracking project progressing: all systems to be commissioned, required tests, responsible parties, and current status. It provides a high-level view for managing scope, progress, and accountability. CSI uses in-house Videntium T&amp;C software after approval by the project owner.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingCxM5">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCxM5" aria-expanded="false" aria-controls="collapseCxM5">
+                                                    05. When should Commissioning Management activities begin?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseCxM5" class="accordion-collapse collapse" aria-labelledby="headingCxM5" data-bs-parent="#accordionCxM">
+                                                <div class="accordion-body">
+                                                    Commissioning Management should begin during the Pre-Design or Design Phase to influence design choices, define commissioning scope and milestones, and embed the process into project planning from the outset.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- LEED Commissioning Agent -->
+                                    <h5 class="mt-5">LEED Commissioning Agent</h5>
+                                    <p class="disc"><strong>Service Overview:</strong> LEED Commissioning Agent is a specialized service where CSI supports projects aiming for LEED certification by ensuring building systems meet sustainability, energy efficiency, and environmental performance standards outlined by the LEED rating system.</p>
+                                    <p class="disc"><strong>CSI Approach:</strong> CSI's LEED-accredited professionals guide the commissioning process to align with LEED prerequisites and credits. They verify that energy-related systems are designed, installed, tested, and performing to meet LEED requirements. This includes documentation, functional testing, and coordination with design and construction teams to ensure sustainable outcomes.</p>
+                                    <p class="disc"><strong>Value to the project:</strong> This service is essential for achieving LEED certification, improving energy performance, reducing environmental impact, and enhancing occupant comfort. It ensures the project meets high sustainability benchmarks while supporting long-term operational savings and environmental responsibility.</p>
+
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionLEED" style="padding-bottom:50px;">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingLEED1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLEED1" aria-expanded="true" aria-controls="collapseLEED1">
+                                                    01. What are the commissioning requirements for LEED certification?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseLEED1" class="accordion-collapse collapse show" aria-labelledby="headingLEED1" data-bs-parent="#accordionLEED">
+                                                <div class="accordion-body">
+                                                    LEED requires Fundamental Commissioning (mandatory) and offers Enhanced Commissioning (optional for additional points). Fundamental Cx includes reviewing OPR/BOD, performing site inspections and functional testing, and submitting a final report. Enhanced Cx adds design-phase reviews, monitoring-based verification, and post-occupancy assessments.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingLEED2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLEED2" aria-expanded="false" aria-controls="collapseLEED2">
+                                                    02. What qualifications must a LEED CxA have?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseLEED2" class="accordion-collapse collapse" aria-labelledby="headingLEED2" data-bs-parent="#accordionLEED">
+                                                <div class="accordion-body">
+                                                    A LEED CxA must have technical expertise in HVAC and building systems and be independent of the project's design and construction teams (at least for Fundamental Cx). Preferred qualifications include CxA, BCxP, CBCP, or PE credentials, with knowledge of ASHRAE commissioning standards.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingLEED3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLEED3" aria-expanded="false" aria-controls="collapseLEED3">
+                                                    03. What systems must be commissioned under LEED v4/v4.1?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseLEED3" class="accordion-collapse collapse" aria-labelledby="headingLEED3" data-bs-parent="#accordionLEED">
+                                                <div class="accordion-body">
+                                                    LEED v4/v4.1 requires commissioning of HVAC systems, lighting controls, domestic hot water, and renewable energy systems. For Enhanced Commissioning, envelope systems (air barrier, insulation, fenestration) may also be required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingLEED4">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLEED4" aria-expanded="false" aria-controls="collapseLEED4">
+                                                    04. How does a LEED CxA contribute to achieving LEED points?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseLEED4" class="accordion-collapse collapse" aria-labelledby="headingLEED4" data-bs-parent="#accordionLEED">
+                                                <div class="accordion-body">
+                                                    The LEED CxA helps earn up to 6 points through Enhanced Commissioning by ensuring energy efficiency, verifying system integration, preventing performance issues, and improving documentation. Their involvement is key to achieving operational readiness and long-term sustainability goals.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="disc mt-4">
+                                        We deliver these services in coordination with clients, consultants, main contractors, or specialist subcontractors depending on project needs. Our flexibility allows us to integrate into any project team structure while maintaining technical independence, transparency, and consistent quality.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="retro-commissioning-rcx">
+                                        Retro-Commissioning
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/3.webp" alt="Re-Commissioning" class="img-fluid rounded" style="object-fit: cover; height: 250px; width: 100%; padding-bottom:25px;">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            Retro-Commissioning is the first-time commissioning of an existing building that was never commissioned when originally constructed, it is focused on improving the performance of existing buildings by identifying and addressing inefficiencies in their systems and operations.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- CSI Approach -->
+                                    <h5>CSI Approach</h5>
+                                    <p class="disc">
+                                        CSI's experienced professionals conduct detailed assessments of the building's current systems to evaluate performance gaps. They identify opportunities for energy savings, optimize system operations, and implement corrective actions to enhance efficiency, sustainability, and occupant comfort.
+                                    </p>
+
+                                    <!-- Value -->
+                                    <h5>Value to the project</h5>
+                                    <p class="disc">
+                                        This service helps reduce energy costs, extend equipment life, and improve indoor environmental quality. By optimizing existing systems, it delivers measurable savings and reduces environmental impact without the need for major capital investments.
+                                    </p>
+
+                                    <!-- FAQ SECTION -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionRetro" style="padding-bottom:50px;">
+
+                                        <!-- FAQ 1 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingRetro1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRetro1" aria-expanded="true" aria-controls="collapseRetro1">
+                                                    01. How is Retro-Commissioning different from Re-Commissioning?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseRetro1" class="accordion-collapse collapse show" aria-labelledby="headingRetro1" data-bs-parent="#accordionRetro">
+                                                <div class="accordion-body">
+                                                    Retro-Commissioning is for buildings that have never been commissioned before, while Re-Commissioning applies to facilities that were commissioned previously but need performance verification and optimization after years of operation.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 2 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingRetro2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRetro2" aria-expanded="false" aria-controls="collapseRetro2">
+                                                    02. How long does the Retro-Commissioning process take?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseRetro2" class="accordion-collapse collapse" aria-labelledby="headingRetro2" data-bs-parent="#accordionRetro">
+                                                <div class="accordion-body">
+                                                    The timeline varies depending on building size, system complexity, and scope of work. Typically, the process can take several weeks to a few months from assessment to implementation.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 3 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingRetro3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRetro3" aria-expanded="false" aria-controls="collapseRetro3">
+                                                    03. How often should Retro-Commissioning be performed?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseRetro3" class="accordion-collapse collapse" aria-labelledby="headingRetro3" data-bs-parent="#accordionRetro">
+                                                <div class="accordion-body">
+                                                    Retro-Commissioning is usually performed once for buildings that were never commissioned. However, periodic Re-Commissioning (every 3'5 years) is recommended to maintain performance and efficiency over the long term.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="re-commissioning-re-cx">
+                                        Re-Commissioning (Re-Cx)
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/4.webp" alt="Re-Commissioning" class="img-fluid rounded" style="object-fit: cover; height: 250px; width: 100%; padding-bottom:25px;">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            Re-Commissioning is the repeat commissioning of a building that was previously commissioned at some point in its life cycle, it is the process of re-evaluating and optimizing building systems that have drifted from their intended performance, helping restore or improve functionality without major equipment replacements.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- CSI Approach -->
+                                    <h5>CSI Approach</h5>
+                                    <p class="disc">
+                                        CSI's team conducts a thorough review and testing of the building's existing systems to identify performance degradation, inefficiencies, or operational issues. Corrective measures are then implemented to align system operations with original or updated performance goals.
+                                    </p>
+
+                                    <!-- Value -->
+                                    <h5>Value to the project</h5>
+                                    <p class="disc">
+                                        This service helps recover lost efficiency, reduce operating costs, and improve occupant comfort. By restoring optimal system performance, it extends equipment life and supports sustainable, cost-effective building operations.
+                                    </p>
+
+                                    <!-- FAQ SECTION -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionReCx" style="padding-bottom:50px;">
+
+                                        <!-- FAQ 1 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingReCx1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReCx1" aria-expanded="true" aria-controls="collapseReCx1">
+                                                    01. What types of buildings benefit most from re-commissioning?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseReCx1" class="accordion-collapse collapse show" aria-labelledby="headingReCx1" data-bs-parent="#accordionReCx">
+                                                <div class="accordion-body">
+                                                    Buildings with complex HVAC, lighting, or control systems'especially hospitals, commercial offices, campuses, and data centers'benefit the most, particularly if they've experienced performance drift or operational changes.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 2 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingReCx2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReCx2" aria-expanded="false" aria-controls="collapseReCx2">
+                                                    02. What is reviewed or tested during re-commissioning?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseReCx2" class="accordion-collapse collapse" aria-labelledby="headingReCx2" data-bs-parent="#accordionReCx">
+                                                <div class="accordion-body">
+                                                    During re-commissioning, teams review historical energy data, verify sensor calibration, test control sequences, inspect mechanical systems, and assess whether current operation matches the Owner's Project Requirements (OPR).
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 3 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingReCx3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReCx3" aria-expanded="false" aria-controls="collapseReCx3">
+                                                    03. How does re-commissioning support long-term energy efficiency?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseReCx3" class="accordion-collapse collapse" aria-labelledby="headingReCx3" data-bs-parent="#accordionReCx">
+                                                <div class="accordion-body">
+                                                    Re-commissioning identifies inefficiencies, resets systems to optimal settings, corrects control logic errors, and ensures systems aren't wasting energy'making it a cost-effective strategy to maintain high performance over time.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="monitoring-based-commissioning-mbcx">
+                                        Monitoring-Based Commissioning (MBCx)
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/5.webp" alt="Monitoring-Based Commissioning" class="img-fluid rounded" style="object-fit: cover; padding-bottom:25px; height: 250px; width: 100%;">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            Monitored-Based Commissioning (MBCx) is a service where CSI continuously tracks and evaluates the performance of building systems using real-time data to ensure ongoing efficiency and reliability.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- CSI Approach -->
+                                    <h5>CSI Approach</h5>
+                                    <p class="disc">
+                                        CSI deploys advanced sensors and data analytics tools to monitor system operations. The data is analyzed to detect inefficiencies, faults, or performance drifts. Based on these insights, CSI provides actionable recommendations and supports corrective actions to maintain optimal system performance.
+                                    </p>
+
+                                    <!-- Value -->
+                                    <h5>Value to the project</h5>
+                                    <p class="disc">
+                                        MBCx enables proactive maintenance, reduces energy waste, and minimizes unplanned downtime. By continuously optimizing operations, it ensures long-term building efficiency, comfort, and cost savings.
+                                    </p>
+
+                                    <!-- FAQ SECTION -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionMBCx" style="padding-bottom:50px;">
+
+                                        <!-- FAQ 1 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMBCx1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMBCx1" aria-expanded="true" aria-controls="collapseMBCx1">
+                                                    01. How does MBCx differ from traditional commissioning?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMBCx1" class="accordion-collapse collapse show" aria-labelledby="headingMBCx1" data-bs-parent="#accordionMBCx">
+                                                <div class="accordion-body">
+                                                    Unlike traditional commissioning, which focuses on a defined timeline (typically during construction or turnover), MBCx is continuous. It monitors building performance over the long term, enabling proactive adjustments and deeper energy savings.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 2 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMBCx2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMBCx2" aria-expanded="false" aria-controls="collapseMBCx2">
+                                                    02. What types of data are collected in MBCx?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMBCx2" class="accordion-collapse collapse" aria-labelledby="headingMBCx2" data-bs-parent="#accordionMBCx">
+                                                <div class="accordion-body">
+                                                    MBCx collects data such as energy use, temperature, humidity, occupancy trends, equipment runtime, fault conditions, and control sequence performance. Data is typically gathered at high frequency through building automation systems and energy meters.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 3 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMBCx3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMBCx3" aria-expanded="false" aria-controls="collapseMBCx3">
+                                                    03. What technologies are typically used in MBCx implementation?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMBCx3" class="accordion-collapse collapse" aria-labelledby="headingMBCx3" data-bs-parent="#accordionMBCx">
+                                                <div class="accordion-body">
+                                                    MBCx commonly uses Building Management Systems (BMS), Energy Information Systems (EIS), Fault Detection and Diagnostics (FDD) platforms, smart sensors, and cloud-based analytics dashboards for data collection, analysis, and visualization.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 4 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMBCx4">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMBCx4" aria-expanded="false" aria-controls="collapseMBCx4">
+                                                    04. What are the benefits of MBCx for building owners?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMBCx4" class="accordion-collapse collapse" aria-labelledby="headingMBCx4" data-bs-parent="#accordionMBCx">
+                                                <div class="accordion-body">
+                                                    Benefits include sustained energy savings, early detection of faults, improved occupant comfort, data-driven maintenance planning, reduced operational costs, and better compliance with energy codes and green building certifications like LEED.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 5 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMBCx5">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMBCx5" aria-expanded="false" aria-controls="collapseMBCx5">
+                                                    05. How does MBCx support ongoing building performance improvement?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMBCx5" class="accordion-collapse collapse" aria-labelledby="headingMBCx5" data-bs-parent="#accordionMBCx">
+                                                <div class="accordion-body">
+                                                    MBCx enables continuous improvement by turning performance data into actionable insights. It helps identify underperforming systems, confirms savings from upgrades, and ensures building operations remain aligned with owner goals and efficiency targets.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="mission-critical-facility-commissioning">
+                                        Mission-Critical Facility Commissioning (Hospitals, Data Centers, Control Centers, and Similar Facilities)
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/6.webp" alt="Design Review and Constructability Analysis" class="img-fluid rounded" style="object-fit: cover; height: 250px; width: 100%; padding-bottom:25px;">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            CSI's Mission-Critical Facility Commissioning service is designed for environments where operational continuity and zero-failure tolerance are paramount such as hospitals, data centers, control centers, and similar facilities. This highly specialized process ensures that all mechanical, electrical, life safety, and control systems perform flawlessly under every anticipated operating condition.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- CSI Approach -->
+                                    <h5>CSI Approach</h5>
+                                    <p class="disc">
+                                        Our team applies a disciplined, methodical commissioning process that includes rigorous functional testing, system integration verification, and performance validation. We simulate real-world scenarios, stress-test backup systems, and verify redundancy measures to confirm that the facility can maintain uninterrupted operation during both normal and emergency conditions.
+                                    </p>
+
+                                    <!-- Value -->
+                                    <h5>Value to the project</h5>
+                                    <p class="disc">
+                                        This service minimizes the risk of downtime, safeguards critical operations, and ensures compliance with stringent performance requirements. By delivering a fully validated and resilient facility, CSI helps mission-critical environments operate with confidence, safety, and reliability from day one.
+                                    </p>
+
+                                    <!-- FAQ SECTION -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionMissionCritical" style="padding-bottom:50px;">
+
+                                        <!-- FAQ 1 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMC1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMC1" aria-expanded="true" aria-controls="collapseMC1">
+                                                    01. Why is commissioning important for mission-critical facilities?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMC1" class="accordion-collapse collapse show" aria-labelledby="headingMC1" data-bs-parent="#accordionMissionCritical">
+                                                <div class="accordion-body">
+                                                    These facilities must maintain continuous operation without interruption. Commissioning validates that systems are reliable, integrated, and capable of handling both normal and emergency scenarios without failure.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 2 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMC2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMC2" aria-expanded="false" aria-controls="collapseMC2">
+                                                    02. What types of facilities require this service?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMC2" class="accordion-collapse collapse" aria-labelledby="headingMC2" data-bs-parent="#accordionMissionCritical">
+                                                <div class="accordion-body">
+                                                    Hospitals, medical centers, data centers, control rooms, financial trading floors, emergency response centers, and other facilities that demand uninterrupted functionality.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 3 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMC3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMC3" aria-expanded="false" aria-controls="collapseMC3">
+                                                    03. How does CSI test for emergencies without disrupting ongoing operations?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMC3" class="accordion-collapse collapse" aria-labelledby="headingMC3" data-bs-parent="#accordionMissionCritical">
+                                                <div class="accordion-body">
+                                                    We use controlled simulations and planned test protocols that replicate emergency conditions without compromising live operations, ensuring safety and continuity during testing.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 4 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingMC4">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMC4" aria-expanded="false" aria-controls="collapseMC4">
+                                                    04. At what stage of the project should mission-critical commissioning begin?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseMC4" class="accordion-collapse collapse" aria-labelledby="headingMC4" data-bs-parent="#accordionMissionCritical">
+                                                <div class="accordion-body">
+                                                    Ideally, it should start during the design phase and continue through construction, installation, and system handover to ensure all systems meet operational goals from day one.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="Commissioning-Focused-Design-Review">
+                                        Commissioning Focused Design Review
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <img loading="lazy" style="padding-bottom:25px;" src="https://www.csicx.com/img/Services/Commissioning/7.webp" alt="project" class="img-fluid rounded">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            Commissioning-Focused design review is a detailed evaluation conducted by CSI experts to ensure that project design documents and specifications support the commissioning process and long-term building performance goals.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- CSI Approach -->
+                                    <h5>CSI Approach</h5>
+                                    <p class="disc">
+                                        CSI reviews design drawings, specifications, and equipment selections during the design phase. The team identifies gaps, inconsistencies, or inefficiencies, and provides actionable recommendations to enhance system performance, reliability, and maintainability.
+                                    </p>
+
+                                    <!-- Value -->
+                                    <h5>Value to the project</h5>
+                                    <p class="disc">
+                                        This service helps prevent costly changes during construction, improves coordination between design intent and actual performance, and ensures that systems are designed with commissioning, operation, and maintenance in mind leading to more efficient and sustainable outcomes.
+                                    </p>
+
+                                    <!-- FAQ SECTION -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionDesignReview" style="padding-bottom:50px;">
+
+                                        <!-- FAQ 1 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingDR1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDR1" aria-expanded="true" aria-controls="collapseDR1">
+                                                    01. What does a typical commissioning design review report include?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseDR1" class="accordion-collapse collapse show" aria-labelledby="headingDR1" data-bs-parent="#accordionDesignReview">
+                                                <div class="accordion-body">
+                                                    A typical report includes:
+                                                    <ul>
+                                                        <li>Review of mechanical, electrical, and control systems</li>
+                                                        <li>Evaluation of energy efficiency strategies</li>
+                                                        <li>Check for system accessibility and testability</li>
+                                                        <li>Review of integration between systems (e.g., HVAC + controls)</li>
+                                                        <li>Comments on clarity of design documents and alignment with OPR/BOD</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 2 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingDR2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDR2" aria-expanded="false" aria-controls="collapseDR2">
+                                                    02. At which design stages should a commissioning review be conducted?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseDR2" class="accordion-collapse collapse" aria-labelledby="headingDR2" data-bs-parent="#accordionDesignReview">
+                                                <div class="accordion-body">
+                                                    Commissioning design reviews are commonly conducted at:
+                                                    <ul>
+                                                        <li>Schematic Design (SD)</li>
+                                                        <li>Design Development (DD)</li>
+                                                        <li>Construction Documents (CD)</li>
+                                                    </ul>
+                                                    Each stage allows identification of progressively detailed issues as the design evolves.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h4 class="title text-center text-md-start anchor-offset" id="commissioning-documentation-and-system-verification">
+                                        System's Commissioning Verification and Validation
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <!-- PHOTO + SERVICE OVERVIEW (SIDE BY SIDE) -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <img loading="lazy" src="https://www.csicx.com/img/Services/Commissioning/8.webp" alt="Commissioning Documentation and System Verification" class="img-fluid rounded" style="object-fit: cover;padding-bottom:25px; ;height: 250px; width: 100%;">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="inner ps-md-4">
+                                        <p class="disc">
+                                            System's Commissioning Verification and Validation is a service where CSI ensures that all building systems, such as HVAC, electrical, plumbing, and controls are correctly installed, fully operational, and integrated according to project specifications.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+
+                                    <!-- CSI Approach -->
+                                    <h5>CSI Approach</h5>
+                                    <p class="disc">
+                                        CSI's qualified professionals perform detailed performance verification and functional testing across multiple systems. This involves reviewing documentation, inspecting installations, and executing field tests to confirm that each system meets the intended design and performance criteria.
+                                    </p>
+
+                                    <!-- Value -->
+                                    <h5>Value to the project</h5>
+                                    <p class="disc">
+                                        This service ensures that all systems function together efficiently and reliably. It reduces the risk of future operational issues, ensures code and standard compliance, and supports a smooth transition to building occupancy and long-term performance.
+                                    </p>
+
+                                    <!-- FAQ SECTION -->
+                                    <h5>Related FAQs</h5>
+                                    <div class="accordion faq-wrapper-inner-page mt--50" id="accordionSystemVerification" style="padding-bottom:50px;">
+
+                                        <!-- FAQ 1 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingSV1">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSV1" aria-expanded="true" aria-controls="collapseSV1">
+                                                    01. What is the difference between verification and validation in system commissioning?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseSV1" class="accordion-collapse collapse show" aria-labelledby="headingSV1" data-bs-parent="#accordionSystemVerification">
+                                                <div class="accordion-body">
+                                                    Verification confirms that a system is installed correctly and complies with design specifications, while validation ensures the system performs as intended under real-world conditions and meets the Owner's Project Requirements (OPR).
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 2 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingSV2">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSV2" aria-expanded="false" aria-controls="collapseSV2">
+                                                    02. What methods are used to validate system performance?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseSV2" class="accordion-collapse collapse" aria-labelledby="headingSV2" data-bs-parent="#accordionSystemVerification">
+                                                <div class="accordion-body">
+                                                    Validation is done through functional performance testing (FPT), trend analysis, test scripts, simulation under varying conditions, and comparison with design intent and control sequences to ensure the system performs as expected.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FAQ 3 -->
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingSV3">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSV3" aria-expanded="false" aria-controls="collapseSV3">
+                                                    03. Who is responsible for signing off verification and validation results?
+                                                </button>
+                                            </h2>
+                                            <div id="collapseSV3" class="accordion-collapse collapse" aria-labelledby="headingSV3" data-bs-parent="#accordionSystemVerification">
+                                                <div class="accordion-body">
+                                                    The Commissioning Authority (CxA) coordinates verification and validation, but sign-off typically involves the contractor, design consultant, and owner or facility representative, depending on the system and the project's commissioning plan.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-12 col-sm-12 col-12 mt_lg--60 pl--50 pl_lg--0 pl_md--0 pl-lg-controler pl_sm--0 mt-service-shorter">
+                <!-- single wizered start -->
+                <div class="rts-single-wized Categories service">
+                    <div class="wized-header">
+                        <h5 class="title">
+                            Commissioning Services
+                        </h5>
+                    </div>
+                    <div class="wized-body">
+                        <!-- single categories -->
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#new-construction-commissioning-cx">
+                                    New Construction Commissioning (Cx)
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#retro-commissioning-rcx">
+                                    Retro-Commissioning
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#re-commissioning-re-cx">
+                                    Re-Commissioning (Re-Cx)
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#monitoring-based-commissioning-mbcx">
+                                    Monitoring-Based Commissioning (MBCx)
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#mission-critical-facility-commissioning">
+                                    Mission-Critical Facility Commissioning
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#Commissioning-Focused-Design-Review">
+                                    Commissioning Focused Design Review
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="single-categories">
+                            <li>
+                                <a href="#commissioning-documentation-and-system-verification">
+                                    System's Commissioning Verification and Validation
+                                    <i class="far fa-long-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- single wizered End -->
+                <!-- single wizered start -->
+                <div class="rts-single-wized download service">
+                    <div class="wized-header">
+                        <h5 class="title">Download</h5>
+                    </div>
+                    <div class="wized-body">
+                        <!-- single Download area start -->
+                        <div class="single-download-area">
+                            <img loading="lazy" src="https://www.csicx.com/img/Common-Items/Icons/pdf.svg" alt="View Company Documents & Brochures">
+                            <div class="mid">
+                                <h6 class="title">
+                                    Company Documents
+                                </h6>
+                                <span>& Brochures</span>
+                            </div>
+                            <a class=" rts-btn btn-primary" href="https://www.csicx.com/en/documents"><i class="fal fa-arrow-right"></i></a>
+                        </div>
+                        <!-- single Download area End -->
+                        <!-- single Download area start -->
+
+                        <!-- single Download area End -->
+                    </div>
+                </div>
+                <!-- single wizered End -->
+                <!-- single wizered start -->
+                <div class="rts-single-wized contact service">
+                    <div class="wized-header">
+                        <a href="/Home"><img loading="lazy" src="https://www.csicx.com/img/Common-Items/Logo/CSI-Engineering-Logo-White.webp" alt="Business_logo"></a>
+                    </div>
+                    <div class="wized-body">
+                        <h5 class="title">
+                            Need Help? We Are Here
+                            To Help You
+                        </h5>
+                        <a class="rts-btn btn-primary btn-white" href="/Contact-us">Contact Us</a>
+                    </div>
+                </div>
+                <!-- single wizered End -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <!-- Footer -->
+    <div class="footer-8-area-bg bg_image pt--100">
+        <div class="container pb--65">
+            <div class="row" style="align-items:flex-start;">
+                <style>
+                    .footer-8-area-bg .footer-one-single-wized .links { margin-top: 0 !important; padding-top: 0 !important; }
+                    .footer-8-area-bg .footer-one-single-wized .links li { padding: 0 !important; }
+                    .footer-8-area-bg .footer-one-single-wized .wized-title { margin-bottom: 20px !important; padding-bottom: 0 !important; }
+                    .footer-8-area-bg .footer-one-single-wized > div > div[style*="display:flex"] { margin-top: 0 !important; padding-top: 0 !important; }
+                    .footer-links-wrap { margin: 0 !important; padding: 0 !important; }
+                </style>
+                <div class="col-lg-5 pe-5">
+                    <div class="footer-logo-area-left-8" style="margin-bottom:0px !important;">
+                        <a href="https://www.csicx.com/en" class="logo" style="margin-top:-10px !important;margin-bottom:10px !important;">
+                            <img loading="lazy" style="width:100px;" src="https://www.csicx.com/img/Common-Items/Logo/CSI-Engineering-Logo-White.webp" alt="CSI logo">
+                        </a>
+                        <p class="disc" style="margin-bottom:-5px !important;">From concept to completion, we transform engineering into clear, controlled solutions that deliver performance, quality, and certainty.</p>
+                        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:0px !important;">
+                            <ul class="social-area-wrapper-two" style="margin:0; padding:0; list-style:none;">
+                                <li><a href="https://www.linkedin.com/company/csiglobal/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            </ul>
+                            <a href="mailto:info@csicx.com" class="footer-email-link">
+                                <i class="fa-solid fa-envelope"></i>
+                                info@csicx.com
+                            </a>
+                        </div>
+                        <style>
+                            .footer-email-link {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 7px;
+                                color: #8B8F99;
+                                font-size: 14px;
+                                text-decoration: none;
+                                transition: color 0.3s;
+                                line-height: 1;
+                            }
+                            .footer-email-link:hover { color: #fff; }
+                            .footer-email-link i { font-size: 15px; flex-shrink: 0; }
+                        </style>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-one-single-wized" style="margin-bottom:0!important;padding-bottom:0!important;">
+                        <div class="wized-title"  style="margin-bottom: 0px !important;">
+                            <h5 class="title">Quick Links</h5>
+                        </div>
+                        <div class="footer-links-wrap" style="display:flex;gap:0;align-items:flex-start;margin:0;padding:0;">
+                            <ul class="links" style="flex:1;margin:0;padding:0;">
+                                <li><a href="https://www.csicx.com/en"><i class="far fa-arrow-right"></i> Home</a></li>
+                                <li><a href="https://www.csicx.com/en/about"><i class="far fa-arrow-right"></i> About</a></li>
+                                <li><a href="https://www.csicx.com/en/contact-us"><i class="far fa-arrow-right"></i> Contact Us</a></li>
+                            </ul>
+                            <ul class="links" style="flex:1;margin:0;padding:0;">
+                                <li><a href="https://www.csicx.com/en/sectors-we-serve"><i class="far fa-arrow-right"></i> Sectors</a></li>
+                                <li><a href="https://www.csicx.com/en/projects"><i class="far fa-arrow-right"></i> Projects</a></li>
+                                <li><a href="https://www.csicx.com/en/news"><i class="far fa-arrow-right"></i> News</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-one-single-wized">
+                        <div class="wized-title"><h5 class="title">Services</h5></div>
+                        <ul class="links" style="margin:0!important;padding:0!important;">
+                            <li><a href="https://www.csicx.com/en/services/overview/construction-management"><i class="far fa-arrow-right"></i> Construction Management</a></li>
+                            <li><a href="https://www.csicx.com/en/services/overview/design"><i class="far fa-arrow-right"></i> Design &amp; Engineering</a></li>
+                            <li><a href="https://www.csicx.com/en/services/overview/solution"><i class="far fa-arrow-right"></i> Solutions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area-main-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-8-wrapper">
+                            <p>CSI Engineering - Copyright 2026. All rights reserved.</p>
+                            <ul>
+                                <li><a href="https://www.csicx.com/en/privacy">Privacy Policy</a></li>
+                                <li><a href="https://www.csicx.com/en/cookies">Cookies Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://www.csicx.com/js/plugins/jquery.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/odometer.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/jquery-appear.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/gsap.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/split-text.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/scroll-trigger.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/smooth-scroll.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/metismenu.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/popup.js"></script>
+    <script defer src="https://www.csicx.com/js/vendor/bootstrap.min.js"></script>
+    <script defer src="https://www.csicx.com/js/plugins/swiper.js"></script>
+    <script defer src="https://www.csicx.com/js/main.js"></script>
+        <script defer src="https://www.csicx.com/js/service-scroll-reveal.js"></script>
+
+    
+    <div id="gdpr-banner" class="gdpr-banner" hidden>
+        <div class="gdpr-banner__inner">
+            <div class="gdpr-banner__text">
+                <i class="fa-solid fa-cookie-bite gdpr-banner__icon"></i>
+                <span>We use cookies to improve your experience. By continuing to use our site you accept our
+                    <a href="https://www.csicx.com/en/cookies">Cookies Policy</a> and
+                    <a href="https://www.csicx.com/en/privacy">Privacy Policy</a>.
+                </span>
+            </div>
+            <div class="gdpr-banner__actions">
+                <button id="gdpr-reject" class="gdpr-btn gdpr-btn--reject">Reject</button>
+                <button id="gdpr-accept" class="gdpr-btn gdpr-btn--accept">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .gdpr-banner {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 9998;
+        background: #000000 !important;
+        color: #e5e7eb;
+        padding: 14px 24px;
+        box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
+        animation: gdprSlideUp 0.35s ease;
+    }
+    .gdpr-banner[hidden] { display: none !important; }
+    @keyframes gdprSlideUp {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+    }
+    .gdpr-banner__inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .gdpr-banner__text {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        
+        line-height: 1.55;
+        flex: 1;
+        min-width: 0;
+    }
+    .gdpr-banner__icon {
+        font-size: 32px !important;
+        color: #f59e0b;
+        flex-shrink: 0;
+    }
+    .gdpr-banner__text a {
+        color: #93c5fd;
+        text-decoration: underline;
+        white-space: nowrap;
+    }
+    .gdpr-banner__text a:hover { color: #fff; }
+    .gdpr-banner__actions {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+    .gdpr-btn {
+        padding: 8px 22px;
+        border-radius: 6px;
+        
+        font-weight: 600;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition: background 0.18s, color 0.18s, border-color 0.18s;
+        white-space: nowrap;
+    }
+    .gdpr-btn--reject {
+        background: transparent;
+        border-color: #6b7280;
+        color: #d1d5db;
+    }
+    .gdpr-btn--reject:hover { border-color: #9ca3af; color: #fff; }
+    .gdpr-btn--accept {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+    }
+    .gdpr-btn--accept:hover { background: #1d4ed8; border-color: #1d4ed8; }
+    @media (max-width: 575px) {
+        .gdpr-banner { padding: 14px 16px; }
+        .gdpr-banner__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+        .gdpr-banner__actions { width: 100%; justify-content: flex-end; }
+    }
+
+    /* Force sidebar menu visible at all screen sizes */
+    #side-bar .mobile-menu { display: block !important; }
+    .mobile-menu nav ul {
+    padding: 0 0px !important
+}
+    </style>
+
+    <script>
+    (function () {
+        var KEY    = 'csi_cookie_consent';
+        var banner = document.getElementById('gdpr-banner');
+        if (localStorage.getItem(KEY)) return; // already decided
+        banner.hidden = false;
+        document.getElementById('gdpr-accept').addEventListener('click', function () {
+            localStorage.setItem(KEY, 'accepted');
+            hideBanner();
+        });
+        document.getElementById('gdpr-reject').addEventListener('click', function () {
+            localStorage.setItem(KEY, 'rejected');
+            hideBanner();
+        });
+        function hideBanner() {
+            banner.style.animation = 'none';
+            banner.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            banner.style.transform  = 'translateY(100%)';
+            banner.style.opacity    = '0';
+            setTimeout(function () { banner.hidden = true; }, 320);
+        }
+    })();
+    </script>
+    <script>
+    /* ── Dropdown hover-delay fix ────────────────────────────────────────────────
+     * The theme drives dropdowns purely via CSS :hover on <li class="has-dropdown">.
+     * The chevron is a ::after pseudo-element at right:-22px — outside the <a> tag.
+     * When the cursor passes over the chevron and then moves downward, it briefly
+     * exits the <li> bounding box, killing :hover and snapping the dropdown shut
+     * before the user reaches any item.
+     *
+     * Fix: intercept mouseleave on every .has-dropdown nav item and apply a short
+     * grace period (120 ms) before truly removing the open class. If the cursor
+     * re-enters the <li> or any of its children within that window, we cancel the
+     * close timer and the dropdown stays visible.
+     * ───────────────────────────────────────────────────────────────────────────── */
+    (function () {
+        var DELAY = 120; // ms – enough to cross the chevron gap, imperceptible to humans
+        var timers = new WeakMap();
+
+        function openDrop(li) {
+            var t = timers.get(li);
+            if (t) { clearTimeout(t); timers.delete(li); }
+            li.classList.add('dd-open');
+        }
+
+        function closeDrop(li) {
+            var t = setTimeout(function () {
+                li.classList.remove('dd-open');
+                timers.delete(li);
+            }, DELAY);
+            timers.set(li, t);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var items = document.querySelectorAll(
+                '.header-one .nav-area > ul > li.has-dropdown'
+            );
+            items.forEach(function (li) {
+                li.addEventListener('mouseenter', function () { openDrop(li); });
+                li.addEventListener('mouseleave', function () { closeDrop(li); });
+            });
+        });
+    })();
+
+    // Mobile header language dropdown toggle
+    (function () {
+        var btn = document.getElementById('mobile-lang-btn');
+        var dd  = document.getElementById('mobile-lang-dropdown');
+        if (!btn || !dd) return;
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = dd.style.display === 'block';
+            dd.style.display = open ? 'none' : 'block';
+        });
+        document.addEventListener('click', function () {
+            dd.style.display = 'none';
+        });
+    })();
+    </script>
+</body>
+</html>

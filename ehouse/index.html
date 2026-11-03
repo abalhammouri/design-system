@@ -51,6 +51,9 @@ header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space
 #hint{position:absolute;right:clamp(20px,4vw,56px);top:50%;font:500 11px ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:#9fb8d4;writing-mode:vertical-rl;z-index:4;transition:opacity .4s}
 #loading{position:absolute;inset:0;display:grid;place-items:center;z-index:9;background:var(--ink);font:500 12px ui-monospace,monospace;letter-spacing:.2em;color:#9fb8d4;transition:opacity .6s}
 @media(max-width:700px){.panel{right:20px;bottom:76px}.panel h2{font-size:27px;margin:8px 0}.panel p{font-size:14.5px;line-height:1.5}.panel .why{display:none}.panel ul{margin-top:10px;gap:6px}.panel li{font-size:11px;padding:5px 9px}#hint{display:none}#hud{bottom:22px}#dots i{width:9px;height:9px}.spot span{font-size:11px;padding:4px 7px}}
+body.poster #panels,body.poster #hud,body.poster header,body.poster #hint,body.poster #plan,body.poster #spots{display:none}
+body.poster #stage::after{display:none}
+body.embed header .brand{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.panel{transition:none}.spot i{animation:none}}
 </style>
 </head>

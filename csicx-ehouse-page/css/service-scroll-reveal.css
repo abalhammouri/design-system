@@ -1,0 +1,546 @@
+/**
+ * Smooth, lively scroll-reveal for service detail pages.
+ * Driven by .csi-service-reveal on the page root.
+ */
+.csi-reveal {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0) scale(0.975);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.15s cubic-bezier(0.22, 1.25, 0.36, 1);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.csi-reveal--left {
+  transform: translate3d(-40px, 12px, 0) scale(0.975);
+}
+
+.csi-reveal--right {
+  transform: translate3d(40px, 12px, 0) scale(0.975);
+}
+
+.csi-reveal--up {
+  transform: translate3d(0, 36px, 0) scale(0.97);
+}
+
+.csi-reveal--down {
+  transform: translate3d(0, -24px, 0) scale(0.98);
+}
+
+.csi-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* Cards get a slightly springier entrance */
+.csi-pillar-service-card.csi-reveal {
+  transform: translate3d(0, 40px, 0) scale(0.96);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.25s cubic-bezier(0.2, 1.3, 0.32, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.csi-pillar-service-card.csi-reveal.csi-reveal--left {
+  transform: translate3d(-36px, 28px, 0) scale(0.96);
+}
+
+.csi-pillar-service-card.csi-reveal.csi-reveal--right {
+  transform: translate3d(36px, 28px, 0) scale(0.96);
+}
+
+.csi-icon-feature.csi-reveal {
+  transform: translate3d(-28px, 10px, 0) scale(0.98);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1.3, 0.36, 1);
+}
+
+html[dir="rtl"] .csi-icon-feature.csi-reveal {
+  transform: translate3d(28px, 10px, 0) scale(0.98);
+}
+
+/* In-content text links (NETA / service pages) */
+.csi-service-reveal .service-details-left-area a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
+  padding-bottom: 1px;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.csi-service-reveal .service-details-left-area a:hover {
+  opacity: 0.75;
+  border-bottom-style: solid;
+}
+
+.csi-service-reveal .service-details-left-area a i {
+  border-bottom: none;
+}
+
+.csi-service-reveal .service-details-left-area a.explore-link,
+.csi-service-reveal .service-details-left-area a.neta-articles-card {
+  border-bottom: none;
+  padding-bottom: 0;
+  opacity: 1;
+}
+
+.csi-service-reveal .service-details-left-area a.explore-link:hover,
+.csi-service-reveal .service-details-left-area a.neta-articles-card:hover {
+  opacity: 1;
+  border-bottom: none;
+}
+
+/* Pillar-style service cards (NETA / shared) */
+.csi-pillar-service-card {
+  border: 1px solid #e5eaf2;
+  border-radius: 18px;
+  padding: 28px 24px 22px;
+  background: linear-gradient(180deg, #fff, #f9fbff);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.csi-pillar-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+  border-color: #c5d3e8;
+}
+
+.csi-pillar-service-card.csi-reveal.is-visible.is-settled:hover {
+  transform: translateY(-5px) !important;
+}
+
+.csi-pillar-service-card h5 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 10px;
+}
+
+.csi-pillar-service-card p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.65;
+  flex: 1;
+  margin: 0 0 18px;
+}
+
+.csi-pillar-service-card a.explore-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #24499f;
+  text-decoration: none;
+  transition: gap 0.18s, color 0.18s;
+}
+
+.csi-pillar-service-card a.explore-link:hover {
+  gap: 11px;
+  color: #0c67c7;
+}
+
+.csi-neta-service-cards {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Why NETA matters — icon + text rows */
+.csi-icon-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 18px 0 8px;
+  padding: 0;
+}
+
+.csi-icon-feature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.csi-icon-feature__icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: #1c2539;
+  font-size: 28px;
+  line-height: 1;
+  transition: transform 0.45s cubic-bezier(0.22, 1.3, 0.36, 1);
+}
+
+.csi-icon-feature.csi-reveal.is-visible .csi-icon-feature__icon {
+  transform: scale(1.06);
+}
+
+.csi-icon-feature.csi-reveal.is-visible.is-settled .csi-icon-feature__icon {
+  transform: none;
+}
+
+.csi-icon-feature strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c2539;
+  line-height: 1.45;
+  padding-top: 0;
+  margin: 0;
+}
+
+html[dir="rtl"] .csi-icon-feature {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .csi-icon-feature strong {
+  text-align: right;
+}
+
+/* Our Process — compact step cards with chevrons */
+.csi-process-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin: 16px 0 12px;
+  flex-wrap: nowrap;
+}
+
+.csi-process-step {
+  flex: 1 1 0;
+  min-width: 0;
+  background: #f0f4ff;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 14px 10px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.csi-process-step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+  border-color: #c5d3e8;
+  background: linear-gradient(180deg, #fff, #f5f8ff);
+}
+
+.csi-process-step.csi-reveal.is-visible.is-settled:hover {
+  transform: translateY(-4px) !important;
+}
+
+.csi-process-step__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #24499f;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  margin: 0 auto 8px;
+}
+
+.csi-process-step strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 5px;
+  line-height: 1.3;
+}
+
+.csi-process-step p {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.csi-process-chevron {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #24499f;
+  font-size: 14px;
+  opacity: 0.7;
+  padding: 0 2px;
+  align-self: center;
+}
+
+html[dir="rtl"] .csi-process-flow {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .csi-process-chevron i {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 991px) {
+  .csi-process-flow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .csi-process-step {
+    flex: 1 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+
+  .csi-process-chevron {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .csi-process-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .csi-process-step {
+    flex: 1 1 auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .csi-process-chevron {
+    display: flex;
+    transform: rotate(90deg);
+    padding: 2px 0;
+  }
+
+  html[dir="rtl"] .csi-process-flow {
+    flex-direction: column;
+  }
+}
+
+.csi-service-reveal .service-details-left-area > h3 {
+  margin-bottom: 0.45em;
+}
+
+.csi-service-reveal .service-details-left-area > p,
+.csi-service-reveal .service-details-left-area > ul {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+  padding-bottom: 0;
+}
+
+.csi-service-reveal .service-details-left-area > p + p {
+  margin-top: 0.55em;
+}
+
+/* Sidebar TOC link cards + widgets */
+.csi-service-reveal .single-categories.csi-reveal,
+.csi-service-reveal .rts-single-wized.csi-reveal,
+.csi-service-reveal .wized-header.csi-reveal {
+  transform: translate3d(36px, 16px, 0) scale(0.97);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.2, 1.28, 0.32, 1);
+}
+
+.csi-service-reveal .single-categories.csi-reveal.is-visible,
+.csi-service-reveal .rts-single-wized.csi-reveal.is-visible,
+.csi-service-reveal .wized-header.csi-reveal.is-visible {
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+html[dir="rtl"] .csi-reveal--left {
+  transform: translate3d(40px, 12px, 0) scale(0.975);
+}
+
+html[dir="rtl"] .csi-reveal--right {
+  transform: translate3d(-40px, 12px, 0) scale(0.975);
+}
+
+html[dir="rtl"] .csi-service-reveal .single-categories.csi-reveal,
+html[dir="rtl"] .csi-service-reveal .rts-single-wized.csi-reveal,
+html[dir="rtl"] .csi-service-reveal .wized-header.csi-reveal {
+  transform: translate3d(-36px, 16px, 0) scale(0.97);
+}
+
+html[dir="rtl"] .csi-reveal--left.is-visible,
+html[dir="rtl"] .csi-reveal--right.is-visible,
+html[dir="rtl"] .csi-service-reveal .single-categories.csi-reveal.is-visible,
+html[dir="rtl"] .csi-service-reveal .rts-single-wized.csi-reveal.is-visible,
+html[dir="rtl"] .csi-service-reveal .wized-header.csi-reveal.is-visible {
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/*
+ * After the motion finishes, remove transform entirely.
+ * Leaving translate3d(0,0,0) prevents margin-collapse and creates large gaps
+ * between consecutive paragraphs/headings.
+ */
+.csi-reveal.is-visible.is-settled,
+.csi-service-reveal .single-categories.csi-reveal.is-visible.is-settled,
+.csi-service-reveal .rts-single-wized.csi-reveal.is-visible.is-settled,
+.csi-service-reveal .wized-header.csi-reveal.is-visible.is-settled,
+html[dir="rtl"] .csi-reveal.is-visible.is-settled,
+html[dir="rtl"] .csi-service-reveal .single-categories.csi-reveal.is-visible.is-settled,
+html[dir="rtl"] .csi-service-reveal .rts-single-wized.csi-reveal.is-visible.is-settled,
+html[dir="rtl"] .csi-service-reveal .wized-header.csi-reveal.is-visible.is-settled {
+  will-change: auto;
+  transform: none !important;
+  transition: none;
+}
+
+.csi-pillar-service-card.csi-reveal.is-visible.is-settled {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.csi-process-step.csi-reveal.is-visible.is-settled {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csi-reveal,
+  .csi-icon-feature__icon {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+/* Heading + left image / right text (Bootstrap row + cols) */
+.csi-media-text {
+  margin: 0.85rem 0 1.35rem;
+}
+
+@media (min-width: 768px) {
+  .csi-media-text > .csi-media-text__media {
+    flex: 0 0 26%;
+    max-width: 26%;
+    width: 26%;
+  }
+
+  .csi-media-text > .csi-media-text__body {
+    flex: 0 0 74%;
+    max-width: 74%;
+    width: 74%;
+  }
+
+  /* Insights: slightly wider media that stretches to match text + list height */
+  .csi-media-text--fill {
+    align-items: stretch !important;
+  }
+
+  .csi-media-text--fill > .csi-media-text__media {
+    flex: 0 0 34%;
+    max-width: 34%;
+    width: 34%;
+    display: flex;
+  }
+
+  .csi-media-text--fill > .csi-media-text__body {
+    flex: 0 0 66%;
+    max-width: 66%;
+    width: 66%;
+  }
+
+  .csi-media-text--fill .csi-media-text__media img {
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    align-self: stretch;
+  }
+}
+
+.csi-media-text__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.csi-media-text__body > p:first-child {
+  margin-top: 0;
+}
+
+.csi-media-text__body > ul:last-child {
+  margin-bottom: 0;
+}
+
+.csi-page-trail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.csi-page-trail a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.csi-page-trail a:hover {
+  color: #fff;
+}
+
+.csi-support-ref {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.csi-support-ref__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 8px 0 0;
+}
+
+.csi-service-reveal .service-details-left-area a.csi-support-link,
+.csi-service-reveal .service-details-left-area a.csi-support-link:hover {
+  color: #24499f;
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 1px dashed currentColor;
+  padding-bottom: 1px;
+  opacity: 1;
+}
+
+.csi-neta-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 18px 0 8px;
+  padding: 0;
+}
+
+.csi-neta-cats li {
+  display: inline-flex;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #eef3fb;
+  color: #1a3c5e;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+
