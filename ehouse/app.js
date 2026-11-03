@@ -134,10 +134,13 @@ const SIGNMATS=[];
 const logoTex=new THREE.TextureLoader().load(new URL('./brand/hunter-logo.png',import.meta.url).href,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;t.needsUpdate=true});
 function logoPlate(parent,w,y,x,z,ry){
  const h=w/4.35,g=new THREE.Group();g.position.set(x,y,z);g.rotation.y=ry;parent.add(g);
- const back=new THREE.Mesh(new THREE.PlaneGeometry(w+0.28,h+0.24),new THREE.MeshStandardMaterial({color:0xffffff,roughness:.6}));back.position.z=0.002;g.add(back);
- const frame=new THREE.Mesh(new THREE.PlaneGeometry(w+0.36,h+0.32),new THREE.MeshStandardMaterial({color:0x006341,roughness:.5}));g.add(frame);
- const lm=new THREE.MeshStandardMaterial({map:logoTex,transparent:true,roughness:.6});lm.userData.key='sign';SIGNMATS.push(lm);
- const logo=new THREE.Mesh(new THREE.PlaneGeometry(w,h),lm);logo.position.z=0.004;g.add(logo);
+ // layers sit 1.5 cm apart with polygon offset so they never z-fight at a distance (the sign used to flicker)
+ const po=(m,u)=>Object.assign(m,{polygonOffset:true,polygonOffsetFactor:-u,polygonOffsetUnits:-4*u});
+ const frame=new THREE.Mesh(new THREE.BoxGeometry(w+0.36,h+0.32,0.02),new THREE.MeshStandardMaterial({color:0x006341,roughness:.5}));frame.position.z=0.01;g.add(frame);
+ const back=new THREE.Mesh(new THREE.PlaneGeometry(w+0.28,h+0.24),po(new THREE.MeshStandardMaterial({color:0xffffff,roughness:.6}),1));back.position.z=0.035;g.add(back);
+ const lm=po(new THREE.MeshStandardMaterial({map:logoTex,transparent:true,depthWrite:false,roughness:.6}),2);lm.userData.key='sign';SIGNMATS.push(lm);
+ const logo=new THREE.Mesh(new THREE.PlaneGeometry(w,h),lm);logo.position.z=0.05;logo.renderOrder=2;g.add(logo);
+ for(const m of [frame,back,logo]){m.castShadow=false;m.receiveShadow=m!==logo}
 }
 const S_=(...a)=>SIGNMATS.push(sign(...a));
 
