@@ -225,7 +225,6 @@ for(const [x,z,ry] of [[XE0-0.1,0.2,0],[5.7,ZE1+0.1,1]]){
 shell.cyl(0.07,0.12,XE0+0.35,WT+0.44,2.75,'steel');shell.cyl(0.075,0.16,XE0+0.35,WT+0.58,2.75,'beacon');
 shell.build();
 logoPlate(shell.obj,2.2,F+3.3,XE0-0.04,0.2,-Math.PI/2);
-S_(shell.obj,'E-HOUSE  ·  PDC-01',0.9,0.14,XE0-0.04,F+2.92,0.2,{ry:-Math.PI/2,bg:'#13294B',fg:'#ffffff'});
 logoPlate(shell.obj,3.4,F+2.35,2.6,ZE1+0.075,0);
 S_(shell.obj,'DANGER',0.42,0.26,XE0-0.06,F+1.65,-1.05,{ry:-Math.PI/2,bg:'#ffffff',fg:'#111',sub:'HIGH VOLTAGE',stripe:'#d3202a'});
 
