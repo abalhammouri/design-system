@@ -79,8 +79,24 @@ body{{font-family:"Signika","Open Sans",system-ui,sans-serif;color:var(--ink);-w
 /* ---------- light Hunter theme for the tour ---------- */
 #ehx{{--hh:160px}}
 #ehx #stage{{top:var(--hh);height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));background:linear-gradient(180deg,#ffffff 0%,#f1f5f2 55%,#dbe5df 100%)}}
-#ehx #stage::after{{background:linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.66) 28%,rgba(255,255,255,0) 52%),linear-gradient(0deg,rgba(255,255,255,.75) 0%,rgba(255,255,255,0) 22%)}}
-@media(max-width:700px){{#ehx #stage::after{{background:linear-gradient(0deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.85) 38%,rgba(255,255,255,0) 62%)}}}}
+/* split layout: text column on the left, the 3D view on the right; nothing overlaps the model */
+#ehx #stage{{background:#fff}}
+#ehx #stage::after{{display:none}}
+#ehx canvas,#ehx #spots{{left:38%;width:62%;right:auto}}
+#ehx canvas{{background:linear-gradient(180deg,#ffffff 0%,#f1f5f2 55%,#dbe5df 100%);border-left:1px solid rgba(0,99,65,.12)}}
+#ehx #panels{{position:absolute;left:0;top:0;bottom:64px;width:38%;z-index:5}}
+#ehx .panel{{left:clamp(24px,3.2vw,56px);right:clamp(20px,2.4vw,40px);max-width:none;bottom:auto;top:50%;transform:translateY(calc(-50% + 24px))}}
+#ehx .panel.on{{transform:translateY(-50%)}}
+#ehx #hud{{right:calc(62% + 28px);left:clamp(24px,3.2vw,56px)}}
+#ehx #docs{{right:2.5vw;width:min(55vw,860px)}}
+#ehx #hint{{display:none}}
+@media(max-width:700px){{
+ #ehx canvas,#ehx #spots{{left:0;width:100%;top:0;height:54%;bottom:auto;border-left:0;border-bottom:1px solid rgba(0,99,65,.12)}}
+ #ehx #panels{{top:54%;bottom:44px;width:100%}}
+ #ehx .panel{{left:16px;right:16px;top:14px;transform:translateY(14px)}}#ehx .panel.on{{transform:none}}
+ #ehx #hud{{left:16px;right:16px;bottom:14px}}
+ #ehx #docs{{left:10px;right:10px;width:auto;top:10px}}
+}}
 #ehx #loading{{background:#fff;color:var(--g)}}
 #ehx .eyebrow{{color:var(--o);font:600 12px "Signika",sans-serif;letter-spacing:.18em}}
 #ehx .panel h2{{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.02;color:var(--n);font-size:clamp(30px,4.2vw,54px)}}
@@ -102,9 +118,8 @@ body{{font-family:"Signika","Open Sans",system-ui,sans-serif;color:var(--ink);-w
 /* on the dark records screen the panel switches to light text */
 body.dark-on #ehx .panel h2{{color:#fff}}body.dark-on #ehx .panel p{{color:#d5e2db}}body.dark-on #ehx .panel .why{{color:#b8cbc1}}body.dark-on #ehx .panel .why b{{color:#7fd3a8}}
 body.dark-on #ehx .panel li{{color:#d5efe2;border-color:rgba(127,211,168,.5);background:rgba(0,99,65,.35)}}
-#ehx #stage::after{{transition:opacity .5s}}body.dark-on #ehx #stage::after{{opacity:0}}
 body.dark-on #ehx #count{{color:#fff}}body.dark-on #ehx #dots i{{background:#0b1a14}}
-@media(max-width:700px){{#ehx #plan{{top:10px}}#ehx #docs{{top:12px}}#ehx #docs .scr{{height:min(36vh,300px)}}#ehx .panel h2{{font-size:30px}}}}
+@media(max-width:700px){{#ehx #plan{{top:10px}}#ehx #docs .scr{{height:min(32vh,260px)}}#ehx .panel h2{{font-size:28px}}#ehx .panel p{{font-size:14px}}}}
 @media(max-width:900px){{#ehx{{--hh:94px}}}}
 '''
 

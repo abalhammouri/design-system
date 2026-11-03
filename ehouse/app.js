@@ -91,6 +91,8 @@ class Part{
  torus(r,t,x,y,z,m,ry=0){const g=new THREE.TorusGeometry(r,t,8,24);if(ry)g.rotateY(ry);g.translate(x,y,z);return this.add(g,m)}
  // a sloped bar between two points (square section s)
  bar(a,b,s,m){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b);const len=A.distanceTo(B);const g=new THREE.BoxGeometry(s,len,s);const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());g.applyQuaternion(q);g.translate((A.x+B.x)/2,(A.y+B.y)/2,(A.z+B.z)/2);return this.add(g,m)}
+ cap(a,b,r,m){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b);const g=new THREE.CapsuleGeometry(r,Math.max(0.001,A.distanceTo(B)),4,12);g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize()));g.translate((A.x+B.x)/2,(A.y+B.y)/2,(A.z+B.z)/2);return this.add(g,m)}
+ raw(g,m){return this.add(g,m)}
  sph(r,x,y,z,m){const g=new THREE.SphereGeometry(r,14,10);g.translate(x,y,z);return this.add(g,m)}
  // run fn and apply matrix mt to every geometry it added
  at(mt,fn){const b={};for(const k in this.geo)b[k]=this.geo[k].length;fn();for(const k in this.geo)for(let i=b[k]||0;i<this.geo[k].length;i++)this.geo[k][i].applyMatrix4(mt)}
@@ -488,34 +490,55 @@ sy.build();
 S_(sy.obj,'FIRE ALARM',0.5,0.12,X0+0.03,F+2.05,-1.65,{ry:Math.PI/2,bg:'#b3202a',fg:'#fff'});
 
 /* ---------------- CSI inspection crew + testing specialist ---------------- */
-// worker(P, x, z, facing, {pose, kneel, vest, hat, skin, decal})  facing: radians, 0 = looking toward +z
+const csiTex=new THREE.TextureLoader().load(new URL('./brand/CSI-Engineering-Logo-Blue.webp',import.meta.url).href,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;t.needsUpdate=true});
+const csiLogoMat=new THREE.MeshStandardMaterial({map:csiTex,transparent:true,roughness:.7,alphaTest:.05});
+// worker(P, x, z, facing, {pose, kneel, vest, hat, skin, glove, logo})  facing: radians, 0 = looking toward +z
 function worker(P,x,z,face,o={}){
  const m=new THREE.Matrix4().makeRotationY(face).setPosition(x,F,z);
+ const k=o.kneel,hp=k?0.55:0.93,vest=o.vest||'vest',skin=o.skin||'skin',hat=o.hat||'hat',glove=o.glove||skin;
  P.at(m,()=>{
-  const k=o.kneel,hb=k?0.5:0.86,vest=o.vest||'vest',skin=o.skin||'skin',hat=o.hat||'hat';
-  if(k){ // kneeling on the right knee
-   P.bar([-0.1,hb,0],[-0.1,0.5,0.38],0.13,'pants');P.bar([-0.1,0.5,0.38],[-0.1,0.04,0.42],0.12,'pants');P.bb(-0.16,0,0.36,-0.04,0.07,0.6,'black');
-   P.bar([0.1,hb,0],[0.1,0.07,0.08],0.13,'pants');P.bar([0.1,0.07,0.08],[0.1,0.06,-0.38],0.12,'pants');P.bb(0.04,0,-0.5,0.16,0.08,-0.34,'black');
+  const boot=(sx,y,z0,z1)=>{P.bb(sx*0.045,y,z0,sx*0.165,y+0.11,z1,'black');P.cap([sx*0.105,y+0.06,z1-0.02],[sx*0.105,y+0.06,z1-0.01],0.058,'black')};
+  if(k){ // kneeling on the left knee, right foot forward
+   P.cap([0.1,hp,0],[0.1,0.52,0.4],0.072,'pants');P.cap([0.1,0.52,0.4],[0.1,0.12,0.42],0.062,'pants');boot(1,0,0.33,0.6);
+   P.cap([-0.1,hp,0],[-0.1,0.08,0.06],0.072,'pants');P.cap([-0.1,0.08,0.06],[-0.1,0.08,-0.36],0.062,'pants');P.bb(-0.165,0,-0.5,-0.045,0.12,-0.32,'black');
+   P.sph(0.07,-0.1,0.07,0.07,'black'); // knee pad
   }else{
-   for(const sx of [-1,1]){P.bb(sx*0.03,0.07,-0.07,sx*0.16,hb+0.02,0.08,'pants');P.bb(sx*0.03,0,-0.07,sx*0.17,0.08,0.18,'black')}
+   for(const sx of [-1,1]){P.cap([sx*0.1,hp,0],[sx*0.1,0.5,0.015],0.07,'pants');P.cap([sx*0.1,0.5,0.015],[sx*0.1,0.13,0],0.06,'pants');boot(sx,0,-0.07,0.17)}
   }
-  P.bb(-0.2,hb,-0.12,0.2,hb+0.58,0.12,'shirt');
-  P.bb(-0.215,hb+0.04,-0.135,0.215,hb+0.56,0.135,vest);
-  for(const dy of [0.2,0.38])P.bb(-0.22,hb+dy,-0.14,0.22,hb+dy+0.035,0.14,'refl');
-  P.cyl(0.05,0.08,0,hb+0.62,0,skin);P.sph(0.11,0,hb+0.76,0.01,skin);
-  P.cyl(0.125,0.09,0,hb+0.86,0,hat,'y',18,0.1);P.cyl(0.16,0.015,0,hb+0.815,0.03,hat,'y',18);
-  if(o.decal)P.bb(-0.05,hb+0.84,0.118,0.05,hb+0.88,0.126,o.decal);
-  const sh=hb+0.54,L=(sx,e,h)=>{P.bar([sx*0.24,sh,0],e,0.085,'shirt');P.bar(e,h,0.075,'shirt');P.sph(0.045,...h,skin)};
+  // pelvis, belt, torso, vest with reflective bands
+  {const g=new THREE.CylinderGeometry(0.17,0.16,0.18,16);g.scale(1,1,0.68);g.translate(0,hp+0.02,0);P.raw(g,'pants')}
+  {const g=new THREE.CylinderGeometry(0.172,0.172,0.045,16);g.scale(1,1,0.69);g.translate(0,hp+0.11,0);P.raw(g,'black')}
+  {const g=new THREE.CylinderGeometry(0.2,0.168,0.46,18);g.scale(1,1,0.62);g.translate(0,hp+0.35,0);P.raw(g,'shirt')}
+  {const g=new THREE.CylinderGeometry(0.212,0.18,0.4,18,1,true);g.scale(1,1,0.64);g.translate(0,hp+0.34,0);P.raw(g,vest)}
+  for(const dy of [0.24,0.42]){const r=0.18+(0.212-0.18)*((dy-0.14)/0.4);const g=new THREE.CylinderGeometry(r+0.003,r+0.003,0.035,18,1,true);g.scale(1,1,0.645);g.translate(0,hp+dy,0);P.raw(g,'refl')}
+  for(const sx of [-1,1])P.sph(0.072,sx*0.2,hp+0.54,0,'shirt');
+  // neck, head, ears, safety glasses, hard hat
+  P.cyl(0.048,0.09,0,hp+0.62,0,skin);
+  {const g=new THREE.SphereGeometry(0.102,16,12);g.scale(0.95,1.14,1.02);g.translate(0,hp+0.74,0.01);P.raw(g,skin)}
+  for(const sx of [-1,1])P.sph(0.022,sx*0.098,hp+0.74,0,skin);
+  P.bb(-0.075,hp+0.75,0.088,0.075,hp+0.782,0.106,'darkglass');P.bb(-0.008,hp+0.705,0.095,0.008,hp+0.745,0.118,skin);
+  {const g=new THREE.SphereGeometry(0.128,18,10,0,Math.PI*2,0,Math.PI/2);g.scale(1,0.86,1.08);g.translate(0,hp+0.79,0.005);P.raw(g,hat)}
+  {const g=new THREE.CylinderGeometry(0.15,0.15,0.012,20);g.scale(1,1,1.12);g.translate(0,hp+0.79,0.035);P.raw(g,hat)}
+  P.bb(-0.018,hp+0.79,-0.12,0.018,hp+0.905,0.13,hat);
+  // arms
+  const sh=hp+0.52,arm=(sx,e,h)=>{P.cap([sx*0.21,sh,0],e,0.047,'shirt');P.cap(e,h,0.04,'shirt');P.sph(0.042,...h,glove)};
   if(o.pose==='tablet'){
-   L(-1,[-0.27,sh-0.28,0.06],[-0.13,sh-0.3,0.3]);L(1,[0.27,sh-0.28,0.06],[0.13,sh-0.3,0.3]);
-   P.bar([0,sh-0.31,0.24],[0,sh-0.24,0.46],0.02,'black');P.bb(-0.15,sh-0.305,0.25,0.15,sh-0.285,0.45,'black');P.bb(-0.13,sh-0.283,0.27,0.13,sh-0.281,0.43,'screen');
-  }else if(o.pose==='probe'){ // reaching forward with test leads
-   L(-1,[-0.25,sh-0.2,0.2],[-0.12,sh-0.12,0.48]);L(1,[0.26,sh-0.22,0.2],[0.16,sh-0.16,0.5]);
-  }else if(o.pose==='point'){
-   L(-1,[-0.27,sh-0.3,0.02],[-0.24,sh-0.5,0.12]);L(1,[0.3,sh-0.08,0.22],[0.34,sh+0.02,0.5]);
-   P.bb(-0.32,sh-0.62,0.08,-0.18,sh-0.4,0.12,'white');
-  }else{L(-1,[-0.27,sh-0.3,0],[-0.26,sh-0.58,0.04]);L(1,[0.27,sh-0.3,0],[0.26,sh-0.58,0.04])}
+   arm(-1,[-0.25,sh-0.27,0.08],[-0.1,sh-0.25,0.33]);arm(1,[0.25,sh-0.26,0.06],[0.07,sh-0.17,0.36]);
+   const g=new THREE.BoxGeometry(0.27,0.016,0.19);g.rotateX(-0.75);g.translate(-0.03,sh-0.22,0.38);P.raw(g,'black');
+   const g2=new THREE.BoxGeometry(0.245,0.002,0.165);g2.rotateX(-0.75);g2.translate(-0.03,sh-0.212,0.386);P.raw(g2,'screen');
+  }else if(o.pose==='probe'){
+   arm(-1,[-0.22,sh-0.2,0.24],[-0.11,sh-0.12,0.5]);arm(1,[0.23,sh-0.22,0.24],[0.13,sh-0.16,0.52]);
+   P.bb(-0.13,sh-0.14,0.52,-0.09,sh-0.1,0.58,'red');P.bb(0.11,sh-0.18,0.54,0.15,sh-0.14,0.6,'black');
+  }else if(o.pose==='light'){ // checking the base with a flashlight
+   arm(1,[0.22,sh-0.25,0.16],[0.14,sh-0.32,0.44]);arm(-1,[-0.22,sh-0.3,0.12],[-0.12,hp+0.02,0.36]);
+   P.cyl(0.022,0.16,0.14,sh-0.33,0.52,'black','z',10);P.cyl(0.026,0.012,0.14,sh-0.33,0.605,'lamp','z',10);
+  }else{arm(-1,[-0.25,sh-0.28,0.02],[-0.24,sh-0.55,0.05]);arm(1,[0.25,sh-0.28,0.02],[0.24,sh-0.55,0.05])}
  });
+ if(o.logo){ // CSI logo printed on the vest, chest and back
+  const g=new THREE.Group();g.applyMatrix4(m);P.obj.add(g);
+  const chest=new THREE.Mesh(new THREE.PlaneGeometry(0.12,0.059),csiLogoMat);chest.position.set(-0.07,hp+0.44,0.137);chest.rotation.y=-0.25;g.add(chest);
+  const back=new THREE.Mesh(new THREE.PlaneGeometry(0.27,0.133),csiLogoMat);back.position.set(0,hp+0.38,-0.132);back.rotation.y=Math.PI;g.add(back);
+ }
 }
 const crew=new Part('crew');
 // open breaker cubicle on MV section 3 (x -6.2 .. -5.3)
@@ -523,8 +546,8 @@ const crew=new Part('crew');
  crew.bb(x0+0.04,F+0.16,-0.974,x0+0.86,F+1.45,-0.966,'black');
  crew.bb(xc-0.27,F+0.32,-0.966,xc+0.27,F+1.05,-0.95,'face');crew.bb(xc-0.2,F+0.62,-0.95,xc+0.2,F+0.86,-0.944,'ansiDark');
  for(const dx of [-0.16,0,0.16])crew.cyl(0.03,0.12,xc+dx,F+1.2,-0.93,'copper','z',10);
- crew.bb(x0+0.02,F+0.16,-0.97,x0+0.05,F+1.45,-0.16,'ansi');                       // door swung open into the aisle
- crew.bb(x0+0.05,F+0.92,-0.6,x0+0.06,F+1.12,-0.36,'darkglass');
+ crew.bb(x0-0.8,F+0.16,-0.95,x0+0.02,F+1.45,-0.925,'ansi');                       // door swung fully open, flat against the next section
+ crew.bb(x0-0.56,F+0.92,-0.925,x0-0.22,F+1.14,-0.915,'darkglass');
  // test cart + insulation resistance test set, leads into the cubicle
  const cx=-5.25,cz=-0.42;
  crew.bb(cx-0.3,F+0.12,cz-0.2,cx+0.3,F+0.16,cz+0.2,'steel');crew.bb(cx-0.3,F+0.55,cz-0.2,cx+0.3,F+0.59,cz+0.2,'steel');
@@ -536,19 +559,18 @@ const crew=new Part('crew');
  const bz=-0.05,xa=-7.0,xb=-4.35;
  for(const x of [xa,(xa+xb)/2,xb]){crew.cyl(0.14,0.03,x,F+0.015,bz,'black','y',16);crew.cyl(0.025,0.95,x,F+0.49,bz,'yellow','y',10);crew.cyl(0.035,0.05,x,F+0.98,bz,'black','y',10)}
  for(let i=0;i<14;i++){const t0=i/14,t1=(i+1)/14;crew.bar([xa+(xb-xa)*t0,F+0.94-Math.sin(Math.PI*((t0*2)%1))*0.06,bz],[xa+(xb-xa)*t1,F+0.94-Math.sin(Math.PI*((t1*2)%1))*0.06,bz],0.025,i%2?'black':'yellow')}
- // CSI QA/QC engineer witnesses with a tablet; specialist kneels at the test set
- worker(crew,-5.95,-0.38,Math.PI,{kneel:1,pose:'probe',vest:'vestO',hat:'yellow',skin:'skin2'});
- worker(crew,-6.75,-0.3,Math.atan2(0.75,-0.75),{pose:'tablet',decal:'sky'});
+ // testing specialist (orange vest, rated gloves) kneels at the cubicle; CSI QA/QC engineer witnesses with a tablet
+ worker(crew,-5.95,-0.4,Math.PI,{kneel:1,pose:'probe',vest:'vestO',hat:'yellow',skin:'skin2',glove:'black'});
+ worker(crew,-4.7,-0.32,Math.atan2(-1.05,-0.6),{pose:'tablet',logo:1});
 }
 crew.build();
 S_(crew.obj,'DANGER',0.5,0.26,(-7.0-4.35)/2,F+0.75,-0.03,{bg:'#ffffff',fg:'#111',sub:'TESTING IN PROGRESS',stripe:'#d3202a'});
-// receiving inspection outside: CSI inspector at the base of the front wall
+// receiving inspection outside, from the first frame: one CSI inspector with a tablet, one checking the base
 const crewOut=new Part('crewOut',{interior:false});
-worker(crewOut,-7.9,ZE1+0.75,Math.PI,{kneel:1,pose:'tablet',decal:'sky'});
-crewOut.at(new THREE.Matrix4().makeTranslation(0,-F,0),()=>{});
+worker(crewOut,-3.4,ZE1+1.7,Math.PI+0.25,{pose:'tablet',logo:1});
+worker(crewOut,-7.55,ZE1+0.62,Math.PI,{kneel:1,pose:'light',logo:1});
 crewOut.build();
 crewOut.obj.position.y=-F; // standing on the pad, not the floor
-const crewMats=[];crew.obj.traverse(o=>{if(o.isMesh){o.material.transparent=true;crewMats.push(o.material)}});
 
 /* ---------------- lights ---------------- */
 const hemi=new THREE.HemisphereLight(0xcfe3ff,0x1a2c48,0.75);scene.add(hemi);
@@ -576,8 +598,8 @@ const K=[
  {u:36, p:[-10.7,2.3,0.2], t:[-6,2.15,0.2], s:0,o:.4},
  {u:41, p:[-8.3,2.25,0.2], t:[3,1.9,0.2],   s:1,o:0},
  {u:45, p:[-7.9,2.25,0.25],t:[3,1.9,0.12],  s:1,o:0},
- {u:50, p:[-6.6,2.2,1.15], t:[-3.9,1.6,-1.5],s:1,o:0},
- {u:55, p:[-6.0,2.2,1.1],  t:[-3.4,1.6,-1.5],s:1,o:0},
+ {u:50, p:[-2.7,2.25,1.2], t:[-6.4,1.7,-1.6],s:1,o:0},
+ {u:55, p:[-3.1,2.25,1.15],t:[-6.8,1.7,-1.6],s:1,o:0},
  {u:60, p:[-1.7,2.2,1.2], t:[0.4,1.6,-1.4], s:1,o:0},
  {u:65, p:[-1.3,2.2,1.15],t:[0.8,1.6,-1.4], s:1,o:0},
  {u:70, p:[1.4,2.2,1.2],  t:[3.4,1.6,-1.6], s:1,o:0},
@@ -594,9 +616,9 @@ const K=[
  {u:125,p:[-4.0,2.15,-0.75],t:[-6.7,1.5,2.0],s:1,o:0},
  {u:130,p:[-2.4,2.0,0.25], t:[-8.5,3.0,0.0],s:1,o:0},
  {u:135,p:[-3.1,2.0,0.25], t:[-8.8,3.1,0.0],s:1,o:0},
- {u:140,p:[-3.4,2.15,1.2],  t:[-6.0,1.05,-0.5],s:1,o:0},
- {u:146,p:[-3.8,2.1,1.15],  t:[-6.3,1.05,-0.5],s:1,o:0},
- {u:150.5,p:[-6.4,2.2,0.2], t:[-12,2.15,0.2], s:0,o:0},
+ {u:140,p:[-8.75,2.5,1.2],  t:[-5.6,0.9,-0.6], s:1,o:0},
+ {u:146,p:[-8.55,2.45,1.1], t:[-5.4,0.9,-0.6], s:1,o:0},
+ {u:150.5,p:[-8.5,2.2,0.25], t:[-12,2.15,0.2], s:0,o:0},
  {u:153,p:[-9.05,2.25,0.2], t:[-13,2.15,0.2], s:1,o:0},
  {u:155,p:[-9.1,2.25,0.2],  t:[-13,2.15,0.2], s:1,o:0},
  {u:169,p:[-14.5,2.6,2.6],  t:[-9,2.1,0.2],   s:1,o:1},
@@ -620,11 +642,12 @@ const HUNTER_COPY={
 const STAGES=[
  {u:[0,9],eb:'Hunter Buildings e-house · CSI QA/QC',h:'Built in the factory. Verified on site.',
   p:'A prefabricated power building that receives, protects and distributes power for your site. Hunter Buildings builds and factory-tests it. CSI inspects, witnesses and verifies it on site until it is safe to energize.',
-  why:'<b>For your project:</b> independent QA/QC. CSI verifies the work and the tests; it does not test its own work.',chips:['MV & LV switchgear','MCCs & drives','UPS & batteries','Building systems'],room:'Outside'},
+  why:'<b>For your project:</b> independent QA/QC. CSI verifies the work and the tests; it does not test its own work.',chips:['MV & LV switchgear','MCCs & drives','UPS & batteries','Building systems'],
+  spots:[['CSI receiving inspection',[-3.4,1.95,ZE1+1.7]]],room:'Outside'},
  {u:[9,25],eb:'01 · Receiving inspection',h:'Built like a building. Moved like equipment.',
   p:'A welded steel skid, insulated wall panels and rated lifting points let the whole room travel by truck and set by crane onto a pad or piers.',
   why:'<b>What CSI verifies:</b> transport damage, nameplates against approved drawings, enclosure integrity, anchorage, leveling and grounding.',chips:['Set-in-place','Anchorage','Grounding','IEEE 80 / 142'],
-  spots:[['CSI inspector',[-7.9,1.55,ZE1+0.75]],['Base lifting lug',[-7.6,0.47,ZE1+0.08]],['Arc exhaust hood',[XE0-0.25,F+2.65,-2.5]],['Rooftop HVAC',[-5.2,WT+1.1,0]]],room:'Outside'},
+  spots:[['CSI inspector',[-7.55,1.25,ZE1+0.62]],['Base lifting lug',[-7.6,0.47,ZE1+0.08]],['Arc exhaust hood',[XE0-0.25,F+2.65,-2.5]],['Rooftop HVAC',[-5.2,WT+1.1,0]]],room:'Outside'},
  {u:[25,46],eb:'02 · Step inside',h:'Lights on. Walk in.',
   p:'Outward-swinging double doors with panic hardware, a second exit at the far end and a clear working aisle running the full length of the room.',
   why:'<b>What CSI verifies:</b> working space, egress, equipment and arc-flash labels, PPE and lockout/tagout provisions (NFPA 70E).',chips:['2.4 m working aisle','Two exits','Panic hardware','Emergency lighting'],
@@ -632,7 +655,7 @@ const STAGES=[
  {u:[46,56],eb:'03 · Left · Medium-voltage switchgear',h:'Where utility power comes in.',glow:'mv',
   p:'Arc-resistant metal-clad switchgear receives the incoming feed and protects every circuit downstream. If a fault happens, the arc energy is ducted up and out of the building, away from the aisle.',
   why:'<b>What CSI verifies:</b> visual and mechanical inspection, torque, insulation and contact resistance, breaker timing and over-potential tests (IEEE C37.20.2, ANSI/NETA ATS).',chips:['Arc-resistant','Vacuum breakers','Plenum to exterior','15 kV class'],
-  spots:[['Arc-resistant plenum',[-6.9,F+2.65,-2.1]],['Protective relay',[-4.85,F+1.95,-0.95]],['Vacuum breaker',[-3.95,F+0.85,-0.96]],['Insulating safety mat',[-3.0,F+0.02,-0.5]]],room:'MV switchgear'},
+  spots:[['Arc-resistant plenum',[-6.9,F+2.65,-2.1]],['Protective relay',[-4.85,F+1.95,-0.95]],['Vacuum breaker',[-3.95,F+0.85,-0.96]],['Insulating safety mat',[-4.1,F+0.02,-0.5]]],room:'MV switchgear'},
  {u:[56,66],eb:'04 · Left · Protection & control',h:'The brain of the building.',glow:'pc',
   p:'Protective relays, SCADA and an operator HMI watch every breaker and report status to your control room, so problems are seen before they become outages.',
   why:'<b>What CSI verifies:</b> relay settings, secondary injection, trip circuit and interlock checks, metering and SCADA signals (IEEE C37.90).',chips:['Protective relays','SCADA / RTU','Operator HMI','Remote monitoring'],
@@ -668,7 +691,7 @@ const STAGES=[
  {u:[137,149],eb:'12 · Site inspection & testing',h:'Tested by specialists. Witnessed by CSI.',
   p:'Specialist technicians run the acceptance tests with calibrated instruments. CSI\'s QA/QC engineer witnesses each one, checks the result against the manufacturer data, the project specification and ANSI/NETA ATS, and accepts or rejects it.',
   why:'<b>Independent by design:</b> every activity has a hold or witness point, and nothing moves to the next stage until it is released.',chips:['Hold & witness points','NIST-traceable calibration','NFPA 70E safety','ANSI/NETA ATS'],
-  spots:[['CSI QA/QC engineer',[-6.75,F+1.75,-0.3]],['Testing specialist',[-5.95,F+1.4,-0.38]],['Insulation resistance test set',[-5.25,F+0.9,-0.42]],['Barricaded test area',[-6.4,F+0.98,-0.05]]],room:'Testing'},
+  spots:[['CSI QA/QC engineer',[-4.7,F+1.78,-0.32]],['Testing specialist',[-5.95,F+1.4,-0.38]],['Insulation resistance test set',[-5.25,F+0.9,-0.42]],['Barricaded test area',[-6.4,F+0.98,-0.05]]],room:'Testing'},
  {u:[149,170],eb:'13 · Records & evidence',h:'Every check leaves a record.',docs:1,
   p:'Each inspection, torque value, witnessed test and photo is captured in CSI\'s digital QC system as the work happens, traceable to the equipment tag, the instrument and the person who signed it.',
   why:'<b>For your QA team and auditors:</b> evidence you can trace line by line, not a binder assembled at the end.',chips:['Digital ITP','QC checklists','Photo evidence','Signed test reports'],room:'Records'},
@@ -761,7 +784,8 @@ const CONTACT=THEME==='hunter'?'https://www.hunterbuildings.com/hunter-buildings
 document.querySelectorAll('a[href="#contact"]').forEach(a=>{a.href=CONTACT;a.target='_top';a.rel='noopener'});
 read();cur=target;
 let W=1,H=1,portrait=false;
-function resize(){W=stage.clientWidth;H=stage.clientHeight;renderer.setSize(W,H,false);camera.aspect=W/H;portrait=camera.aspect<0.8}
+let split=false;
+function resize(){W=canvas.clientWidth||stage.clientWidth;H=canvas.clientHeight||stage.clientHeight;renderer.setSize(W,H,false);camera.aspect=W/H;portrait=camera.aspect<0.8;split=W<stage.clientWidth*0.9||H<stage.clientHeight*0.9}
 addEventListener('resize',resize);resize();
 
 const tmp=new THREE.Vector3(),fwd=new THREE.Vector3();
@@ -776,12 +800,14 @@ function frame(now){
  const c=camAt(u);
  const fovOut=portrait?52:38,fovIn=portrait?72:60;
  camera.fov=fovIn+(fovOut-fovIn)*c.o;
- if(portrait){ // keep the long building in frame on narrow screens when outside
+ { // keep the long building in frame on narrow views when outside
   const hf=2*Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov)/2)*camera.aspect);
   const k=1+(Math.max(1,Math.tan(THREE.MathUtils.degToRad(29))/Math.tan(hf/2))-1)*c.o;
   c.p.sub(c.l).multiplyScalar(k).add(c.l);
-  camera.setViewOffset(W,H,0,H*0.17,W,H);
- }else if(qs.has('poster'))camera.clearViewOffset();else camera.setViewOffset(W,H,-W*0.1,0,W,H);
+ }
+ if(split||qs.has('poster'))camera.clearViewOffset();
+ else if(portrait)camera.setViewOffset(W,H,0,H*0.17,W,H);
+ else camera.setViewOffset(W,H,-W*0.1,0,W,H);
  camera.updateProjectionMatrix();
  camera.position.copy(c.p);camera.lookAt(c.l);
 
@@ -797,10 +823,6 @@ function frame(now){
  for(const p of allParts){if(!p.interior)continue;for(const m of p.mats)m.envMapIntensity=0.2+0.45*lit}
  for(const m of SIGNMATS)m.envMapIntensity=0.3+0.4*lit;
  if(beaconMat){const g=ramp(u,189,192);beaconMat.emissive.setRGB(1-g*0.83,0.69+g*0.31*0.85,0.12+g*0.35);beaconMat.emissiveIntensity=2+Math.sin(now/300)*0.6}
-
- // the test crew is only on site for the inspection step
- const cv=ramp(u,135.5,138.5)*(1-ramp(u,150,152.5));
- crew.obj.visible=cv>0.01;for(const m of crewMats)m.opacity=cv;
 
  // stage
  let a=STAGES.findIndex(s=>u>=s.u[0]&&u<s.u[1]);if(a<0)a=STAGES.length-1;
@@ -820,7 +842,7 @@ function frame(now){
    tmp.copy(sp.v).project(camera);
    const x=(tmp.x*0.5+0.5)*W,y=(-tmp.y*0.5+0.5)*H;
    const onScreen=ahead&&x>8&&x<W-8&&y>70&&y<(portrait?H*0.55:H-60);
-   if(onScreen){vis=inStage;sp.e.style.transform=`translate(${x}px,${y}px)`;sp.e.classList.toggle('flip',x>W*0.68)}
+   if(onScreen){vis=inStage;sp.e.style.transform=`translate(${x}px,${y}px)`;sp.e.classList.toggle('flip',x>W*0.56)}
   }
   sp.e.style.opacity=vis;
  }));
