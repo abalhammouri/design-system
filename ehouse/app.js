@@ -75,7 +75,9 @@ const MDEF={
  walllamp:{color:0xffffff,emissive:0xfff4dc,emissiveIntensity:0}
 };
 const EMIS=new Set(['lamp','screen','screenG','ledG','ledR','ledA','exit','beacon','walllamp','glass']);
-const GLOW=new THREE.Color(0x3d8fd6);
+// page theme: data-tour="hunter" on <body> switches copy, accent and contact link
+const THEME=document.body.dataset.tour||'csi';
+const GLOW=new THREE.Color(THEME==='hunter'?0x1f9a62:0x3d8fd6);
 const LAMPS=[];      // materials that follow the interior lights
 let beaconMat=null;
 
@@ -606,6 +608,14 @@ const K=[
  {u:201,p:[15.5,4.3,19],    t:[-1.2,2.0,0],  s:1,o:1}
 ];
 const U=K[K.length-1].u;
+const HUNTER_COPY={
+ 0:{eb:'Hunter e-house',h:'Power, built in. Proven on site.',p:'A Hunter e-house is a prefabricated, climate-controlled power building: switchgear, MCCs, drives, UPS and building systems, designed, built and factory-tested by Hunter, then verified on site by independent QA/QC.',
+    why:'<b>For your project:</b> one modular building, built in parallel with your site work, with every test witnessed before it is energized.'},
+ 1:{eb:'01 · The building',p:'Hunter\'s structural skid, insulated wall panels and rated lifting points let the whole room travel by truck and set by crane onto a pad or piers.',
+    why:'<b>On arrival:</b> CSI\'s receiving inspection checks transport damage, nameplates, anchorage, leveling and grounding.'},
+ 2:{why:'<b>Built for the people inside:</b> working space, egress and arc-flash labelling are designed in by Hunter and verified on site (NFPA 70E).'},
+ 15:{cta:'Request a quote'}
+};
 
 const STAGES=[
  {u:[0,9],eb:'Hunter Buildings e-house · CSI QA/QC',h:'Built in the factory. Verified on site.',
@@ -670,6 +680,9 @@ const STAGES=[
   chips:['Signed ITP','Test reports','Closed NCRs','As-builts'],cta:'Walk through your project with an engineer',room:'Outside'}
 ];
 
+if(THEME==='hunter'){
+ STAGES.forEach((st,i)=>{Object.assign(st,HUNTER_COPY[i]||{});if(st.why)st.why=st.why.replace('<b>What CSI verifies','<b>Verified on site by CSI')});
+}
 /* ---------------- UI ---------------- */
 const panels=document.getElementById('panels'),dots=document.getElementById('dots'),track=document.getElementById('track');
 const spotsEl=document.getElementById('spots'),planEl=document.getElementById('plan'),planLbl=document.getElementById('planLbl');
@@ -744,7 +757,7 @@ if(qs.has('u')){scrollTo(0,uToScroll(+qs.get('u')));}
 else if(qs.has('stop')){const n=clamp(+qs.get('stop')||0,0,STAGES.length-1);scrollTo(0,uToScroll(STAGES[n].u[0]+(n?2.5:0)));}
 if(qs.has('poster'))document.body.classList.add('poster');
 if(qs.has('embed'))document.body.classList.add('embed');
-const CONTACT='https://www.csicx.com/en/contact-us';
+const CONTACT=THEME==='hunter'?'https://www.hunterbuildings.com/hunter-buildings-quote/':'https://www.csicx.com/en/contact-us';
 document.querySelectorAll('a[href="#contact"]').forEach(a=>{a.href=CONTACT;a.target='_top';a.rel='noopener'});
 read();cur=target;
 let W=1,H=1,portrait=false;
@@ -823,7 +836,7 @@ function frame(now){
 
  // records screen: wall goes dark, the monitor powers on, the record steps through
  const dark=ramp(u,150.8,152.9)*(1-ramp(u,168,169.6));
- darkEl.style.opacity=dark;
+ darkEl.style.opacity=dark;document.body.classList.toggle('dark-on',dark>0.45);
  const on=ramp(u,152.6,154.2)*(1-ramp(u,166.8,168.2));
  docsEl.style.opacity=on;docsEl.style.pointerEvents=on>0.5?'auto':'none';
  monEl.style.transform=`translateY(${(1-on)*28}px) scale(${0.95+0.05*on})`;

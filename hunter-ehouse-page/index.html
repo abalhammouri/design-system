@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hunter E-House Walkthrough</title>
+<meta name="description" content="Walk inside a Hunter e-house: switchgear, controls, batteries, drives and building systems, built in the factory and verified on site.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/e-house-tour/brand/hunter-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;600;700&family=Signika:wght@300;400;600;700&display=swap">
+<style>
+:root{--cobalt:#284890;--navy:#173E6A;--sky:#5AA5D9;--ink:#0a1a30}
+#ehx *{box-sizing:border-box}
+html{scroll-behavior:auto}
+#ehx{margin:0;background:var(--ink);color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#ehx #track{position:relative;height:1500vh}
+#ehx #stage{position:sticky;top:0;height:100vh;height:100svh;width:100%;overflow:hidden;background:radial-gradient(120% 90% at 70% 30%,#1f4f86 0%,#12305a 45%,#0a1a30 100%)}
+#ehx #stage::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(10,26,48,.78) 0%,rgba(10,26,48,.45) 30%,rgba(10,26,48,0) 55%),linear-gradient(0deg,rgba(10,26,48,.65) 0%,rgba(10,26,48,0) 26%)}
+@media(max-width:700px){#ehx #stage::after{background:linear-gradient(0deg,rgba(10,26,48,.94) 0%,rgba(10,26,48,.7) 38%,rgba(10,26,48,0) 62%)}}
+#ehx canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ehx header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,4vw,56px);z-index:6}
+#ehx .brand{font-weight:800;letter-spacing:.14em;font-size:14px}
+#ehx .brand b{color:var(--sky)}
+#ehx .cta{font-size:13px;font-weight:600;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.4);padding:9px 16px;border-radius:999px;background:rgba(10,26,48,.25);backdrop-filter:blur(6px)}
+#ehx .cta:hover{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+#ehx .panel{position:absolute;left:clamp(20px,4vw,56px);bottom:clamp(90px,14vh,150px);max-width:470px;z-index:5;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s;pointer-events:none}
+#ehx .panel.on{opacity:1;transform:none}
+#ehx .panel.on .go{pointer-events:auto}
+#ehx .eyebrow{font:500 12px ui-monospace,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+#ehx .panel h2{margin:12px 0 12px;font-size:clamp(28px,4vw,48px);line-height:1.05;font-weight:800;text-wrap:balance}
+#ehx .panel p{margin:0;font-size:clamp(15px,1.35vw,18px);line-height:1.55;color:#cfdcec}
+#ehx .panel .why{margin-top:12px;font-size:clamp(13px,1.1vw,15px);color:#a9c4e0;border-left:2px solid var(--sky);padding-left:10px}
+#ehx .panel .why b{color:#fff;font-weight:600}
+#ehx .panel ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+#ehx .panel li{font-size:12px;padding:6px 11px;border:1px solid rgba(90,165,217,.5);border-radius:999px;color:#dcebf9;background:rgba(40,72,144,.35)}
+#ehx .go{display:inline-block;margin-top:18px;font-weight:700;font-size:15px;color:var(--ink);background:var(--sky);padding:12px 20px;border-radius:999px;text-decoration:none}
+#ehx #spots{position:absolute;inset:0;z-index:4;pointer-events:none}
+#ehx .spot{position:absolute;left:0;top:0;opacity:0;transition:opacity .35s;white-space:nowrap}
+#ehx .spot i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px rgba(90,165,217,.28),0 0 14px rgba(90,165,217,.9);animation:pulse 2s infinite}
+#ehx .spot span{position:absolute;left:14px;top:-12px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.02em;padding:5px 9px;border-radius:6px;background:rgba(10,26,48,.82);border:1px solid rgba(90,165,217,.55);color:#eaf4fd}
+#ehx .spot.flip span{left:auto;right:14px}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(90,165,217,.28),0 0 14px rgba(90,165,217,.9)}50%{box-shadow:0 0 0 9px rgba(90,165,217,.08),0 0 18px rgba(90,165,217,.9)}}
+#ehx #plan{position:absolute;right:clamp(20px,4vw,56px);top:84px;width:240px;z-index:5;opacity:0;transition:opacity .5s;padding:10px 12px 8px;border-radius:12px;background:rgba(10,26,48,.62);border:1px solid rgba(90,165,217,.3);backdrop-filter:blur(6px)}
+#ehx #plan .t{font:500 10px ui-monospace,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;color:#9fb8d4;margin-bottom:6px;display:flex;justify-content:space-between}
+#ehx #plan svg{display:block;width:100%;height:auto}
+#ehx #plan rect.eq{fill:rgba(159,184,212,.28);stroke:rgba(159,184,212,.5);stroke-width:.15;transition:fill .3s}
+#ehx #plan rect.eq.on{fill:var(--sky);stroke:#fff}
+@media(max-width:700px){#ehx #plan{top:70px;right:12px;width:150px;padding:6px 8px}
+#ehx #plan .t{font-size:8px}}
+#ehx #hud{position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:28px;z-index:6;display:flex;align-items:center;gap:16px}
+#ehx #bar{flex:1;height:3px;background:rgba(255,255,255,.18);border-radius:2px;position:relative}
+#ehx #fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sky);border-radius:2px}
+#ehx #dots{position:absolute;inset:-4px 0;display:flex;justify-content:space-between}
+#ehx #dots i{width:11px;height:11px;border-radius:50%;background:var(--ink);border:2px solid rgba(255,255,255,.35);cursor:pointer;transition:.3s}
+#ehx #dots i.done{background:var(--sky);border-color:var(--sky)}
+#ehx #count{font:500 12px ui-monospace,Consolas,monospace;letter-spacing:.14em;color:#9fb8d4;min-width:56px;text-align:right}
+#ehx #hint{position:absolute;right:clamp(20px,4vw,56px);top:50%;font:500 11px ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:#9fb8d4;writing-mode:vertical-rl;z-index:4;transition:opacity .4s}
+#ehx #loading{position:absolute;inset:0;display:grid;place-items:center;z-index:9;background:var(--ink);font:500 12px ui-monospace,monospace;letter-spacing:.2em;color:#9fb8d4;transition:opacity .6s}
+@media(max-width:700px){#ehx .panel{right:20px;bottom:76px}
+#ehx .panel h2{font-size:27px;margin:8px 0}
+#ehx .panel p{font-size:14.5px;line-height:1.5}
+#ehx .panel .why{display:none}
+#ehx .panel ul{margin-top:10px;gap:6px}
+#ehx .panel li{font-size:11px;padding:5px 9px}
+#ehx #hint{display:none}
+#ehx #hud{bottom:22px}
+#ehx #dots i{width:9px;height:9px}
+#ehx .spot span{font-size:11px;padding:4px 7px}}
+#ehx #dark{position:absolute;inset:0;background:#000;opacity:0;z-index:3;pointer-events:none}
+#ehx #docs{position:absolute;z-index:4;right:clamp(48px,6vw,110px);top:50%;width:min(54vw,860px);transform:translateY(-50%);opacity:0;pointer-events:none}
+#ehx #docs .laptop{transform-origin:50% 60%}
+#ehx #docs .lid{position:relative;background:#16191e;border-radius:16px 16px 4px 4px;padding:18px 18px 22px;box-shadow:0 0 0 1px #2c3138,inset 0 0 0 2px #0b0d10,0 40px 90px rgba(0,0,0,.65),0 0 70px rgba(90,165,217,.14)}
+#ehx #docs .cam{position:absolute;top:7px;left:50%;width:5px;height:5px;margin-left:-2px;border-radius:50%;background:#2e3a48}
+#ehx #docs .base{position:relative;height:16px;margin:0 -7%;background:linear-gradient(#c9ced5,#8e959e);border-radius:0 0 18px 18px;box-shadow:0 18px 30px rgba(0,0,0,.5)}
+#ehx #docs .base i{position:absolute;left:50%;top:0;width:16%;height:6px;margin-left:-8%;background:#a8aeb6;border-radius:0 0 8px 8px}
+#ehx #docs .scr{background:#f4f7fb;color:#0f2340;border-radius:3px;overflow:hidden;aspect-ratio:16/10;font:12px/1.4 Inter,system-ui,sans-serif}
+#ehx .app{display:grid;grid-template-columns:22% 1fr;height:100%}
+#ehx .side{background:#173E6A;color:#c9dbef;padding:14px 12px;display:flex;flex-direction:column;gap:14px;min-width:0}
+#ehx .side .lg{width:74%;max-width:120px;height:auto;display:block}
+#ehx .proj small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8fb2d6}
+#ehx .proj b{color:#fff;font-size:12.5px}
+#ehx .nav{display:grid;gap:2px}
+#ehx .nav a,#ehx .nav span{display:block;padding:7px 9px;border-radius:6px;font-size:11.5px;color:#c9dbef;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ehx .nav span{opacity:.5;cursor:default}
+#ehx .nav a.on{background:#fff;color:#173E6A;font-weight:700}
+#ehx .who{margin-top:auto;display:flex;gap:8px;align-items:center;font-size:11px;color:#fff}
+#ehx .who i{flex:0 0 26px;height:26px;border-radius:50%;background:#5AA5D9;color:#0a1a30;font-style:normal;font-weight:800;display:grid;place-items:center;font-size:10px}
+#ehx .who small{display:block;color:#8fb2d6;font-size:10px}
+#ehx .mainp{display:flex;flex-direction:column;min-width:0}
+#ehx .top{display:flex;align-items:center;gap:12px;padding:9px 14px;border-bottom:1px solid #dbe4ee;background:#fff}
+#ehx .top .lgm{display:none}
+#ehx .crumb{flex:1;font-size:11.5px;color:#6c819d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ehx .crumb b{color:#0f2340}
+#ehx .srch{font-size:11px;color:#8aa0bb;border:1px solid #d5e0ec;border-radius:6px;padding:4px 10px;min-width:130px}
+#ehx .sync{font-size:10.5px;color:#16794a;white-space:nowrap}
+#ehx .sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:5px}
+#ehx .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 14px 0}
+#ehx .kpis div{background:#fff;border:1px solid #dbe4ee;border-radius:8px;padding:7px 10px}
+#ehx .kpis small{display:block;font-size:10px;color:#6c819d}
+#ehx .kpis b{font-size:15px;color:#0f2340;font-variant-numeric:tabular-nums}
+#ehx .kpis b.g{color:#16794a}
+#ehx .foot2{display:flex;align-items:center;gap:10px;padding:6px 14px 8px;font-size:10px;color:#8aa0bb}
+#ehx .foot2 .prog{flex:1}
+#ehx .views{position:relative;flex:1;overflow:hidden}
+#ehx .view{position:absolute;inset:0;padding:14px 16px;opacity:0;transition:opacity .35s;overflow:hidden}
+#ehx .view.on{opacity:1}
+#ehx .vh{font-size:12px;color:#5b7190;margin-bottom:10px}
+#ehx .vh b{color:#0f2340}
+#ehx .view table{width:100%;border-collapse:collapse;font-size:12px}
+#ehx .view th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6c819d;font-weight:600;padding:6px 8px;border-bottom:1px solid #d5e0ec}
+#ehx .view td{padding:7px 8px;border-bottom:1px solid #e3ebf4}
+#ehx .mono{font-family:ui-monospace,Consolas,monospace;font-size:11.5px}
+#ehx .view em{font-style:normal;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
+#ehx em.ok{background:#dcf5e7;color:#16794a}
+#ehx em.wait{background:#fff1d6;color:#9a6400}
+#ehx .view tbody tr,#ehx .qc li,#ehx .view figure,#ehx .sg,#ehx .stamp{opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+#ehx .view .in{opacity:1!important;transform:none!important}
+#ehx .qc{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+#ehx .qc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:start}
+#ehx .qc li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px}
+#ehx .qc li small{display:block;color:#6c819d;font-size:11px}
+#ehx .qc li i,#ehx .sg i{flex:0 0 18px;height:18px;border-radius:50%;background:#16a35f;position:relative}
+#ehx .qc li i::after,#ehx .sg i::after{content:"";position:absolute;left:6px;top:3px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+#ehx .ph{display:grid;gap:8px;grid-template-columns:1fr 1fr;align-content:start}
+#ehx .ph figure{margin:0;position:relative}
+#ehx .ph img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:4px}
+#ehx .ph figcaption{position:absolute;left:6px;bottom:5px;font:10px ui-monospace,monospace;color:#fff;background:rgba(0,0,0,.55);padding:2px 5px;border-radius:3px}
+#ehx .inst{margin:10px 0 0;font-size:11px;color:#6c819d}
+#ehx .sig{display:grid;gap:10px}
+#ehx .sg{display:flex;align-items:center;gap:12px;padding:10px 12px;background:#fff;border:1px solid #d5e0ec;border-radius:8px}
+#ehx .sg div{flex:1}
+#ehx .sg b{display:block;font-size:13px}
+#ehx .sg small{color:#6c819d;font-size:11px}
+#ehx .sg .mono{color:#16794a;font-weight:700}
+#ehx .stamp{margin-top:14px;display:inline-block;border:2px solid #16794a;color:#16794a;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:6px;transform:rotate(-2deg)}
+#ehx .stamp small{display:block;font-weight:600;letter-spacing:0;text-transform:none;font-size:11px}
+#ehx .prog{height:3px;background:#d5e0ec;border-radius:2px;overflow:hidden}
+#ehx .prog i{display:block;height:100%;width:0;background:#5AA5D9}
+@media(max-width:700px){#ehx #docs{left:12px;right:12px;width:auto;top:70px;transform:none}
+#ehx #docs .lid{padding:10px 10px 12px;border-radius:12px 12px 3px 3px}
+#ehx #docs .base{height:10px}
+#ehx #docs .scr{aspect-ratio:auto;height:min(40vh,340px)}
+#ehx .app{grid-template-columns:1fr}
+#ehx .side{display:none}
+#ehx .top{background:#173E6A;border:0;padding:8px 10px}
+#ehx .top .lgm{display:block;height:20px;width:auto}
+#ehx .crumb{color:#c9dbef}
+#ehx .crumb b{color:#fff}
+#ehx .srch{display:none}
+#ehx .sync{color:#9fe0b8}
+#ehx .kpis{grid-template-columns:repeat(2,1fr);gap:6px;padding:8px 10px 0}
+#ehx .kpis div:nth-child(n+3){display:none}
+#ehx .kpis div{padding:5px 8px}
+#ehx .kpis b{font-size:13px}
+#ehx .hide-s{display:none}
+#ehx .view{padding:10px}
+#ehx .view tbody tr:nth-child(n+5){display:none}
+#ehx .qc li:nth-child(n+4){display:none}
+#ehx .qc{grid-template-columns:1fr}
+#ehx .ph{grid-template-columns:repeat(3,1fr)}
+#ehx .ph figcaption{display:none}
+#ehx .sig .sg:nth-child(n+3){display:none}}
+body.poster #ehx #panels,body.poster #ehx #hud,body.poster #ehx header,body.poster #ehx #hint,body.poster #ehx #plan,body.poster #ehx #spots{display:none}
+body.poster #ehx #stage::after{display:none}
+body.embed #ehx header .brand{visibility:hidden}
+@media(prefers-reduced-motion:reduce){#ehx .panel{transition:none}
+#ehx .spot i{animation:none}}
+
+:root{--g:#006341;--n:#13294B;--o:#E58117;--paper:#ffffff;--mist:#eef3f0;--ink:#13294B;--text:#33445a}
+html,body{margin:0;background:var(--paper);overflow-x:clip}
+body{font-family:"Signika","Open Sans",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+/* ---------- Hunter-style header ---------- */
+.hb{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;box-shadow:0 1px 0 rgba(19,41,75,.08)}
+.hb-top{background:var(--n);color:#fff;text-align:center;font:400 12.5px/30px "Signika",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.hb-in{max-width:1080px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-left,0px)) 6px;display:flex;align-items:center;gap:20px}
+.hb-logo img{display:block;height:52px;width:auto}
+.hb-util{margin-left:auto;display:flex;align-items:center}
+.hb-util a{color:var(--g);text-decoration:none;font:400 13px "Signika",sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:0 16px;border-left:1px solid var(--g)}
+.hb-util a.q{border:0;background:var(--o);color:var(--n);font:400 14px "Anton",sans-serif;letter-spacing:.04em;padding:7px 16px;margin-right:4px}
+.hb-util a.q+a{border-left:0}
+.hb-util a:hover{text-decoration:underline}.hb-util a.q:hover{text-decoration:none;background:#f0962f}
+.hb-nav{max-width:1080px;margin:0 auto;padding:6px 16px 14px;display:flex;justify-content:space-between}
+.hb-nav a{color:var(--g);text-decoration:none;font:400 13px "Signika",sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:6px 4px}
+.hb-nav a:hover,.hb-nav a:focus-visible{color:var(--o)}
+.hb-burger{display:none;margin-left:auto;width:44px;height:44px;border:0;background:var(--g);color:#fff;font-size:22px;cursor:pointer}
+.hb-menu{display:none}
+@media(max-width:900px){.hb-top{font-size:10px;letter-spacing:.06em;line-height:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 10px}.hb-util,.hb-nav{display:none}.hb-burger{display:block}.hb-logo img{height:40px}.hb-in{padding:10px 16px}
+ .hb.open .hb-menu{display:grid;gap:2px;padding:6px 16px 16px;background:#fff;border-top:1px solid rgba(0,99,65,.15)}
+ .hb-menu a{color:var(--g);text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font-size:14px;padding:10px 0;border-bottom:1px solid rgba(0,99,65,.1)}
+ .hb-menu a.q{background:var(--o);color:var(--n);font-family:"Anton",sans-serif;text-align:center;border:0;margin-top:8px}}
+/* ---------- light Hunter theme for the tour ---------- */
+#ehx{--hh:160px}
+#ehx #stage{top:var(--hh);height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));background:linear-gradient(180deg,#ffffff 0%,#f1f5f2 55%,#dbe5df 100%)}
+#ehx #stage::after{background:linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.66) 28%,rgba(255,255,255,0) 52%),linear-gradient(0deg,rgba(255,255,255,.75) 0%,rgba(255,255,255,0) 22%)}
+@media(max-width:700px){#ehx #stage::after{background:linear-gradient(0deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.85) 38%,rgba(255,255,255,0) 62%)}}
+#ehx #loading{background:#fff;color:var(--g)}
+#ehx .eyebrow{color:var(--o);font:600 12px "Signika",sans-serif;letter-spacing:.18em}
+#ehx .panel h2{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.02;color:var(--n);font-size:clamp(30px,4.2vw,54px)}
+#ehx .panel p{color:var(--text);font-family:"Signika",sans-serif}
+#ehx .panel .why{color:#4a5a70;border-left-color:var(--g)}#ehx .panel .why b{color:var(--g)}
+#ehx .panel li{border-color:rgba(0,99,65,.45);background:rgba(0,99,65,.07);color:var(--g);font-family:"Signika",sans-serif}
+#ehx .go{background:var(--o);color:var(--n);border-radius:0;font:400 16px "Anton",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+#ehx .go::after{content:" \25B8"}
+#ehx #bar{background:rgba(19,41,75,.15)}#ehx #fill{background:var(--g)}
+#ehx #dots i{background:#fff;border-color:rgba(19,41,75,.35)}#ehx #dots i.done{background:var(--g);border-color:var(--g)}
+#ehx #count,#ehx #hint{color:var(--n)}
+#ehx .spot i{background:var(--o);box-shadow:0 0 0 4px rgba(229,129,23,.28),0 0 12px rgba(229,129,23,.8);animation:none}
+#ehx .spot span{background:#fff;border-color:var(--g);color:var(--n);box-shadow:0 2px 8px rgba(19,41,75,.12);font-family:"Signika",sans-serif}
+#ehx #plan{top:16px;background:rgba(255,255,255,.92);border-color:rgba(0,99,65,.3)}#ehx #plan .t{color:var(--g)}
+#ehx #planSvg>rect:not(.eq){fill:#f6f8f7;stroke:var(--g)}#ehx #planSvg line{stroke:var(--o)}
+#ehx #plan rect.eq{fill:rgba(19,41,75,.14);stroke:rgba(19,41,75,.35)}#ehx #plan rect.eq.on{fill:var(--o);stroke:var(--n)}
+#ehx #planSvg path{fill:rgba(229,129,23,.35)}#ehx #planSvg circle{fill:var(--n);stroke:var(--o)}
+#ehx #dark{background:#0b1a14}
+/* on the dark records screen the panel switches to light text */
+body.dark-on #ehx .panel h2{color:#fff}body.dark-on #ehx .panel p{color:#d5e2db}body.dark-on #ehx .panel .why{color:#b8cbc1}body.dark-on #ehx .panel .why b{color:#7fd3a8}
+body.dark-on #ehx .panel li{color:#d5efe2;border-color:rgba(127,211,168,.5);background:rgba(0,99,65,.35)}
+#ehx #stage::after{transition:opacity .5s}body.dark-on #ehx #stage::after{opacity:0}
+body.dark-on #ehx #count{color:#fff}body.dark-on #ehx #dots i{background:#0b1a14}
+@media(max-width:700px){#ehx #plan{top:10px}#ehx #docs{top:12px}#ehx #docs .scr{height:min(36vh,300px)}#ehx .panel h2{font-size:30px}}
+@media(max-width:900px){#ehx{--hh:94px}}
+
+</style>
+</head>
+<body data-tour="hunter">
+<header class="hb" id="hb">
+ <div class="hb-top">Your global resource for specialty modular structures</div>
+ <div class="hb-in">
+  <a class="hb-logo" href="https://www.hunterbuildings.com/"><img src="/e-house-tour/brand/hunter-logo.svg" alt="Hunter. On Every Front." width="244" height="56"></a>
+  <div class="hb-util"><a class="q" href="https://www.hunterbuildings.com/hunter-buildings-quote/">Request a quote &#9656;</a><a href="https://www.hunterbuildings.com/projects/">Projects</a><a href="https://www.hunterbuildings.com/blog/">Blog</a><a href="https://www.hunterbuildings.com/contact/">Contact</a></div>
+  <button class="hb-burger" id="hbBurger" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+ </div>
+ <nav class="hb-nav" aria-label="Main"><a href="https://www.hunterbuildings.com/products/">Products</a><a href="https://www.hunterbuildings.com/markets/">Markets</a><a href="https://www.hunterbuildings.com/services/">Services</a><a href="https://www.hunterbuildings.com/site-services/">Site Services</a><a href="https://www.hunterbuildings.com/rentals/">Rentals</a><a href="https://www.hunterbuildings.com/about/">About</a><a href="https://www.hunterbuildings.com/locations/">Locations</a><a href="https://www.hunterbuildings.com/resources/">Resources</a></nav>
+ <nav class="hb-menu" aria-label="Menu"><a href="https://www.hunterbuildings.com/products/">Products</a><a href="https://www.hunterbuildings.com/markets/">Markets</a><a href="https://www.hunterbuildings.com/services/">Services</a><a href="https://www.hunterbuildings.com/site-services/">Site Services</a><a href="https://www.hunterbuildings.com/rentals/">Rentals</a><a href="https://www.hunterbuildings.com/about/">About</a><a href="https://www.hunterbuildings.com/locations/">Locations</a><a href="https://www.hunterbuildings.com/resources/">Resources</a><a href="https://www.hunterbuildings.com/projects/">Projects</a><a href="https://www.hunterbuildings.com/blog/">Blog</a><a href="https://www.hunterbuildings.com/contact/">Contact</a><a class="q" href="https://www.hunterbuildings.com/hunter-buildings-quote/">Request a quote</a></nav>
+</header>
+<main id="ehx">
+<div id="track">
+ <div id="stage">
+  <div id="loading">LOADING E-HOUSE...</div>
+  <canvas id="c"></canvas>
+  <div id="spots"></div>
+  <div id="dark"></div>
+  <div id="docs" aria-label="CSI client portal showing QC and documentation records">
+   <div class="laptop"><div class="lid"><i class="cam"></i><div class="scr"><div class="app">
+    <aside class="side">
+     <img class="lg" src="/e-house-tour/brand/CSI-Engineering-Logo-White.webp" alt="CSI Engineering">
+     <div class="proj"><small>Client portal</small><b>PDC-01 · E-House</b></div>
+     <nav class="nav"><a data-i="0">Document register</a><a data-i="1">QC checklists</a><a data-i="2">Test reports</a><a data-i="3">Sign-off</a><span>Drawings</span><span>Photos</span><span>NCRs & punch list</span></nav>
+     <div class="who"><i>OE</i><span>Owner's engineer<small>Read-only access</small></span></div>
+    </aside>
+    <section class="mainp">
+     <div class="top"><img class="lgm" src="/e-house-tour/brand/CSI-Engineering-Logo-White.webp" alt="CSI Engineering"><div class="crumb">PDC-01 E-House / <b id="crumb">Document register</b></div><div class="srch">Search records</div><span class="sync">Synced</span></div>
+     <div class="kpis"><div><small>Records</small><b>142</b></div><div><small>Hold points released</small><b>9 / 12</b></div><div><small>Open NCRs</small><b class="g">0</b></div><div><small>Next hold point</small><b>Permit to energize</b></div></div>
+     <div class="views"><div class="view"></div><div class="view"></div><div class="view"></div><div class="view"></div></div>
+     <div class="foot2"><span>Sample project data</span><div class="prog"><i></i></div></div>
+    </section>
+   </div></div></div><div class="base"><i></i></div></div>
+  </div>
+  <div id="plan"><div class="t"><span>Floor plan</span><span id="planLbl">Entry</span></div><svg id="planSvg" viewBox="-9.6 -3.6 19.2 7.2"></svg></div>
+  <div id="panels"></div>
+  <div id="hint">Scroll</div>
+  <div id="hud"><div id="bar"><div id="fill"></div><div id="dots"></div></div><div id="count">01 / 14</div></div>
+ </div>
+</div>
+
+</main>
+<script type="importmap">{"imports":{"three":"/e-house-tour/vendor/three.module.js"}}</script>
+<script type="module" src="/e-house-tour/app.js"></script>
+<script>
+(function(){
+  var h=document.getElementById('hb'),b=document.getElementById('hbBurger'),m=document.getElementById('ehx');
+  function set(){m.style.setProperty('--hh',h.offsetHeight+'px');document.body.style.paddingTop=h.offsetHeight+'px';}
+  set();addEventListener('resize',set);addEventListener('load',set);
+  b.addEventListener('click',function(){var o=h.classList.toggle('open');b.setAttribute('aria-expanded',o);});
+})();
+</script>
+</body>
+</html>
