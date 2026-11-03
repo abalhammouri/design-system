@@ -32,6 +32,17 @@ const camera=new THREE.PerspectiveCamera(40,1,0.05,300);
 const MDEF={
  clad:{color:0xdfe4ea,roughness:.5,metalness:.35},
  cobalt:{color:0x284890,roughness:.45,metalness:.3},
+ hgreen:{color:0x006341,roughness:.45,metalness:.3},
+ hnavy:{color:0x13294B,roughness:.45,metalness:.3},
+ horange:{color:0xE58117,roughness:.45,metalness:.25},
+ pants:{color:0x2b3442,roughness:.85,metalness:0},
+ shirt:{color:0x173E6A,roughness:.85,metalness:0},
+ vest:{color:0xc8f02a,roughness:.7,metalness:0,emissive:0x2a3300,emissiveIntensity:.25},
+ vestO:{color:0xff7a1a,roughness:.7,metalness:0,emissive:0x331400,emissiveIntensity:.25},
+ refl:{color:0xe8ecf0,roughness:.25,metalness:.8},
+ skin:{color:0xc68e6a,roughness:.7,metalness:0},
+ skin2:{color:0x8d5a3b,roughness:.7,metalness:0},
+ hat:{color:0xf5f6f2,roughness:.35,metalness:0},
  sky:{color:0x5AA5D9,roughness:.4,metalness:.2},
  steel:{color:0x2a313b,roughness:.5,metalness:.6},
  galv:{color:0xaab2bb,roughness:.35,metalness:.85},
@@ -78,6 +89,9 @@ class Part{
  torus(r,t,x,y,z,m,ry=0){const g=new THREE.TorusGeometry(r,t,8,24);if(ry)g.rotateY(ry);g.translate(x,y,z);return this.add(g,m)}
  // a sloped bar between two points (square section s)
  bar(a,b,s,m){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b);const len=A.distanceTo(B);const g=new THREE.BoxGeometry(s,len,s);const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());g.applyQuaternion(q);g.translate((A.x+B.x)/2,(A.y+B.y)/2,(A.z+B.z)/2);return this.add(g,m)}
+ sph(r,x,y,z,m){const g=new THREE.SphereGeometry(r,14,10);g.translate(x,y,z);return this.add(g,m)}
+ // run fn and apply matrix mt to every geometry it added
+ at(mt,fn){const b={};for(const k in this.geo)b[k]=this.geo[k].length;fn();for(const k in this.geo)for(let i=b[k]||0;i<this.geo[k].length;i++)this.geo[k][i].applyMatrix4(mt)}
  build(){
   for(const [k,list] of Object.entries(this.geo)){
    const mat=new THREE.MeshStandardMaterial(MDEF[k]);mat.userData.key=k;mat.userData.env=1;
@@ -113,6 +127,14 @@ function sign(parent,text,w,h,x,y,z,{ry=0,bg='#f4f4f0',fg='#173E6A',sub=null,str
  const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),mat);m.position.set(x,y,z);m.rotation.y=ry;parent.add(m);return mat;
 }
 const SIGNMATS=[];
+const logoTex=new THREE.TextureLoader().load(new URL('./brand/hunter-logo.png',import.meta.url).href,t=>{t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;t.needsUpdate=true});
+function logoPlate(parent,w,y,x,z,ry){
+ const h=w/4.35,g=new THREE.Group();g.position.set(x,y,z);g.rotation.y=ry;parent.add(g);
+ const back=new THREE.Mesh(new THREE.PlaneGeometry(w+0.28,h+0.24),new THREE.MeshStandardMaterial({color:0xffffff,roughness:.6}));back.position.z=0.002;g.add(back);
+ const frame=new THREE.Mesh(new THREE.PlaneGeometry(w+0.36,h+0.32),new THREE.MeshStandardMaterial({color:0x006341,roughness:.5}));g.add(frame);
+ const lm=new THREE.MeshStandardMaterial({map:logoTex,transparent:true,roughness:.6});lm.userData.key='sign';SIGNMATS.push(lm);
+ const logo=new THREE.Mesh(new THREE.PlaneGeometry(w,h),lm);logo.position.z=0.004;g.add(logo);
+}
 const S_=(...a)=>SIGNMATS.push(sign(...a));
 
 /* ================= EXTERIOR SHELL ================= */
@@ -123,8 +145,8 @@ for(const z of [-3,3])shell.bb(-13,0,z-0.01,13,0.004,z+0.01,'steel');
 // structural skid: two main beams + perimeter base frame
 for(const s of [-1,1]){shell.bb(XE0-0.1,0,s*2.2,XE1+0.1,0.3,s*2.55,'steel');shell.bb(XE0-0.1,0.27,s*2.1,XE1+0.1,0.3,s*2.65,'steel')}
 for(let x=-8;x<=8;x+=2)shell.bb(x-0.08,0.04,-2.3,x+0.08,0.26,2.3,'steel');
-shell.bb(XE0-0.02,0.3,ZE0-0.02,XE1+0.02,0.62,ZE1+0.02,'cobalt');          // base channel, painted
-shell.bb(XE0-0.03,0.62,ZE0-0.03,XE1+0.03,0.645,ZE1+0.03,'sky');           // accent stripe
+shell.bb(XE0-0.02,0.3,ZE0-0.02,XE1+0.02,0.62,ZE1+0.02,'hgreen');          // base channel, painted
+shell.bb(XE0-0.03,0.62,ZE0-0.03,XE1+0.03,0.645,ZE1+0.03,'horange');           // accent stripe
 // base lifting lugs
 for(const x of [-7.6,-2.6,2.6,7.6])for(const s of [-1,1]){
  const z=s*(ZE1+0.02);shell.bb(x-0.16,0.34,z-0.03,x+0.16,0.6,z+0.03,'steel');shell.torus(0.065,0.022,x,0.47,z+s*0.05,'galv');
@@ -148,18 +170,18 @@ ribs('x',ZE0,XE0,XE1,[],-1);
 ribs('z',XE0,ZE0,ZE1,[[DOOR.z0,DOOR.z1,F,F+DOOR.h],[-2.95,-2.0,F+2.3,F+3.0]],-1);
 ribs('z',XE1,ZE0,ZE1,[],1);
 // front wall: intake/exhaust louvers, brand band, conduit entry boxes
-for(const x of [-6.6,-0.4]){shell.bb(x-0.75,F+1.9,ZE1,x+0.75,F+2.7,ZE1+0.06,'cobalt');for(let i=0;i<6;i++)shell.bb(x-0.7,F+1.95+i*0.125,ZE1+0.06,x+0.7,F+2.02+i*0.125,ZE1+0.1,'face')}
+for(const x of [-6.6,-0.4]){shell.bb(x-0.75,F+1.9,ZE1,x+0.75,F+2.7,ZE1+0.06,'hgreen');for(let i=0;i<6;i++)shell.bb(x-0.7,F+1.95+i*0.125,ZE1+0.06,x+0.7,F+2.02+i*0.125,ZE1+0.1,'face')}
 for(const x of [-6.6,-0.4,3.4])shell.bb(x-0.35,0.66,ZE1,x+0.35,1.06,ZE1+0.12,'galv');
-shell.bb(XE0,WT-0.42,ZE1+0.035,XE1,WT-0.34,ZE1+0.06,'sky');
-shell.bb(XE0,WT-0.42,ZE0-0.06,XE1,WT-0.34,ZE0-0.035,'sky');
+shell.bb(XE0,WT-0.42,ZE1+0.035,XE1,WT-0.34,ZE1+0.06,'horange');
+shell.bb(XE0,WT-0.42,ZE0-0.06,XE1,WT-0.34,ZE0-0.035,'horange');
 // roof + parapet
 shell.bb(XE0-0.06,WT,ZE0-0.06,XE1+0.06,WT+0.16,ZE1+0.06,'clad');
-for(const s of [-1,1]){shell.bb(XE0-0.08,WT+0.16,s*(ZE1+0.06)-0.04,XE1+0.08,WT+0.38,s*(ZE1+0.06)+0.04,'cobalt');shell.bb(s*(XE1+0.06)-0.04,WT+0.16,ZE0-0.08,s*(XE1+0.06)+0.04,WT+0.38,ZE1+0.08,'cobalt')}
+for(const s of [-1,1]){shell.bb(XE0-0.08,WT+0.16,s*(ZE1+0.06)-0.04,XE1+0.08,WT+0.38,s*(ZE1+0.06)+0.04,'hgreen');shell.bb(s*(XE1+0.06)-0.04,WT+0.16,ZE0-0.08,s*(XE1+0.06)+0.04,WT+0.38,ZE1+0.08,'hgreen')}
 // roof lifting lugs
 for(const x of [-8.3,8.3])for(const z of [-2.7,2.7]){shell.cyl(0.07,0.18,x,WT+0.25,z,'steel');shell.torus(0.11,0.03,x,WT+0.45,z,'galv',Math.PI/2)}
 // rooftop HVAC (two redundant packaged units)
 for(const x of [-5.2,1.2]){
- shell.bb(x-1.1,WT+0.16,-1.0,x+1.1,WT+1.05,0.9,'clad');shell.bb(x-1.12,WT+1.05,-1.02,x+1.12,WT+1.1,0.92,'cobalt');
+ shell.bb(x-1.1,WT+0.16,-1.0,x+1.1,WT+1.05,0.9,'clad');shell.bb(x-1.12,WT+1.05,-1.02,x+1.12,WT+1.1,0.92,'hgreen');
  for(const dx of [-0.5,0.5]){shell.cyl(0.36,0.04,x+dx,WT+1.12,-0.05,'face',`y`,24);shell.cyl(0.08,0.06,x+dx,WT+1.14,-0.05,'steel')}
  for(let i=0;i<7;i++)shell.bb(x-1.0+i*0.3,WT+0.3,0.9,x-0.85+i*0.3,WT+0.95,0.93,'face');
 }
@@ -170,13 +192,13 @@ for(const x of [-1.8,3.6])shell.cyl(0.09,0.5,x,WT+0.4,-2.4,'galv');
 shell.bb(XE0-0.42,F+2.3,-2.95,XE0,F+2.98,-2.05,'galv');
 for(let i=0;i<5;i++)shell.bb(XE0-0.44,F+2.36+i*0.12,-2.9,XE0-0.42,F+2.42+i*0.12,-2.1,'face');
 // door frames
-shell.bb(XE0-0.06,F-0.01,DOOR.z0-0.09,XE0+0.01,F+DOOR.h+0.09,DOOR.z0,'cobalt');
-shell.bb(XE0-0.06,F-0.01,DOOR.z1,XE0+0.01,F+DOOR.h+0.09,DOOR.z1+0.09,'cobalt');
-shell.bb(XE0-0.06,F+DOOR.h,DOOR.z0-0.09,XE0+0.01,F+DOOR.h+0.09,DOOR.z1+0.09,'cobalt');
+shell.bb(XE0-0.06,F-0.01,DOOR.z0-0.09,XE0+0.01,F+DOOR.h+0.09,DOOR.z0,'hgreen');
+shell.bb(XE0-0.06,F-0.01,DOOR.z1,XE0+0.01,F+DOOR.h+0.09,DOOR.z1+0.09,'hgreen');
+shell.bb(XE0-0.06,F+DOOR.h,DOOR.z0-0.09,XE0+0.01,F+DOOR.h+0.09,DOOR.z1+0.09,'hgreen');
 shell.bb(XE0-0.08,F+DOOR.h+0.14,DOOR.z0-0.15,XE0+0.02,F+DOOR.h+0.22,DOOR.z1+0.15,'galv'); // rain drip
 // front personnel door (second exit), closed
-shell.bb(FRONT_DOOR[0]-0.08,F-0.01,ZE1-0.01,FRONT_DOOR[1]+0.08,F+2.28,ZE1+0.05,'cobalt');
-shell.bb(FRONT_DOOR[0]+0.02,F,ZE1+0.0,FRONT_DOOR[1]-0.02,F+2.18,ZE1+0.06,'cobalt');
+shell.bb(FRONT_DOOR[0]-0.08,F-0.01,ZE1-0.01,FRONT_DOOR[1]+0.08,F+2.28,ZE1+0.05,'hgreen');
+shell.bb(FRONT_DOOR[0]+0.02,F,ZE1+0.0,FRONT_DOOR[1]-0.02,F+2.18,ZE1+0.06,'hgreen');
 shell.bb(5.55,F+1.35,ZE1+0.06,5.85,F+1.85,ZE1+0.07,'darkglass');
 shell.bb(6.0,F+1.0,ZE1+0.06,6.1,F+1.06,ZE1+0.13,'galv');
 // entry landing, stairs, handrails (left end)
@@ -186,15 +208,15 @@ for(const [x,z] of [[LX+0.05,-1],[LX+0.05,1.4],[XE0-0.05,-1],[XE0-0.05,1.4]])she
 for(let i=1;i<=2;i++)shell.bb(LX-i*0.3,F-0.02-i*0.215-0.05,-1.0,LX-(i-1)*0.3,F-0.02-i*0.215,1.4,'grating');
 for(const z of [-1.03,1.43]){
  shell.bar([LX-0.62,0,z],[LX,F-0.05,z],0.05,'steel');
- for(const x of [XE0-0.06,LX+0.9,LX+0.05])shell.bb(x-0.025,F-0.02,z-0.025,x+0.025,F+1.05,z+0.025,'sky');
- shell.bb(LX+0.02,F+1.02,z-0.025,XE0-0.03,F+1.07,z+0.025,'sky');shell.bb(LX+0.02,F+0.52,z-0.02,XE0-0.03,F+0.56,z+0.02,'sky');
- shell.bar([LX+0.05,F+1.05,z],[LX-0.62,0.3+0.9,z],0.045,'sky');shell.bb(LX-0.645,0.2,z-0.022,LX-0.6,1.2,z+0.022,'sky');
+ for(const x of [XE0-0.06,LX+0.9,LX+0.05])shell.bb(x-0.025,F-0.02,z-0.025,x+0.025,F+1.05,z+0.025,'horange');
+ shell.bb(LX+0.02,F+1.02,z-0.025,XE0-0.03,F+1.07,z+0.025,'horange');shell.bb(LX+0.02,F+0.52,z-0.02,XE0-0.03,F+0.56,z+0.02,'horange');
+ shell.bar([LX+0.05,F+1.05,z],[LX-0.62,0.3+0.9,z],0.045,'horange');shell.bb(LX-0.645,0.2,z-0.022,LX-0.6,1.2,z+0.022,'horange');
 }
 // front landing
 const FZ=ZE1+1.5;
 shell.bb(4.9,F-0.09,ZE1,6.5,F-0.02,FZ,'grating');
 for(let i=1;i<=2;i++)shell.bb(4.9,F-0.02-i*0.215-0.05,FZ+(i-1)*0.3,6.5,F-0.02-i*0.215,FZ+i*0.3,'grating');
-for(const x of [4.92,6.48]){for(const z of [ZE1+0.05,FZ-0.05])shell.bb(x-0.025,F-0.02,z-0.025,x+0.025,F+1.05,z+0.025,'sky');shell.bb(x-0.025,F+1.02,ZE1+0.03,x+0.025,F+1.07,FZ-0.03,'sky');shell.bar([x,F+1.05,FZ-0.05],[x,1.2,FZ+0.62],0.045,'sky');shell.bb(x-0.022,0.2,FZ+0.6,x+0.022,1.2,FZ+0.645,'sky')}
+for(const x of [4.92,6.48]){for(const z of [ZE1+0.05,FZ-0.05])shell.bb(x-0.025,F-0.02,z-0.025,x+0.025,F+1.05,z+0.025,'horange');shell.bb(x-0.025,F+1.02,ZE1+0.03,x+0.025,F+1.07,FZ-0.03,'horange');shell.bar([x,F+1.05,FZ-0.05],[x,1.2,FZ+0.62],0.045,'horange');shell.bb(x-0.022,0.2,FZ+0.6,x+0.022,1.2,FZ+0.645,'horange')}
 // wall lights + status beacon
 for(const [x,z,ry] of [[XE0-0.1,0.2,0],[5.7,ZE1+0.1,1]]){
  if(ry){shell.bb(x-0.14,F+2.42,ZE1,x+0.14,F+2.54,ZE1+0.14,'face');shell.bb(x-0.12,F+2.41,ZE1+0.02,x+0.12,F+2.42,ZE1+0.13,'walllamp')}
@@ -202,8 +224,9 @@ for(const [x,z,ry] of [[XE0-0.1,0.2,0],[5.7,ZE1+0.1,1]]){
 }
 shell.cyl(0.07,0.12,XE0+0.35,WT+0.44,2.75,'steel');shell.cyl(0.075,0.16,XE0+0.35,WT+0.58,2.75,'beacon');
 shell.build();
-S_(shell.obj,'CSI ENGINEERING',1.9,0.32,XE0-0.04,F+3.25,0.2,{ry:-Math.PI/2,bg:'#173E6A',fg:'#ffffff',sub:'E-HOUSE  ·  PDC-01'});
-S_(shell.obj,'CSI ENGINEERING',3.2,0.42,2.6,F+2.35,ZE1+0.075,{bg:'#173E6A',fg:'#ffffff',sub:'MODULAR POWER DISTRIBUTION CENTER'});
+logoPlate(shell.obj,2.2,F+3.3,XE0-0.04,0.2,-Math.PI/2);
+S_(shell.obj,'E-HOUSE  ·  PDC-01',0.9,0.14,XE0-0.04,F+2.92,0.2,{ry:-Math.PI/2,bg:'#13294B',fg:'#ffffff'});
+logoPlate(shell.obj,3.4,F+2.35,2.6,ZE1+0.075,0);
 S_(shell.obj,'DANGER',0.42,0.26,XE0-0.06,F+1.65,-1.05,{ry:-Math.PI/2,bg:'#ffffff',fg:'#111',sub:'HIGH VOLTAGE',stripe:'#d3202a'});
 
 /* ---------------- entry doors (animated) ---------------- */
@@ -212,7 +235,7 @@ function leaf(hingeZ,dir){
  const pivot=new THREE.Group();pivot.position.set(XE0,F,hingeZ);scene.add(pivot);
  const P=new Part('door'+leaves.length,{interior:false,parent:pivot});
  const w=(DOOR.z1-DOOR.z0)/2-0.01,a=dir>0?0.005:-w-0.005,b=a+w;
- P.bb(0.0,0.01,a,0.06,DOOR.h-0.01,b,'cobalt');
+ P.bb(0.0,0.01,a,0.06,DOOR.h-0.01,b,'hgreen');
  const m=(a+b)/2;
  P.bb(-0.005,1.25,m-0.2,0.065,1.95,m+0.2,'darkglass');
  P.bb(-0.005,0.05,a+0.04,0.065,0.3,b-0.04,'galv');                  // kick plate
@@ -304,11 +327,11 @@ const PX=6.46;
 slab(bt,'z',PX,0.12,Z0,Z1,F,C,[[-0.25,0.75,F,F+2.2],[-2.7,-0.45,F+1.0,F+2.3],[0.95,2.7,F+1.0,F+2.3]],'lining');
 for(const [a,b] of [[-2.7,-0.45],[0.95,2.7]]){
  bt.bb(PX-0.01,F+1.0,a,PX+0.01,F+2.3,b,'glass');
- bt.bb(PX-0.07,F+0.97,a-0.03,PX+0.07,F+1.03,b+0.03,'cobalt');bt.bb(PX-0.07,F+2.27,a-0.03,PX+0.07,F+2.33,b+0.03,'cobalt');
- bt.bb(PX-0.07,F+1.0,a-0.03,PX+0.07,F+2.3,a+0.01,'cobalt');bt.bb(PX-0.07,F+1.0,b-0.01,PX+0.07,F+2.3,b+0.03,'cobalt');
- bt.bb(PX-0.05,F+1.0,(a+b)/2-0.02,PX+0.05,F+2.3,(a+b)/2+0.02,'cobalt');
+ bt.bb(PX-0.07,F+0.97,a-0.03,PX+0.07,F+1.03,b+0.03,'hgreen');bt.bb(PX-0.07,F+2.27,a-0.03,PX+0.07,F+2.33,b+0.03,'hgreen');
+ bt.bb(PX-0.07,F+1.0,a-0.03,PX+0.07,F+2.3,a+0.01,'hgreen');bt.bb(PX-0.07,F+1.0,b-0.01,PX+0.07,F+2.3,b+0.03,'hgreen');
+ bt.bb(PX-0.05,F+1.0,(a+b)/2-0.02,PX+0.05,F+2.3,(a+b)/2+0.02,'hgreen');
 }
-slab(bt,'z',PX-0.07,0.05,-0.24,0.74,F,F+2.18,[[0.0,0.5,F+1.1,F+1.9]],'cobalt'); // door with vision panel
+slab(bt,'z',PX-0.07,0.05,-0.24,0.74,F,F+2.18,[[0.0,0.5,F+1.1,F+1.9]],'hgreen'); // door with vision panel
 bt.bb(PX-0.07,F+1.1,0.0,PX-0.06,F+1.9,0.5,'glass');
 bt.bb(PX-0.13,F+0.98,0.55,PX-0.1,F+1.04,0.7,'galv');
 // racks + VRLA blocks along the far wall
@@ -463,6 +486,69 @@ sy.cyl(0.08,0.45,-8.6,F+0.65,2.85,'red','y',16);sy.cyl(0.03,0.1,-8.6,F+0.92,2.85
 sy.build();
 S_(sy.obj,'FIRE ALARM',0.5,0.12,X0+0.03,F+2.05,-1.65,{ry:Math.PI/2,bg:'#b3202a',fg:'#fff'});
 
+/* ---------------- CSI inspection crew + testing specialist ---------------- */
+// worker(P, x, z, facing, {pose, kneel, vest, hat, skin, decal})  facing: radians, 0 = looking toward +z
+function worker(P,x,z,face,o={}){
+ const m=new THREE.Matrix4().makeRotationY(face).setPosition(x,F,z);
+ P.at(m,()=>{
+  const k=o.kneel,hb=k?0.5:0.86,vest=o.vest||'vest',skin=o.skin||'skin',hat=o.hat||'hat';
+  if(k){ // kneeling on the right knee
+   P.bar([-0.1,hb,0],[-0.1,0.5,0.38],0.13,'pants');P.bar([-0.1,0.5,0.38],[-0.1,0.04,0.42],0.12,'pants');P.bb(-0.16,0,0.36,-0.04,0.07,0.6,'black');
+   P.bar([0.1,hb,0],[0.1,0.07,0.08],0.13,'pants');P.bar([0.1,0.07,0.08],[0.1,0.06,-0.38],0.12,'pants');P.bb(0.04,0,-0.5,0.16,0.08,-0.34,'black');
+  }else{
+   for(const sx of [-1,1]){P.bb(sx*0.03,0.07,-0.07,sx*0.16,hb+0.02,0.08,'pants');P.bb(sx*0.03,0,-0.07,sx*0.17,0.08,0.18,'black')}
+  }
+  P.bb(-0.2,hb,-0.12,0.2,hb+0.58,0.12,'shirt');
+  P.bb(-0.215,hb+0.04,-0.135,0.215,hb+0.56,0.135,vest);
+  for(const dy of [0.2,0.38])P.bb(-0.22,hb+dy,-0.14,0.22,hb+dy+0.035,0.14,'refl');
+  P.cyl(0.05,0.08,0,hb+0.62,0,skin);P.sph(0.11,0,hb+0.76,0.01,skin);
+  P.cyl(0.125,0.09,0,hb+0.86,0,hat,'y',18,0.1);P.cyl(0.16,0.015,0,hb+0.815,0.03,hat,'y',18);
+  if(o.decal)P.bb(-0.05,hb+0.84,0.118,0.05,hb+0.88,0.126,o.decal);
+  const sh=hb+0.54,L=(sx,e,h)=>{P.bar([sx*0.24,sh,0],e,0.085,'shirt');P.bar(e,h,0.075,'shirt');P.sph(0.045,...h,skin)};
+  if(o.pose==='tablet'){
+   L(-1,[-0.27,sh-0.28,0.06],[-0.13,sh-0.3,0.3]);L(1,[0.27,sh-0.28,0.06],[0.13,sh-0.3,0.3]);
+   P.bar([0,sh-0.31,0.24],[0,sh-0.24,0.46],0.02,'black');P.bb(-0.15,sh-0.305,0.25,0.15,sh-0.285,0.45,'black');P.bb(-0.13,sh-0.283,0.27,0.13,sh-0.281,0.43,'screen');
+  }else if(o.pose==='probe'){ // reaching forward with test leads
+   L(-1,[-0.25,sh-0.2,0.2],[-0.12,sh-0.12,0.48]);L(1,[0.26,sh-0.22,0.2],[0.16,sh-0.16,0.5]);
+  }else if(o.pose==='point'){
+   L(-1,[-0.27,sh-0.3,0.02],[-0.24,sh-0.5,0.12]);L(1,[0.3,sh-0.08,0.22],[0.34,sh+0.02,0.5]);
+   P.bb(-0.32,sh-0.62,0.08,-0.18,sh-0.4,0.12,'white');
+  }else{L(-1,[-0.27,sh-0.3,0],[-0.26,sh-0.58,0.04]);L(1,[0.27,sh-0.3,0],[0.26,sh-0.58,0.04])}
+ });
+}
+const crew=new Part('crew');
+// open breaker cubicle on MV section 3 (x -6.2 .. -5.3)
+{const x0=-6.2,xc=x0+0.45;
+ crew.bb(x0+0.04,F+0.16,-0.974,x0+0.86,F+1.45,-0.966,'black');
+ crew.bb(xc-0.27,F+0.32,-0.966,xc+0.27,F+1.05,-0.95,'face');crew.bb(xc-0.2,F+0.62,-0.95,xc+0.2,F+0.86,-0.944,'ansiDark');
+ for(const dx of [-0.16,0,0.16])crew.cyl(0.03,0.12,xc+dx,F+1.2,-0.93,'copper','z',10);
+ crew.bb(x0+0.02,F+0.16,-0.97,x0+0.05,F+1.45,-0.16,'ansi');                       // door swung open into the aisle
+ crew.bb(x0+0.05,F+0.92,-0.6,x0+0.06,F+1.12,-0.36,'darkglass');
+ // test cart + insulation resistance test set, leads into the cubicle
+ const cx=-5.25,cz=-0.42;
+ crew.bb(cx-0.3,F+0.12,cz-0.2,cx+0.3,F+0.16,cz+0.2,'steel');crew.bb(cx-0.3,F+0.55,cz-0.2,cx+0.3,F+0.59,cz+0.2,'steel');
+ for(const [dx,dz] of [[-0.28,-0.18],[0.28,-0.18],[-0.28,0.18],[0.28,0.18]]){crew.bb(cx+dx-0.015,F+0.08,cz+dz-0.015,cx+dx+0.015,F+0.59,cz+dz+0.015,'steel');crew.cyl(0.04,0.03,cx+dx,F+0.04,cz+dz,'black','x',12)}
+ crew.bb(cx-0.22,F+0.59,cz-0.15,cx+0.22,F+0.82,cz+0.15,'yellow');crew.bb(cx-0.18,F+0.82,cz-0.12,cx+0.06,F+0.823,cz+0.06,'black');
+ crew.bb(cx-0.15,F+0.823,cz-0.1,cx+0.03,F+0.826,cz+0.03,'screenG');
+ crew.bar([cx-0.1,F+0.8,cz-0.15],[xc-0.16,F+1.2,-0.9],0.012,'red');crew.bar([cx-0.02,F+0.8,cz-0.15],[xc,F+1.2,-0.9],0.012,'black');crew.bar([cx+0.06,F+0.8,cz-0.15],[xc+0.16,F+1.2,-0.9],0.012,'green');
+ // barricade: stanchions + yellow/black chain
+ const bz=-0.05,xa=-7.0,xb=-4.35;
+ for(const x of [xa,(xa+xb)/2,xb]){crew.cyl(0.14,0.03,x,F+0.015,bz,'black','y',16);crew.cyl(0.025,0.95,x,F+0.49,bz,'yellow','y',10);crew.cyl(0.035,0.05,x,F+0.98,bz,'black','y',10)}
+ for(let i=0;i<14;i++){const t0=i/14,t1=(i+1)/14;crew.bar([xa+(xb-xa)*t0,F+0.94-Math.sin(Math.PI*((t0*2)%1))*0.06,bz],[xa+(xb-xa)*t1,F+0.94-Math.sin(Math.PI*((t1*2)%1))*0.06,bz],0.025,i%2?'black':'yellow')}
+ // CSI QA/QC engineer witnesses with a tablet; specialist kneels at the test set
+ worker(crew,-5.95,-0.38,Math.PI,{kneel:1,pose:'probe',vest:'vestO',hat:'yellow',skin:'skin2'});
+ worker(crew,-6.75,-0.3,Math.atan2(0.75,-0.75),{pose:'tablet',decal:'sky'});
+}
+crew.build();
+S_(crew.obj,'DANGER',0.5,0.26,(-7.0-4.35)/2,F+0.75,-0.03,{bg:'#ffffff',fg:'#111',sub:'TESTING IN PROGRESS',stripe:'#d3202a'});
+// receiving inspection outside: CSI inspector at the base of the front wall
+const crewOut=new Part('crewOut',{interior:false});
+worker(crewOut,-7.9,ZE1+0.75,Math.PI,{kneel:1,pose:'tablet',decal:'sky'});
+crewOut.at(new THREE.Matrix4().makeTranslation(0,-F,0),()=>{});
+crewOut.build();
+crewOut.obj.position.y=-F; // standing on the pad, not the floor
+const crewMats=[];crew.obj.traverse(o=>{if(o.isMesh){o.material.transparent=true;crewMats.push(o.material)}});
+
 /* ---------------- lights ---------------- */
 const hemi=new THREE.HemisphereLight(0xcfe3ff,0x1a2c48,0.75);scene.add(hemi);
 const sun=new THREE.DirectionalLight(0xffffff,2.4);
@@ -507,76 +593,82 @@ const K=[
  {u:125,p:[-4.0,2.15,-0.75],t:[-6.7,1.5,2.0],s:1,o:0},
  {u:130,p:[-2.4,2.0,0.25], t:[-8.5,3.0,0.0],s:1,o:0},
  {u:135,p:[-3.1,2.0,0.25], t:[-8.8,3.1,0.0],s:1,o:0},
- {u:138.5,p:[-6.4,2.2,0.2], t:[-12,2.15,0.2], s:0,o:0},
- {u:141,p:[-9.05,2.25,0.2], t:[-13,2.15,0.2], s:1,o:0},
- {u:143,p:[-9.1,2.25,0.2],  t:[-13,2.15,0.2], s:1,o:0},
- {u:157,p:[-14.5,2.6,2.6],  t:[-9,2.1,0.2],   s:1,o:1},
- {u:161,p:[-15.5,2.9,3.2],  t:[-8,2.0,0.2],   s:0,o:1},
- {u:166,p:[-17,3.6,3],      t:[-6,2.0,0],    s:0,o:1},
- {u:171,p:[-19,10,19],      t:[-4.5,1.6,0],  s:1,o:1},
- {u:175,p:[-16,10.5,21],    t:[-4.5,1.6,0],  s:1,o:1},
- {u:182,p:[13,4.6,21],      t:[-1.2,2.0,0],  s:1,o:1},
- {u:189,p:[15.5,4.3,19],    t:[-1.2,2.0,0],  s:1,o:1}
+ {u:140,p:[-3.4,2.15,1.2],  t:[-6.0,1.05,-0.5],s:1,o:0},
+ {u:146,p:[-3.8,2.1,1.15],  t:[-6.3,1.05,-0.5],s:1,o:0},
+ {u:150.5,p:[-6.4,2.2,0.2], t:[-12,2.15,0.2], s:0,o:0},
+ {u:153,p:[-9.05,2.25,0.2], t:[-13,2.15,0.2], s:1,o:0},
+ {u:155,p:[-9.1,2.25,0.2],  t:[-13,2.15,0.2], s:1,o:0},
+ {u:169,p:[-14.5,2.6,2.6],  t:[-9,2.1,0.2],   s:1,o:1},
+ {u:173,p:[-15.5,2.9,3.2],  t:[-8,2.0,0.2],   s:0,o:1},
+ {u:178,p:[-17,3.6,3],      t:[-6,2.0,0],    s:0,o:1},
+ {u:183,p:[-19,10,19],      t:[-4.5,1.6,0],  s:1,o:1},
+ {u:187,p:[-16,10.5,21],    t:[-4.5,1.6,0],  s:1,o:1},
+ {u:194,p:[13,4.6,21],      t:[-1.2,2.0,0],  s:1,o:1},
+ {u:201,p:[15.5,4.3,19],    t:[-1.2,2.0,0],  s:1,o:1}
 ];
 const U=K[K.length-1].u;
 
 const STAGES=[
- {u:[0,9],eb:'CSI E-House',h:'Your substation, built indoors and delivered whole.',
-  p:'A prefabricated power building that receives, protects and distributes power for your site. It is engineered, assembled and tested in one controlled factory, then shipped ready to set.',
-  why:'<b>For your project:</b> site work and factory work run in parallel, so the schedule gets shorter and the field scope gets smaller.',chips:['MV & LV switchgear','MCCs & drives','UPS & batteries','Building systems'],room:'Outside'},
- {u:[9,25],eb:'01 · The building',h:'Built like a building. Moved like equipment.',
-  p:'A welded steel skid, insulated ribbed wall panels and rated lifting points let the whole room travel by truck and set by crane onto a pad or piers.',
-  why:'<b>For your site:</b> no stick-built electrical room, no weather delays, and one lift instead of weeks of installation.',chips:['Structural skid','Insulated panels','Lifting lugs','Rooftop HVAC'],
-  spots:[['Base lifting lug',[-7.6,0.47,ZE1+0.08]],['Arc exhaust hood',[XE0-0.25,F+2.65,-2.5]],['Rooftop HVAC',[-5.2,WT+1.1,0]],['Structural skid',[XE0-0.05,0.2,-2.4]]],room:'Outside'},
+ {u:[0,9],eb:'Hunter Buildings e-house · CSI QA/QC',h:'Built in the factory. Verified on site.',
+  p:'A prefabricated power building that receives, protects and distributes power for your site. Hunter Buildings builds and factory-tests it. CSI inspects, witnesses and verifies it on site until it is safe to energize.',
+  why:'<b>For your project:</b> independent QA/QC. CSI verifies the work and the tests; it does not test its own work.',chips:['MV & LV switchgear','MCCs & drives','UPS & batteries','Building systems'],room:'Outside'},
+ {u:[9,25],eb:'01 · Receiving inspection',h:'Built like a building. Moved like equipment.',
+  p:'A welded steel skid, insulated wall panels and rated lifting points let the whole room travel by truck and set by crane onto a pad or piers.',
+  why:'<b>What CSI verifies:</b> transport damage, nameplates against approved drawings, enclosure integrity, anchorage, leveling and grounding.',chips:['Set-in-place','Anchorage','Grounding','IEEE 80 / 142'],
+  spots:[['CSI inspector',[-7.9,1.55,ZE1+0.75]],['Base lifting lug',[-7.6,0.47,ZE1+0.08]],['Arc exhaust hood',[XE0-0.25,F+2.65,-2.5]],['Rooftop HVAC',[-5.2,WT+1.1,0]]],room:'Outside'},
  {u:[25,46],eb:'02 · Step inside',h:'Lights on. Walk in.',
   p:'Outward-swinging double doors with panic hardware, a second exit at the far end and a clear working aisle running the full length of the room.',
-  why:'<b>For your crew:</b> the room is laid out around the people who operate and maintain it, not just the equipment.',chips:['2.4 m working aisle','Two exits','Panic hardware','Emergency lighting'],
+  why:'<b>What CSI verifies:</b> working space, egress, equipment and arc-flash labels, PPE and lockout/tagout provisions (NFPA 70E).',chips:['2.4 m working aisle','Two exits','Panic hardware','Emergency lighting'],
   spots:[['Panic-hardware doors',[XE0-0.4,F+1.3,-0.5]],['Second exit',[5.7,F+1.3,2.95]]],room:'Entry'},
  {u:[46,56],eb:'03 · Left · Medium-voltage switchgear',h:'Where utility power comes in.',glow:'mv',
   p:'Arc-resistant metal-clad switchgear receives the incoming feed and protects every circuit downstream. If a fault happens, the arc energy is ducted up and out of the building, away from the aisle.',
-  why:'<b>Safety:</b> the most energetic equipment in the room is also the most contained.',chips:['Arc-resistant','Vacuum breakers','Plenum to exterior','15 kV class'],
-  spots:[['Arc-resistant plenum',[-6.2,F+2.65,-2.1]],['Protective relay',[-4.85,F+1.95,-0.95]],['Vacuum breaker',[-3.95,F+0.85,-0.96]],['Insulating safety mat',[-3.0,F+0.02,-0.5]]],room:'MV switchgear'},
+  why:'<b>What CSI verifies:</b> visual and mechanical inspection, torque, insulation and contact resistance, breaker timing and over-potential tests (IEEE C37.20.2, ANSI/NETA ATS).',chips:['Arc-resistant','Vacuum breakers','Plenum to exterior','15 kV class'],
+  spots:[['Arc-resistant plenum',[-6.9,F+2.65,-2.1]],['Protective relay',[-4.85,F+1.95,-0.95]],['Vacuum breaker',[-3.95,F+0.85,-0.96]],['Insulating safety mat',[-3.0,F+0.02,-0.5]]],room:'MV switchgear'},
  {u:[56,66],eb:'04 · Left · Protection & control',h:'The brain of the building.',glow:'pc',
   p:'Protective relays, SCADA and an operator HMI watch every breaker and report status to your control room, so problems are seen before they become outages.',
-  why:'<b>Uptime:</b> fewer surprises, faster restoration, and a full event record when something trips.',chips:['Protective relays','SCADA / RTU','Operator HMI','Remote monitoring'],
+  why:'<b>What CSI verifies:</b> relay settings, secondary injection, trip circuit and interlock checks, metering and SCADA signals (IEEE C37.90).',chips:['Protective relays','SCADA / RTU','Operator HMI','Remote monitoring'],
   spots:[['Operator HMI',[-0.5,F+1.52,-0.96]],['Protective relays',[0.7,F+1.85,-0.96]],['SCADA / RTU',[0.7+0.6,F+1.2,-0.96]]],room:'Protection & control'},
  {u:[66,76],eb:'05 · Left · Transformer',h:'Stepped down right where it is used.',glow:'xfmr',
   p:'A dry-type transformer converts medium voltage to the 480 V your motors and building loads run on. No oil to contain, and it feeds the low-voltage gear by an overhead bus duct.',
-  why:'<b>Simpler site:</b> no separate transformer pad, no oil containment, no field-run feeders.',chips:['Dry-type','Temperature monitored','Bus duct to LV'],
+  why:'<b>What CSI verifies:</b> turns ratio, winding resistance, insulation resistance and polarization index, temperature monitoring and cooling fans (IEEE C57.12.91).',chips:['Dry-type','Temperature monitored','Bus duct to LV'],
   spots:[['Dry-type transformer',[3.8,F+1.1,-1.15]],['Bus duct to LV gear',[3.2,F+2.95,-1.6]],['Temperature monitor',[2.5,F+1.75,-1.15]]],room:'Transformer'},
  {u:[76,86],eb:'06 · Far end · Battery room',h:'Power that holds when the grid does not.',glow:'batt',
   p:'Stationary batteries sit in their own room behind a fire-rated partition, with dedicated exhaust, hydrogen detection and an eyewash station.',
-  why:'<b>Reliability:</b> breakers can still trip and controls keep reporting through a total loss of power.',chips:['Fire-rated separation','Exhaust & H₂ detection','Eyewash','Battery monitoring'],
+  why:'<b>What CSI verifies:</b> battery float voltage and capacity, ventilation and alarms (IEEE 450, IEEE 1188).',chips:['Fire-rated separation','Exhaust & H₂ detection','Eyewash','Battery monitoring'],
   spots:[['VRLA battery racks',[8.15,F+1.5,-0.9]],['Exhaust fan',[8.95,C-0.55,-2.1]],['Fire-rated partition',[PX,F+2.6,-1.6]],['Battery monitor',[PX+0.1,F+1.6,-2.15]]],room:'Battery room'},
  {u:[86,96],eb:'07 · Right · UPS & DC system',h:'Protection never loses power.',glow:'ups',
   p:'The UPS and a 125 VDC charger keep relays, breaker controls and communications running through an outage, so the building can protect itself and report what happened.',
-  why:'<b>Peace of mind:</b> the control system rides through the events it exists to handle.',chips:['UPS','125 VDC charger','DC distribution'],
+  why:'<b>What CSI verifies:</b> charger and inverter checks, transfer on loss of input, alarms and battery ventilation.',chips:['UPS','125 VDC charger','DC distribution'],
   spots:[['UPS',[3.8,F+1.6,1.37]],['Battery charger',[4.6,F+1.55,1.37]]],room:'UPS & DC'},
  {u:[96,106],eb:'08 · Right · Variable frequency drives',h:'Motors that start soft and run lean.',glow:'vfd',
   p:'Drives match motor speed to what the process actually needs, cutting energy use and the mechanical stress of across-the-line starts.',
-  why:'<b>Operating cost:</b> lower energy bills and longer life for pumps, fans and conveyors.',chips:['VFDs','Harmonic mitigation','Keypad control'],
+  why:'<b>What CSI verifies:</b> visual inspection, parameter verification, functional run and harmonic limits (IEEE 519).',chips:['VFDs','Harmonic mitigation','Keypad control'],
   spots:[['Drive keypad',[1.45,F+1.57,1.36]],['Cooling fans',[0.75,F+1.98,1.36]]],room:'Drives'},
  {u:[106,116],eb:'09 · Right · Motor control center',h:'Every motor in one organized lineup.',glow:'mcc',
   p:'Each motor feeder lives in a plug-in bucket with its own starter, protection and pilot lights. Buckets swap quickly, so maintenance windows stay short.',
-  why:'<b>Maintenance:</b> standard buckets, fewer spare parts, faster swaps.',chips:['Plug-in buckets','Starters & overloads','Pilot lights'],
+  why:'<b>What CSI verifies:</b> torque, insulation resistance, breaker trip testing and operation checks (UL 845, ANSI/NETA ATS).',chips:['Plug-in buckets','Starters & overloads','Pilot lights'],
   spots:[['Plug-in buckets',[-3.0,F+0.9,1.36]],['Pilot lights',[-1.6,F+1.9,1.36]],['Horizontal bus',[-2.4,F+2.12,1.36]]],room:'MCC'},
  {u:[116,126],eb:'10 · Right · Low-voltage switchgear',h:'480 V, distributed and protected.',glow:'lv',
   p:'Low-voltage switchgear takes power from the transformer by bus duct and feeds the MCC, the drives and the building panels, with metering on every main.',
-  why:'<b>Visibility:</b> you can see what every part of the plant is drawing.',chips:['Draw-out breakers','Power metering','Bus duct entry'],
+  why:'<b>What CSI verifies:</b> torque, insulation resistance, breaker trip testing and operation (IEEE C37.20.1, UL 891).',chips:['Draw-out breakers','Power metering','Bus duct entry'],
   spots:[['Draw-out breakers',[-6.65,F+1.2,1.36]],['Power metering',[-7.55,F+2.0,1.36]],['Bus duct entry',[-6.65,C-0.6,2.2]]],room:'LV switchgear'},
  {u:[126,137],eb:'11 · Overhead · Building systems',h:'The building protects the equipment.',glow:'sys',
   p:'Redundant HVAC holds temperature and humidity, cable tray keeps every run organized overhead, and smoke detection is tied to a clean-agent system that will not harm the electronics.',
-  why:'<b>Life of the gear:</b> clean, dry, cool equipment lasts longer and fails less.',chips:['Redundant HVAC','Cable tray','Clean-agent suppression','Fire alarm'],
+  why:'<b>What CSI verifies, where requested:</b> functional checks of HVAC, fire detection and suppression, gas detection and lighting (NFPA 72).',chips:['Redundant HVAC','Cable tray','Clean-agent suppression','Fire alarm'],
   spots:[['Cable tray',[-5.2,C-0.55,-1.45]],['LED lighting',[-5.0,C-0.1,0.75]],['Clean-agent cylinders',[-8.6,F+1.0,-2.55]],['Fire alarm panel',[X0+0.1,F+1.62,-1.65]],['HVAC supply',[-5.2,C-0.05,0.2]]],room:'Building systems'},
- {u:[137,158],eb:'12 · Records & evidence',h:'Every check leaves a record.',docs:1,
-  p:'Each inspection, torque value, test result and photo is captured in CSI\'s digital QC system as the work happens, linked to the drawing, the instrument and the person who signed it.',
-  why:'<b>For your QA team and auditors:</b> evidence you can trace line by line, not a binder assembled at the end.',chips:['Digital ITP','QC checklists','Photo evidence','Signed FAT reports'],room:'Records'},
- {u:[158,175],eb:'13 · Factory acceptance',h:'Proven on our floor, witnessed by yours.',
-  p:'Before it ships, the complete e-house is inspected, functionally tested and commissioned in the factory, with your team invited to witness and sign off.',
-  why:'<b>Lower risk:</b> integration problems are found here, not during startup.',chips:['QC inspection','FAT','Off-site commissioning','Documentation'],room:'Outside'},
- {u:[175,190],eb:'14 · Site acceptance',h:'Set on site. Verified. Energized.',
-  p:'After transport and placement, site acceptance and NETA testing confirm it performs exactly as it did in the factory. Test reports, as-builts and manuals ship with the building.',
-  chips:['SAT','NETA testing','Energization'],cta:'Walk through your project with an engineer',room:'Outside'}
+ {u:[137,149],eb:'12 · Site inspection & testing',h:'Tested by specialists. Witnessed by CSI.',
+  p:'Specialist technicians run the acceptance tests with calibrated instruments. CSI\'s QA/QC engineer witnesses each one, checks the result against the manufacturer data, the project specification and ANSI/NETA ATS, and accepts or rejects it.',
+  why:'<b>Independent by design:</b> every activity has a hold or witness point, and nothing moves to the next stage until it is released.',chips:['Hold & witness points','NIST-traceable calibration','NFPA 70E safety','ANSI/NETA ATS'],
+  spots:[['CSI QA/QC engineer',[-6.75,F+1.75,-0.3]],['Testing specialist',[-5.95,F+1.4,-0.38]],['Insulation resistance test set',[-5.25,F+0.9,-0.42]],['Barricaded test area',[-6.4,F+0.98,-0.05]]],room:'Testing'},
+ {u:[149,170],eb:'13 · Records & evidence',h:'Every check leaves a record.',docs:1,
+  p:'Each inspection, torque value, witnessed test and photo is captured in CSI\'s digital QC system as the work happens, traceable to the equipment tag, the instrument and the person who signed it.',
+  why:'<b>For your QA team and auditors:</b> evidence you can trace line by line, not a binder assembled at the end.',chips:['Digital ITP','QC checklists','Photo evidence','Signed test reports'],room:'Records'},
+ {u:[170,187],eb:'14 · Energization',h:'Energized in stages. Verified under load.',
+  p:'With every hold point released and the permit to energize signed, the e-house is energized in stages: phase rotation, voltage and load readings and a thermographic scan under load, then integrated tests with the plant control system.',
+  why:'<b>Lower risk:</b> nothing is energized until the inspection, the tests and the punch list say it is ready.',chips:['Permit to energize','ANSI/NETA ECS','Thermography','Integrated tests'],room:'Outside'},
+ {u:[187,202],eb:'15 · Handover',h:'Verified. Energized. Handed over.',
+  p:'The signed ITP and checklists, test reports, calibration certificates, closed NCRs and as-built drawings are compiled into one handover package for the owner.',
+  chips:['Signed ITP','Test reports','Closed NCRs','As-builts'],cta:'Walk through your project with an engineer',room:'Outside'}
 ];
 
 /* ---------------- UI ---------------- */
@@ -608,18 +700,18 @@ const cone=el('path',{fill:'rgba(90,165,217,.35)'});const me=el('circle',{r:.32,
 const darkEl=document.getElementById('dark'),docsEl=document.getElementById('docs'),monEl=docsEl.querySelector('.laptop'),crumbEl=document.getElementById('crumb');
 const views=[...docsEl.querySelectorAll('.view')],tabs=[...docsEl.querySelectorAll('.nav a')];
 const DOCS={
- reg:[['ITP-PDC01-001','Inspection & test plan','QA/QC','Approved'],['QC-PDC01-014','Bus & cable torque record','Electrical','Complete'],['QC-PDC01-022','Point-to-point wiring check','Controls','Complete'],['RLY-PDC01-007','Relay settings & test sheets','Protection','Complete'],['FAT-PDC01-003','Factory acceptance test','Testing','Witnessed'],['NETA-PDC01-ATS','Site acceptance (ANSI/NETA ATS)','Testing','Scheduled'],['TOP-PDC01','Turnover package & as-builts','Handover','In progress']],
- qc:[['Bus joint torque, sections 1–7','75 ft·lb spec · 75 ft·lb recorded'],['Torque marks applied to every joint','42 of 42 joints'],['Cable lug terminations torqued','Per vendor table T-3'],['Ground bus continuity','0.4 mΩ'],['Labels and nameplates match drawings','Rev C'],['Photo evidence attached','3 photos']],
- fat:[['Insulation resistance, MV bus (5 kV DC, 1 min)','≥ 5,000 MΩ','18,400 MΩ'],['AC withstand (hi-pot), 1 min','27 kV','No breakdown'],['Contact resistance, breaker 52-1','≤ 60 µΩ','38 µΩ'],['Relay 50/51 pickup','600 A ± 5%','603 A'],['UPS transfer on loss of input','No interruption','0 ms'],['HVAC lead / lag changeover','Automatic','Changed over']],
- sign:[['CSI test engineer','Performed and recorded'],['Client witness','Witnessed on site at the factory'],['CSI QA manager','Reviewed and released']]
+ reg:[['ITP-PDC01-001','Inspection & test plan','QA/QC','Approved'],['MS-PDC01-004','Method statements & test procedures','Testing','Approved'],['QC-PDC01-002','Receiving, set-in-place & grounding','QA/QC','Complete'],['QC-PDC01-014','Terminations, torque & labeling','Electrical','Complete'],['CAL-PDC01-001','Instrument calibration register','Testing','Verified'],['ATS-PDC01-SWGR1','MV switchgear acceptance tests','Testing','Witnessed'],['PTE-PDC01','Permit to energize','Hold point','Pending']],
+ qc:[['Visual and mechanical inspection','ITP item 3 · no transport damage'],['Bolted bus torque verified','75 ft·lb spec · 75 ft·lb recorded'],['Insulation resistance witnessed','18,400 MΩ · 5 kV DC, 1 min'],['Contact resistance witnessed','38 µΩ · limit 60 µΩ'],['Arc-flash and equipment labels','NFPA 70E · IEEE 1584'],['Photo evidence attached','3 photos']],
+ fat:[['Insulation resistance, MV bus (5 kV DC, 1 min)','≥ 5,000 MΩ','18,400 MΩ'],['Over-potential (AC withstand), 1 min','27 kV','No breakdown'],['Contact resistance, breaker 52-1','≤ 60 µΩ','38 µΩ'],['Breaker timing, open / close','Manufacturer data','Within limits'],['Relay 50/51 secondary injection','600 A ± 5%','603 A'],['Trip circuit and interlocks','Functional','Operated']],
+ sign:[['Testing specialist','Tested by · NETA-certified technician'],['CSI QA/QC engineer','Witnessed, reviewed and accepted'],['Consultant','Hold point released']]
 };
-const tagCls={Approved:'ok',Complete:'ok',Witnessed:'ok',Scheduled:'wait','In progress':'wait'};
+const tagCls={Approved:'ok',Complete:'ok',Witnessed:'ok',Verified:'ok',Pending:'wait',Scheduled:'wait','In progress':'wait'};
 views[0].innerHTML='<table><thead><tr><th>Record</th><th>Document</th><th class="hide-s">Discipline</th><th>Status</th></tr></thead><tbody>'+DOCS.reg.map(r=>`<tr><td class="mono">${r[0]}</td><td>${r[1]}</td><td class="hide-s">${r[2]}</td><td><em class="${tagCls[r[3]]}">${r[3]}</em></td></tr>`).join('')+'</tbody></table>';
-views[1].innerHTML='<div class="vh"><b>QC-PDC01-014</b> · MV switchgear SWGR-1 · bus and cable torque</div><div class="qc"><ul>'+DOCS.qc.map(r=>`<li><i></i><span>${r[0]}<small>${r[1]}</small></span></li>`).join('')+'</ul><div class="ph">'+['50','60','110'].map(n=>`<figure><img src="${new URL(`./evidence/e-${n}.webp`,import.meta.url)}" alt=""><figcaption>IMG_${n}4 · geotagged</figcaption></figure>`).join('')+'</div></div>';
-views[2].innerHTML='<div class="vh"><b>FAT-PDC01-003</b> · factory acceptance test · sample values</div><table><thead><tr><th>Test</th><th class="hide-s">Required</th><th>Measured</th><th>Result</th></tr></thead><tbody>'+DOCS.fat.map(r=>`<tr><td>${r[0]}</td><td class="hide-s mono">${r[1]}</td><td class="mono">${r[2]}</td><td><em class="ok">Pass</em></td></tr>`).join('')+'</tbody></table><p class="inst">Instruments: insulation tester and relay test set, calibration certificates attached.</p>';
-views[3].innerHTML='<div class="vh"><b>FAT-PDC01-003</b> · sign-off</div><div class="sig">'+DOCS.sign.map(r=>`<div class="sg"><i></i><div><b>${r[0]}</b><small>${r[1]}</small></div><span class="mono">signed</span></div>`).join('')+'</div><div class="stamp">FAT complete<small>0 open punch items · released for shipment</small></div>';
+views[1].innerHTML='<div class="vh"><b>QC-PDC01-014</b> · MV switchgear SWGR-1 · ITP checklist item 3</div><div class="qc"><ul>'+DOCS.qc.map(r=>`<li><i></i><span>${r[0]}<small>${r[1]}</small></span></li>`).join('')+'</ul><div class="ph">'+['50','60','110'].map(n=>`<figure><img src="${new URL(`./evidence/e-${n}.webp`,import.meta.url)}" alt=""><figcaption>IMG_${n}4 · geotagged</figcaption></figure>`).join('')+'</div></div>';
+views[2].innerHTML='<div class="vh"><b>ATS-PDC01-SWGR1</b> · acceptance test, witnessed by CSI · sample values</div><table><thead><tr><th>Test</th><th class="hide-s">Required</th><th>Measured</th><th>Result</th></tr></thead><tbody>'+DOCS.fat.map(r=>`<tr><td>${r[0]}</td><td class="hide-s mono">${r[1]}</td><td class="mono">${r[2]}</td><td><em class="ok">Pass</em></td></tr>`).join('')+'</tbody></table><p class="inst">Instruments: insulation tester and relay test set, NIST-traceable calibration certificates attached.</p>';
+views[3].innerHTML='<div class="vh"><b>ATS-PDC01-SWGR1</b> · sign-off</div><div class="sig">'+DOCS.sign.map(r=>`<div class="sg"><i></i><div><b>${r[0]}</b><small>${r[1]}</small></div><span class="mono">signed</span></div>`).join('')+'</div><div class="stamp">Hold point released<small>0 open NCRs · ready for permit to energize</small></div>';
 const rows=views.map(v=>[...v.querySelectorAll('tbody tr, .qc li, figure, .sg, .stamp')]);
-tabs.forEach((t,i)=>t.onclick=()=>scrollTo({top:uToScroll(142+12.5*(i+0.15)/4),behavior:'smooth'}));
+tabs.forEach((t,i)=>t.onclick=()=>scrollTo({top:uToScroll(154+12.5*(i+0.15)/4),behavior:'smooth'}));
 let docTab=-1;
 function docsStep(q){
  const t=Math.min(3,Math.floor(q*4)),local=q*4-t;
@@ -682,17 +774,21 @@ function frame(now){
  camera.position.copy(c.p);camera.lookAt(c.l);
 
  // doors, interior lights, beacon
- const open=ramp(u,26,34)*(1-ramp(u,163,168));
+ const open=ramp(u,26,34)*(1-ramp(u,175,180));
  setDoors(open*THREE.MathUtils.degToRad(100));
  const lit=clamp(0.08+ramp(u,27,36)*0.92);
  inLights.forEach(l=>l.intensity=lit*9);
  doorGlow.intensity=open*lit*8;
- const dusk=0.35+0.65*ramp(u,167,182);
+ const dusk=0.35+0.65*ramp(u,179,194);
  extLamps.forEach(l=>l.intensity=dusk*4);
  for(const m of LAMPS)m.emissiveIntensity=m.userData.key==='walllamp'?dusk*2.2:lit*1.3;
  for(const p of allParts){if(!p.interior)continue;for(const m of p.mats)m.envMapIntensity=0.2+0.45*lit}
  for(const m of SIGNMATS)m.envMapIntensity=0.3+0.4*lit;
- if(beaconMat){const g=ramp(u,177,180);beaconMat.emissive.setRGB(1-g*0.83,0.69+g*0.31*0.85,0.12+g*0.35);beaconMat.emissiveIntensity=2+Math.sin(now/300)*0.6}
+ if(beaconMat){const g=ramp(u,189,192);beaconMat.emissive.setRGB(1-g*0.83,0.69+g*0.31*0.85,0.12+g*0.35);beaconMat.emissiveIntensity=2+Math.sin(now/300)*0.6}
+
+ // the test crew is only on site for the inspection step
+ const cv=ramp(u,135.5,138.5)*(1-ramp(u,150,152.5));
+ crew.obj.visible=cv>0.01;for(const m of crewMats)m.opacity=cv;
 
  // stage
  let a=STAGES.findIndex(s=>u>=s.u[0]&&u<s.u[1]);if(a<0)a=STAGES.length-1;
@@ -727,12 +823,12 @@ function frame(now){
  }
 
  // records screen: wall goes dark, the monitor powers on, the record steps through
- const dark=ramp(u,138.8,140.9)*(1-ramp(u,156,157.6));
+ const dark=ramp(u,150.8,152.9)*(1-ramp(u,168,169.6));
  darkEl.style.opacity=dark;
- const on=ramp(u,140.6,142.2)*(1-ramp(u,154.8,156.2));
+ const on=ramp(u,152.6,154.2)*(1-ramp(u,166.8,168.2));
  docsEl.style.opacity=on;docsEl.style.pointerEvents=on>0.5?'auto':'none';
  monEl.style.transform=`translateY(${(1-on)*28}px) scale(${0.95+0.05*on})`;
- if(on>0)docsStep(clamp((u-142)/12.5));
+ if(on>0)docsStep(clamp((u-154)/12.5));
  fillBar.style.width=(cur*100)+'%';hint.style.opacity=cur>0.01?0:1;
  renderer.render(scene,camera);
  if(qs.has('u')&&++stillFrames>3){window.__ready=true;return}
