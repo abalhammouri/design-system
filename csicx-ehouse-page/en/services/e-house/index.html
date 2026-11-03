@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-82HB8L57XZ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-82HB8L57XZ');
-    </script>
+    
 
     <meta charset="UTF-8">
     <script>try{localStorage.setItem('csi_locale','en');}catch(e){}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CSI Engineering e-house solutions: design, factory integration, FAT, off-site commissioning, NETA site acceptance and handover of prefabricated power buildings.">
+    <meta name="description" content="Walk inside a CSI e-house: switchgear, controls, batteries, drives, building systems and the QC records behind them.">
         <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
-    <title>CSI Engineering - E-House Solutions</title>
+    <title>CSI Engineering - E-House Walkthrough</title>
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="stylesheet" href="/css/plugins/fontawesome.css">
@@ -521,10 +516,152 @@
         padding-left: 32px !important;
     }
     </style>
-        <link rel="stylesheet" href="/css/service-scroll-reveal.css?v=6">
         
     <script src="/js/api.js"></script>
     <script>var LANG = 'en';</script>
+
+<style>
+:root{--cobalt:#284890;--navy:#173E6A;--sky:#5AA5D9;--ink:#0a1a30}
+#ehx *{box-sizing:border-box}
+html{scroll-behavior:auto}
+#ehx{margin:0;background:var(--ink);color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+#ehx #track{position:relative;height:1500vh}
+#ehx #stage{position:sticky;top:0;height:100vh;height:100svh;width:100%;overflow:hidden;background:radial-gradient(120% 90% at 70% 30%,#1f4f86 0%,#12305a 45%,#0a1a30 100%)}
+#ehx #stage::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(10,26,48,.78) 0%,rgba(10,26,48,.45) 30%,rgba(10,26,48,0) 55%),linear-gradient(0deg,rgba(10,26,48,.65) 0%,rgba(10,26,48,0) 26%)}
+@media(max-width:700px){#ehx #stage::after{background:linear-gradient(0deg,rgba(10,26,48,.94) 0%,rgba(10,26,48,.7) 38%,rgba(10,26,48,0) 62%)}}
+#ehx canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ehx header{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,4vw,56px);z-index:6}
+#ehx .brand{font-weight:800;letter-spacing:.14em;font-size:14px}
+#ehx .brand b{color:var(--sky)}
+#ehx .cta{font-size:13px;font-weight:600;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.4);padding:9px 16px;border-radius:999px;background:rgba(10,26,48,.25);backdrop-filter:blur(6px)}
+#ehx .cta:hover{background:var(--sky);border-color:var(--sky);color:var(--ink)}
+#ehx .panel{position:absolute;left:clamp(20px,4vw,56px);bottom:clamp(90px,14vh,150px);max-width:470px;z-index:5;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s;pointer-events:none}
+#ehx .panel.on{opacity:1;transform:none}
+#ehx .panel.on .go{pointer-events:auto}
+#ehx .eyebrow{font:500 12px ui-monospace,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+#ehx .panel h2{margin:12px 0 12px;font-size:clamp(28px,4vw,48px);line-height:1.05;font-weight:800;text-wrap:balance}
+#ehx .panel p{margin:0;font-size:clamp(15px,1.35vw,18px);line-height:1.55;color:#cfdcec}
+#ehx .panel .why{margin-top:12px;font-size:clamp(13px,1.1vw,15px);color:#a9c4e0;border-left:2px solid var(--sky);padding-left:10px}
+#ehx .panel .why b{color:#fff;font-weight:600}
+#ehx .panel ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+#ehx .panel li{font-size:12px;padding:6px 11px;border:1px solid rgba(90,165,217,.5);border-radius:999px;color:#dcebf9;background:rgba(40,72,144,.35)}
+#ehx .go{display:inline-block;margin-top:18px;font-weight:700;font-size:15px;color:var(--ink);background:var(--sky);padding:12px 20px;border-radius:999px;text-decoration:none}
+#ehx #spots{position:absolute;inset:0;z-index:4;pointer-events:none}
+#ehx .spot{position:absolute;left:0;top:0;opacity:0;transition:opacity .35s;white-space:nowrap}
+#ehx .spot i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px rgba(90,165,217,.28),0 0 14px rgba(90,165,217,.9);animation:pulse 2s infinite}
+#ehx .spot span{position:absolute;left:14px;top:-12px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.02em;padding:5px 9px;border-radius:6px;background:rgba(10,26,48,.82);border:1px solid rgba(90,165,217,.55);color:#eaf4fd}
+#ehx .spot.flip span{left:auto;right:14px}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(90,165,217,.28),0 0 14px rgba(90,165,217,.9)}50%{box-shadow:0 0 0 9px rgba(90,165,217,.08),0 0 18px rgba(90,165,217,.9)}}
+#ehx #plan{position:absolute;right:clamp(20px,4vw,56px);top:84px;width:240px;z-index:5;opacity:0;transition:opacity .5s;padding:10px 12px 8px;border-radius:12px;background:rgba(10,26,48,.62);border:1px solid rgba(90,165,217,.3);backdrop-filter:blur(6px)}
+#ehx #plan .t{font:500 10px ui-monospace,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase;color:#9fb8d4;margin-bottom:6px;display:flex;justify-content:space-between}
+#ehx #plan svg{display:block;width:100%;height:auto}
+#ehx #plan rect.eq{fill:rgba(159,184,212,.28);stroke:rgba(159,184,212,.5);stroke-width:.15;transition:fill .3s}
+#ehx #plan rect.eq.on{fill:var(--sky);stroke:#fff}
+@media(max-width:700px){#ehx #plan{top:70px;right:12px;width:150px;padding:6px 8px}
+#ehx #plan .t{font-size:8px}}
+#ehx #hud{position:absolute;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:28px;z-index:6;display:flex;align-items:center;gap:16px}
+#ehx #bar{flex:1;height:3px;background:rgba(255,255,255,.18);border-radius:2px;position:relative}
+#ehx #fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sky);border-radius:2px}
+#ehx #dots{position:absolute;inset:-4px 0;display:flex;justify-content:space-between}
+#ehx #dots i{width:11px;height:11px;border-radius:50%;background:var(--ink);border:2px solid rgba(255,255,255,.35);cursor:pointer;transition:.3s}
+#ehx #dots i.done{background:var(--sky);border-color:var(--sky)}
+#ehx #count{font:500 12px ui-monospace,Consolas,monospace;letter-spacing:.14em;color:#9fb8d4;min-width:56px;text-align:right}
+#ehx #hint{position:absolute;right:clamp(20px,4vw,56px);top:50%;font:500 11px ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:#9fb8d4;writing-mode:vertical-rl;z-index:4;transition:opacity .4s}
+#ehx #loading{position:absolute;inset:0;display:grid;place-items:center;z-index:9;background:var(--ink);font:500 12px ui-monospace,monospace;letter-spacing:.2em;color:#9fb8d4;transition:opacity .6s}
+@media(max-width:700px){#ehx .panel{right:20px;bottom:76px}
+#ehx .panel h2{font-size:27px;margin:8px 0}
+#ehx .panel p{font-size:14.5px;line-height:1.5}
+#ehx .panel .why{display:none}
+#ehx .panel ul{margin-top:10px;gap:6px}
+#ehx .panel li{font-size:11px;padding:5px 9px}
+#ehx #hint{display:none}
+#ehx #hud{bottom:22px}
+#ehx #dots i{width:9px;height:9px}
+#ehx .spot span{font-size:11px;padding:4px 7px}}
+#ehx #dark{position:absolute;inset:0;background:#000;opacity:0;z-index:3;pointer-events:none}
+#ehx #docs{position:absolute;z-index:4;right:clamp(20px,4vw,64px);top:50%;width:min(56vw,860px);transform:translateY(-50%);opacity:0;pointer-events:none}
+#ehx #docs .mon{background:#0d0f12;border-radius:14px;padding:12px;box-shadow:0 0 0 1px #2a2f36,0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(90,165,217,.15);transform-origin:50% 50%}
+#ehx #docs .scr{background:#f4f7fb;color:#0f2340;border-radius:6px;overflow:hidden;aspect-ratio:16/10;display:flex;flex-direction:column;font:13px/1.4 Inter,system-ui,sans-serif}
+#ehx #docs .stand{width:80px;height:46px;margin:0 auto;background:linear-gradient(#1a1d22,#0d0f12)}
+#ehx #docs .foot{width:220px;height:10px;margin:0 auto;border-radius:6px;background:#15181c}
+#ehx .appbar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#173E6A;color:#fff}
+#ehx .appbar .logo{font-weight:800;letter-spacing:.12em;background:#fff;color:#173E6A;padding:2px 7px;border-radius:4px;font-size:12px}
+#ehx .appbar .ttl{flex:1;font-size:13px;color:#c9dbef}
+#ehx .appbar .ttl b{color:#fff;margin-left:6px}
+#ehx .appbar .sync{font-size:11px;color:#9fe0b8}
+#ehx .appbar .sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:6px}
+#ehx .tabs{display:flex;gap:2px;padding:0 12px;background:#e3ebf4;border-bottom:1px solid #cfdbe8}
+#ehx .tabs span{padding:9px 12px;font-size:12px;font-weight:600;color:#5b7190;cursor:pointer;border-bottom:2px solid transparent}
+#ehx .tabs span.on{color:#173E6A;border-color:#5AA5D9;background:#f4f7fb}
+#ehx .views{position:relative;flex:1;overflow:hidden}
+#ehx .view{position:absolute;inset:0;padding:14px 16px;opacity:0;transition:opacity .35s;overflow:hidden}
+#ehx .view.on{opacity:1}
+#ehx .vh{font-size:12px;color:#5b7190;margin-bottom:10px}
+#ehx .vh b{color:#0f2340}
+#ehx .view table{width:100%;border-collapse:collapse;font-size:12px}
+#ehx .view th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6c819d;font-weight:600;padding:6px 8px;border-bottom:1px solid #d5e0ec}
+#ehx .view td{padding:7px 8px;border-bottom:1px solid #e3ebf4}
+#ehx .mono{font-family:ui-monospace,Consolas,monospace;font-size:11.5px}
+#ehx .view em{font-style:normal;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
+#ehx em.ok{background:#dcf5e7;color:#16794a}
+#ehx em.wait{background:#fff1d6;color:#9a6400}
+#ehx .view tbody tr,#ehx .qc li,#ehx .view figure,#ehx .sg,#ehx .stamp{opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+#ehx .view .in{opacity:1!important;transform:none!important}
+#ehx .qc{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+#ehx .qc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:start}
+#ehx .qc li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px}
+#ehx .qc li small{display:block;color:#6c819d;font-size:11px}
+#ehx .qc li i,#ehx .sg i{flex:0 0 18px;height:18px;border-radius:50%;background:#16a35f;position:relative}
+#ehx .qc li i::after,#ehx .sg i::after{content:"";position:absolute;left:6px;top:3px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+#ehx .ph{display:grid;gap:8px;grid-template-columns:1fr 1fr;align-content:start}
+#ehx .ph figure{margin:0;position:relative}
+#ehx .ph img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:4px}
+#ehx .ph figcaption{position:absolute;left:6px;bottom:5px;font:10px ui-monospace,monospace;color:#fff;background:rgba(0,0,0,.55);padding:2px 5px;border-radius:3px}
+#ehx .inst{margin:10px 0 0;font-size:11px;color:#6c819d}
+#ehx .sig{display:grid;gap:10px}
+#ehx .sg{display:flex;align-items:center;gap:12px;padding:10px 12px;background:#fff;border:1px solid #d5e0ec;border-radius:8px}
+#ehx .sg div{flex:1}
+#ehx .sg b{display:block;font-size:13px}
+#ehx .sg small{color:#6c819d;font-size:11px}
+#ehx .sg .mono{color:#16794a;font-weight:700}
+#ehx .stamp{margin-top:14px;display:inline-block;border:2px solid #16794a;color:#16794a;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:6px;transform:rotate(-2deg)}
+#ehx .stamp small{display:block;font-weight:600;letter-spacing:0;text-transform:none;font-size:11px}
+#ehx .prog{height:3px;background:#d5e0ec}
+#ehx .prog i{display:block;height:100%;width:0;background:#5AA5D9}
+@media(max-width:700px){#ehx #docs{left:12px;right:12px;width:auto;top:70px;transform:none}
+#ehx #docs .scr{aspect-ratio:1/1;font-size:12px}
+#ehx #docs .stand,#ehx #docs .foot{display:none}
+#ehx .hide-s{display:none}
+#ehx .view tbody tr:nth-child(n+5){display:none}
+#ehx .qc li:nth-child(n+4){display:none}
+#ehx .qc{grid-template-columns:1fr}
+#ehx .ph{grid-template-columns:repeat(3,1fr)}
+#ehx .ph figcaption{display:none}
+#ehx .appbar .ttl b{display:block;margin:0}
+#ehx .tabs span{padding:8px 7px;font-size:11px}}
+body.poster #ehx #panels,body.poster #ehx #hud,body.poster #ehx header,body.poster #ehx #hint,body.poster #ehx #plan,body.poster #ehx #spots{display:none}
+body.poster #ehx #stage::after{display:none}
+body.embed #ehx header .brand{visibility:hidden}
+@media(prefers-reduced-motion:reduce){#ehx .panel{transition:none}
+#ehx .spot i{animation:none}}
+/* fit under the fixed csicx.com header and use the site fonts */
+.header-one.header--sticky{position:fixed!important;top:0;left:0;right:0;width:100%;z-index:999!important;background:#fff!important;box-shadow:0 1px 10px rgba(0,0,0,.08)}
+body.index-one{padding-top:var(--hh,80px)!important;background:#0a1a30}
+html,body.index-one{overflow:visible!important;overflow-x:clip!important}
+#ehx .qc li,#ehx .sig .sg{margin:0!important;line-height:1.35}#ehx .view td,#ehx .view th{line-height:1.35}#ehx .qc ul{gap:7px}
+#ehx{font-family:"DM Sans",system-ui,sans-serif;--hh:80px}
+#ehx #stage{top:var(--hh,80px);height:calc(100vh - var(--hh,80px));height:calc(100svh - var(--hh,80px))}
+#ehx .panel h2{font-family:"Red Hat Display","DM Sans",sans-serif;color:#fff;letter-spacing:-.01em}
+#ehx .panel p,#ehx .panel li{font-family:"DM Sans",system-ui,sans-serif}
+#ehx .panel ul{display:flex}
+#ehx .panel ul li{list-style:none;margin:0}
+#ehx #plan{top:20px}
+#ehx #docs .scr,#ehx .spot span{font-family:"DM Sans",system-ui,sans-serif}
+#ehx .go{color:#0a1a30}
+@media(max-width:700px){#ehx #plan{top:12px}#ehx #docs{top:16px}}
+
+</style>
 </head>
 <body class="index-one">
     <header class="header-one header--sticky">
@@ -758,617 +895,50 @@
     </div>
     <div id="anywhere-home" class="" aria-hidden="true"></div>
 
-    <div class="csi-service-reveal">
-<style>
-.anchor-offset { scroll-margin-top: 500px !important; }
-@media (max-width: 1199px) { .breadcrumb-service-detals-one { margin-top: -80px; } }
-</style>
-
-<div class="breadcrumb-service-detals-one">
-    <div class="container-1754">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="banner-inner-service-details-1 bg_image">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="title-area-left">
-                                    <span class="bg-title">E-House</span>
-                                    <h1 class="title rts-text-anime-style-1">E-House Solutions</h1>
-                                    <p class="disc" style="padding-bottom:50px;">
-Prefabricated, climate-controlled power buildings that receive, protect and distribute power for your site. We engineer, integrate, test and commission every e-house in a controlled factory, then verify it on site so it is ready to energize.
-</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<main id="ehx">
+<div id="track">
+ <div id="stage">
+  <div id="loading">LOADING E-HOUSE...</div>
+  <canvas id="c"></canvas>
+  <div id="spots"></div>
+  <div id="dark"></div>
+  <div id="docs" aria-label="CSI digital QC and documentation records">
+   <div class="mon"><div class="scr">
+    <div class="appbar"><span class="logo">CSI</span><span class="ttl">Project records <b>PDC-01 · E-House</b></span><span class="sync">Synced</span></div>
+    <div class="tabs"><span>Register</span><span>QC checklist</span><span>FAT report</span><span>Sign-off</span></div>
+    <div class="views"><div class="view"></div><div class="view"></div><div class="view"></div><div class="view"></div></div>
+    <div class="prog"><i></i></div>
+   </div></div>
+   <div class="stand"></div><div class="foot"></div>
+  </div>
+  <div id="plan"><div class="t"><span>Floor plan</span><span id="planLbl">Entry</span></div><svg id="planSvg" viewBox="-9.6 -3.6 19.2 7.2"></svg></div>
+  <div id="panels"></div>
+  <div id="hint">Scroll</div>
+  <div id="hud"><div id="bar"><div id="fill"></div><div id="dots"></div></div><div id="count">01 / 14</div></div>
+ </div>
 </div>
 
-
-<div class="rts-service-details-area-main-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-8">
-                <div class="service-details-left-area">
-                    <div class="thumbnail ehx-hero">
-                        <img src="/img/Services/EHouse/ehouse-20.webp" alt="CSI e-house exterior with entry doors and landing">
-                        <div class="ehx-hero-shade"></div>
-                        <div class="ehx-hero-copy">
-                            <span class="ehx-kicker">Interactive 3D</span>
-                            <h3>Walk inside an e-house</h3>
-                            <p>Approach the building, step through the door and see every component explained, from medium-voltage switchgear to the battery room.</p>
-                            <button type="button" class="rts-btn btn-primary ehx-open" data-stop="0">Start the walkthrough <i class="far fa-long-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="ehx-stops" aria-label="Jump to a stop in the walkthrough">
-                        <button type="button" class="ehx-stop" data-stop="1"><span>01</span>The building</button><button type="button" class="ehx-stop" data-stop="2"><span>02</span>Step inside</button><button type="button" class="ehx-stop" data-stop="3"><span>03</span>MV switchgear</button><button type="button" class="ehx-stop" data-stop="4"><span>04</span>Protection &amp; control</button><button type="button" class="ehx-stop" data-stop="5"><span>05</span>Transformer</button><button type="button" class="ehx-stop" data-stop="6"><span>06</span>Battery room</button><button type="button" class="ehx-stop" data-stop="7"><span>07</span>UPS &amp; DC</button><button type="button" class="ehx-stop" data-stop="8"><span>08</span>Drives</button><button type="button" class="ehx-stop" data-stop="9"><span>09</span>MCC</button><button type="button" class="ehx-stop" data-stop="10"><span>10</span>LV switchgear</button><button type="button" class="ehx-stop" data-stop="11"><span>11</span>Building systems</button><button type="button" class="ehx-stop" data-stop="12"><span>12</span>FAT</button><button type="button" class="ehx-stop" data-stop="13"><span>13</span>Site acceptance</button>
-                    </div>
-                    <div>
-                        <h3 class="title mt-4">Key Benefits</h3>
-                        <ul class="disc ps-3">
-                            <li><strong>Shorter Project Schedules:</strong> The e-house is built and tested in the factory while site civil work proceeds, so the two run in parallel instead of in sequence.</li>
-                            <li><strong>Reduced Field Risk:</strong> Integration, wiring and most testing happen indoors under controlled conditions, which means less rework, fewer field crews and fewer weather delays.</li>
-                            <li><strong>Proven Before Delivery:</strong> Factory acceptance testing and off-site commissioning verify the complete system before it ships.</li>
-                            <li><strong>Safer by Design:</strong> Working clearances, egress, arc-flash venting and fire protection are engineered into the building from the start.</li>
-                            <li><strong>Single Point of Accountability:</strong> One team from design through integration, testing, NETA site acceptance and handover.</li>
-                        </ul>
-
-                        <h3 style="padding-top:35px;" class="title mt-4">What's Inside a CSI E-House</h3>
-                        <p class="disc fw-bold mb-2">Typical equipment and systems, configured to your single-line diagram:</p>
-                        <ul class="disc ps-3">
-                            <li><strong>Power Distribution:</strong> Medium-voltage switchgear, dry-type transformers, low-voltage switchgear and bus duct.</li>
-                            <li><strong>Motor Control:</strong> Motor control centers and variable frequency drives.</li>
-                            <li><strong>Protection &amp; Control:</strong> Protective relays, SCADA / RTU and operator HMI.</li>
-                            <li><strong>Backup Power:</strong> UPS, DC chargers and battery systems in a separated, ventilated battery room.</li>
-                            <li><strong>Building Systems:</strong> Redundant HVAC, cable tray, lighting and emergency lighting, fire detection and clean-agent suppression.</li>
-                        </ul>
-                    </div>
-                    <div class="container" style="padding-top:50px;">
-                        
-<div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
-  <div class="row mb-4"><div class="col-12">
-    <h4 class="title text-center text-md-start anchor-offset" id="e-house-design-engineering">E-House Design &amp; Engineering</h4>
-  </div></div>
-  <div class="row align-items-center">
-    <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
-      <button type="button" class="ehx-thumb" data-stop="4" aria-label="Open the 3D walkthrough at E-House Design &amp; Engineering">
-        <img loading="lazy" src="/img/Services/EHouse/ehouse-60.webp" alt="E-House Design &amp; Engineering" class="img-fluid rounded">
-        <span class="ehx-thumb-tag">3D view</span>
-      </button>
-    </div>
-    <div class="col-md-8"><div class="inner ps-md-4"><p class="disc">Every e-house starts from your single-line diagram. We size the building around the equipment and the people who will work in it, then engineer the structure, building systems and interconnections as one package.</p></div></div>
-  </div>
-  <div class="row mt-4"><div class="col-12">
-    <p class="disc"><strong>Service Overview:</strong> Design &amp; Engineering covers the electrical, structural and building-systems design of the e-house: equipment layout, working clearances and egress, arc-flash venting, HVAC and heat-load sizing, fire detection and suppression, lighting, grounding and cable routing.</p>
-    <p class="disc"><strong>CSI Approach:</strong> CSI&#x27;s multidisciplinary team develops the layout from the single-line diagram and equipment data, checks working space and egress against the adopted NEC edition and the equipment manufacturers&#x27; requirements, and coordinates the structural skid, lifting points and shipping splits with transport limits from the start.</p>
-    <p class="disc"><strong>Value to the project:</strong> A building designed around its equipment avoids late re-layouts, oversized footprints and field modifications. Clearances, venting and building systems are resolved on paper, where changes are cheap.</p>
-    <h5>Related FAQs</h5>
-<div class="accordion faq-wrapper-inner-page mt--50" id="accEHouseDesignEngineering" style="padding-bottom:50px;">
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseDesignEngineering1">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseDesignEngineering1" aria-expanded="true" aria-controls="caccEHouseDesignEngineering1">01. What information do you need to start an e-house design?</button>
-  </h2>
-  <div id="caccEHouseDesignEngineering1" class="accordion-collapse collapse show" aria-labelledby="haccEHouseDesignEngineering1" data-bs-parent="#accEHouseDesignEngineering">
-    <div class="accordion-body">A single-line diagram, the equipment list with vendor data where available, site conditions (climate, seismic and wind loads, hazardous-area classification) and the delivery route. We can start from a preliminary single-line and refine as equipment is selected.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseDesignEngineering2">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseDesignEngineering2" aria-expanded="false" aria-controls="caccEHouseDesignEngineering2">02. How do you decide the size of the e-house?</button>
-  </h2>
-  <div id="caccEHouseDesignEngineering2" class="accordion-collapse collapse" aria-labelledby="haccEHouseDesignEngineering2" data-bs-parent="#accEHouseDesignEngineering">
-    <div class="accordion-body">Size follows from the equipment footprint, the working clearances and egress paths required in front of each lineup, arc-flash venting needs, and shipping limits. Larger e-houses are built in splits and joined on site.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseDesignEngineering3">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseDesignEngineering3" aria-expanded="false" aria-controls="caccEHouseDesignEngineering3">03. Can existing equipment or a client-specified vendor be used?</button>
-  </h2>
-  <div id="caccEHouseDesignEngineering3" class="accordion-collapse collapse" aria-labelledby="haccEHouseDesignEngineering3" data-bs-parent="#accEHouseDesignEngineering">
-    <div class="accordion-body">Yes. We design around the equipment your project specifies and coordinate directly with the vendors for drawings, weights, heat loads and installation requirements.</div>
-  </div>
-</div>
-</div>
-  </div></div>
-</div>
-<div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
-  <div class="row mb-4"><div class="col-12">
-    <h4 class="title text-center text-md-start anchor-offset" id="e-house-integration-qc">Factory Integration &amp; Quality Control</h4>
-  </div></div>
-  <div class="row align-items-center">
-    <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
-      <button type="button" class="ehx-thumb" data-stop="3" aria-label="Open the 3D walkthrough at Factory Integration &amp; Quality Control">
-        <img loading="lazy" src="/img/Services/EHouse/ehouse-50.webp" alt="Factory Integration &amp; Quality Control" class="img-fluid rounded">
-        <span class="ehx-thumb-tag">3D view</span>
-      </button>
-    </div>
-    <div class="col-md-8"><div class="inner ps-md-4"><p class="disc">Switchgear, MCCs, drives, UPS, batteries and building systems are set, bussed and wired inside the building in a controlled factory environment.</p></div></div>
-  </div>
-  <div class="row mt-4"><div class="col-12">
-    <p class="disc"><strong>Service Overview:</strong> Factory Integration &amp; Quality Control covers equipment setting and anchoring, bus duct and cable installation, control wiring, building-systems installation and the inspections that verify each step against the drawings and the project quality plan.</p>
-    <p class="disc"><strong>CSI Approach:</strong> CSI&#x27;s QA/QC engineers inspect torque, clearances, labelling, wiring terminations and construction at defined hold points, record every check, and close non-conformances before the building moves to testing.</p>
-    <p class="disc"><strong>Value to the project:</strong> Work done indoors is faster, cleaner and easier to inspect than work done in the field. Issues are caught at the bench, not during energization.</p>
-    <h5>Related FAQs</h5>
-<div class="accordion faq-wrapper-inner-page mt--50" id="accEHouseIntegrationQc" style="padding-bottom:50px;">
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseIntegrationQc1">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseIntegrationQc1" aria-expanded="true" aria-controls="caccEHouseIntegrationQc1">01. Which inspections are performed during integration?</button>
-  </h2>
-  <div id="caccEHouseIntegrationQc1" class="accordion-collapse collapse show" aria-labelledby="haccEHouseIntegrationQc1" data-bs-parent="#accEHouseIntegrationQc">
-    <div class="accordion-body">Typical hold points include receipt inspection of equipment, anchoring and alignment, bus and cable termination torque, point-to-point wiring checks, labelling, grounding continuity and building-systems installation checks.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseIntegrationQc2">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseIntegrationQc2" aria-expanded="false" aria-controls="caccEHouseIntegrationQc2">02. Can the owner or engineer of record attend inspections?</button>
-  </h2>
-  <div id="caccEHouseIntegrationQc2" class="accordion-collapse collapse" aria-labelledby="haccEHouseIntegrationQc2" data-bs-parent="#accEHouseIntegrationQc">
-    <div class="accordion-body">Yes. Inspection and test plans identify witness and hold points, and clients are invited to attend any of them in person or remotely.</div>
-  </div>
-</div>
-</div>
-  </div></div>
-</div>
-<div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
-  <div class="row mb-4"><div class="col-12">
-    <h4 class="title text-center text-md-start anchor-offset" id="e-house-fat">Factory Acceptance Testing (FAT)</h4>
-  </div></div>
-  <div class="row align-items-center">
-    <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
-      <button type="button" class="ehx-thumb" data-stop="12" aria-label="Open the 3D walkthrough at Factory Acceptance Testing (FAT)">
-        <img loading="lazy" src="/img/Services/EHouse/ehouse-41.webp" alt="Factory Acceptance Testing (FAT)" class="img-fluid rounded">
-        <span class="ehx-thumb-tag">3D view</span>
-      </button>
-    </div>
-    <div class="col-md-8"><div class="inner ps-md-4"><p class="disc">Before the e-house leaves the factory, the complete assembly is tested as a working system, with your team invited to witness and sign off.</p></div></div>
-  </div>
-  <div class="row mt-4"><div class="col-12">
-    <p class="disc"><strong>Service Overview:</strong> Factory Acceptance Testing verifies that the integrated e-house performs to the specification: insulation and continuity testing, protective relay and interlock testing, control and SCADA functional checks, UPS and DC system testing, and building systems such as HVAC, fire alarm and lighting.</p>
-    <p class="disc"><strong>CSI Approach:</strong> CSI prepares the FAT procedures from the project specification and drawings, runs the tests with calibrated equipment, records every result, and manages a punch list to closure before shipment is released.</p>
-    <p class="disc"><strong>Value to the project:</strong> Problems found in the factory cost a fraction of what they cost on site. A witnessed FAT gives the owner confidence and evidence before the building ships.</p>
-    <h5>Related FAQs</h5>
-<div class="accordion faq-wrapper-inner-page mt--50" id="accEHouseFat" style="padding-bottom:50px;">
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseFat1">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseFat1" aria-expanded="true" aria-controls="caccEHouseFat1">01. What does a typical e-house FAT include?</button>
-  </h2>
-  <div id="caccEHouseFat1" class="accordion-collapse collapse show" aria-labelledby="haccEHouseFat1" data-bs-parent="#accEHouseFat">
-    <div class="accordion-body">Insulation resistance and hi-pot testing, primary and secondary injection of protective relays, breaker and interlock functional tests, control and communication checks, UPS and battery tests, and functional tests of HVAC, lighting and fire detection.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseFat2">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseFat2" aria-expanded="false" aria-controls="caccEHouseFat2">02. How long does a FAT take?</button>
-  </h2>
-  <div id="caccEHouseFat2" class="accordion-collapse collapse" aria-labelledby="haccEHouseFat2" data-bs-parent="#accEHouseFat">
-    <div class="accordion-body">It depends on the size and complexity of the e-house. A single-module building can often be tested in days; multi-module projects with extensive controls take longer. The schedule is agreed in the FAT procedure.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseFat3">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseFat3" aria-expanded="false" aria-controls="caccEHouseFat3">03. Can a FAT be witnessed remotely?</button>
-  </h2>
-  <div id="caccEHouseFat3" class="accordion-collapse collapse" aria-labelledby="haccEHouseFat3" data-bs-parent="#accEHouseFat">
-    <div class="accordion-body">Yes. We can stream tests and share results live for stakeholders who cannot travel, alongside in-person witnesses.</div>
-  </div>
-</div>
-</div>
-  </div></div>
-</div>
-<div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
-  <div class="row mb-4"><div class="col-12">
-    <h4 class="title text-center text-md-start anchor-offset" id="e-house-offsite-commissioning">Off-Site Commissioning</h4>
-  </div></div>
-  <div class="row align-items-center">
-    <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
-      <button type="button" class="ehx-thumb" data-stop="9" aria-label="Open the 3D walkthrough at Off-Site Commissioning">
-        <img loading="lazy" src="/img/Services/EHouse/ehouse-110.webp" alt="Off-Site Commissioning" class="img-fluid rounded">
-        <span class="ehx-thumb-tag">3D view</span>
-      </button>
-    </div>
-    <div class="col-md-8"><div class="inner ps-md-4"><p class="disc">Power, controls and building systems are brought up together in the factory, so integration issues are found before the e-house is on a truck.</p></div></div>
-  </div>
-  <div class="row mt-4"><div class="col-12">
-    <p class="disc"><strong>Service Overview:</strong> Off-Site Commissioning energizes and operates the e-house systems as they will run in service, verifying sequences of operation, alarms, communications to the plant control system, and the interaction between electrical and building systems.</p>
-    <p class="disc"><strong>CSI Approach:</strong> CSI&#x27;s commissioning engineers apply the same structured process used on our site commissioning work: documented pre-functional checks, functional performance tests, issue tracking and verification of fixes before handover to transport.</p>
-    <p class="disc"><strong>Value to the project:</strong> Commissioning in the factory shortens site startup, reduces the number of people needed on site and lowers the risk of delays at energization.</p>
-    <h5>Related FAQs</h5>
-<div class="accordion faq-wrapper-inner-page mt--50" id="accEHouseOffsiteCommissioni" style="padding-bottom:50px;">
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseOffsiteCommissioni1">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseOffsiteCommissioni1" aria-expanded="true" aria-controls="caccEHouseOffsiteCommissioni1">01. What is the difference between FAT and off-site commissioning?</button>
-  </h2>
-  <div id="caccEHouseOffsiteCommissioni1" class="accordion-collapse collapse show" aria-labelledby="haccEHouseOffsiteCommissioni1" data-bs-parent="#accEHouseOffsiteCommissioni">
-    <div class="accordion-body">FAT verifies that equipment and assemblies meet the specification. Off-site commissioning goes further and operates the integrated systems together, verifying sequences, alarms and communications as they will run on site.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseOffsiteCommissioni2">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseOffsiteCommissioni2" aria-expanded="false" aria-controls="caccEHouseOffsiteCommissioni2">02. Does off-site commissioning replace site commissioning?</button>
-  </h2>
-  <div id="caccEHouseOffsiteCommissioni2" class="accordion-collapse collapse" aria-labelledby="haccEHouseOffsiteCommissioni2" data-bs-parent="#accEHouseOffsiteCommissioni">
-    <div class="accordion-body">No. It moves most of the work into the factory, so site commissioning is shorter and focuses on interconnections, site-specific systems and final performance verification.</div>
-  </div>
-</div>
-</div>
-  </div></div>
-</div>
-<div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
-  <div class="row mb-4"><div class="col-12">
-    <h4 class="title text-center text-md-start anchor-offset" id="e-house-sat-neta">Site Acceptance &amp; NETA Testing</h4>
-  </div></div>
-  <div class="row align-items-center">
-    <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
-      <button type="button" class="ehx-thumb" data-stop="13" aria-label="Open the 3D walkthrough at Site Acceptance &amp; NETA Testing">
-        <img loading="lazy" src="/img/Services/EHouse/ehouse-154.webp" alt="Site Acceptance &amp; NETA Testing" class="img-fluid rounded">
-        <span class="ehx-thumb-tag">3D view</span>
-      </button>
-    </div>
-    <div class="col-md-8"><div class="inner ps-md-4"><p class="disc">After transport and setting, the e-house is reconnected, re-tested and energized on site.</p></div></div>
-  </div>
-  <div class="row mt-4"><div class="col-12">
-    <p class="disc"><strong>Service Overview:</strong> Site Acceptance Testing confirms the e-house arrived undamaged and performs as it did in the factory. It includes NETA acceptance testing of the electrical equipment, verification of field interconnections and a supervised first energization.</p>
-    <p class="disc"><strong>CSI Approach:</strong> CSI&#x27;s NETA-certified technicians perform acceptance testing to ANSI/NETA ATS, verify the field terminations and interconnections, and coordinate energization with the owner, utility and contractors.</p>
-    <p class="disc"><strong>Value to the project:</strong> The owner receives independent, standards-based evidence that the equipment is safe and ready for service, and a single team accountable from factory to energization.</p>
-    <h5>Related FAQs</h5>
-<div class="accordion faq-wrapper-inner-page mt--50" id="accEHouseSatNeta" style="padding-bottom:50px;">
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseSatNeta1">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseSatNeta1" aria-expanded="true" aria-controls="caccEHouseSatNeta1">01. Why is testing needed again on site?</button>
-  </h2>
-  <div id="caccEHouseSatNeta1" class="accordion-collapse collapse show" aria-labelledby="haccEHouseSatNeta1" data-bs-parent="#accEHouseSatNeta">
-    <div class="accordion-body">Transport, lifting and setting can disturb connections and equipment. Site acceptance and NETA testing confirm nothing changed and verify the field connections made after delivery.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseSatNeta2">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseSatNeta2" aria-expanded="false" aria-controls="caccEHouseSatNeta2">02. Which standard is used for acceptance testing?</button>
-  </h2>
-  <div id="caccEHouseSatNeta2" class="accordion-collapse collapse" aria-labelledby="haccEHouseSatNeta2" data-bs-parent="#accEHouseSatNeta">
-    <div class="accordion-body">Electrical acceptance testing is performed to ANSI/NETA ATS, the Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems, together with the project specification.</div>
-  </div>
-</div>
-</div>
-  </div></div>
-</div>
-<div class="py-5 border-bottom" style="border-color: rgba(32,40,45,0.2);">
-  <div class="row mb-4"><div class="col-12">
-    <h4 class="title text-center text-md-start anchor-offset" id="e-house-documentation-handover">Documentation &amp; Handover</h4>
-  </div></div>
-  <div class="row align-items-center">
-    <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center">
-      <button type="button" class="ehx-thumb" data-stop="1" aria-label="Open the 3D walkthrough at Documentation &amp; Handover">
-        <img loading="lazy" src="/img/Services/EHouse/ehouse-20.webp" alt="Documentation &amp; Handover" class="img-fluid rounded">
-        <span class="ehx-thumb-tag">3D view</span>
-      </button>
-    </div>
-    <div class="col-md-8"><div class="inner ps-md-4"><p class="disc">The record ships with the building.</p></div></div>
-  </div>
-  <div class="row mt-4"><div class="col-12">
-    <p class="disc"><strong>Service Overview:</strong> Documentation &amp; Handover compiles the test reports, as-built drawings, operation and maintenance manuals, certificates and training material for the e-house into a complete, organized turnover package.</p>
-    <p class="disc"><strong>CSI Approach:</strong> CSI collects documentation throughout design, integration and testing rather than at the end, reviews it for completeness, and delivers it in the format your facility team uses, with training for operators and maintenance staff.</p>
-    <p class="disc"><strong>Value to the project:</strong> Complete records make operation, maintenance and future modifications faster and safer, and support warranty and compliance requirements.</p>
-    <h5>Related FAQs</h5>
-<div class="accordion faq-wrapper-inner-page mt--50" id="accEHouseDocumentationHando" style="padding-bottom:50px;">
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseDocumentationHando1">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseDocumentationHando1" aria-expanded="true" aria-controls="caccEHouseDocumentationHando1">01. What is included in the turnover package?</button>
-  </h2>
-  <div id="caccEHouseDocumentationHando1" class="accordion-collapse collapse show" aria-labelledby="haccEHouseDocumentationHando1" data-bs-parent="#accEHouseDocumentationHando">
-    <div class="accordion-body">Typically: as-built drawings, FAT and SAT reports, NETA test reports, relay settings, equipment manuals and data sheets, spare parts lists, certificates and training records.</div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header" id="haccEHouseDocumentationHando2">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#caccEHouseDocumentationHando2" aria-expanded="false" aria-controls="caccEHouseDocumentationHando2">02. Can documentation be delivered digitally?</button>
-  </h2>
-  <div id="caccEHouseDocumentationHando2" class="accordion-collapse collapse" aria-labelledby="haccEHouseDocumentationHando2" data-bs-parent="#accEHouseDocumentationHando">
-    <div class="accordion-body">Yes. Turnover packages can be delivered as organized digital files or loaded into the owner&#x27;s document management or CMMS platform.</div>
-  </div>
-</div>
-</div>
-  </div></div>
-</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-12 col-sm-12 col-12 mt_lg--60 pl--50 pl_lg--0 pl_md--0 pl-lg-controler pl_sm--0 mt-service-shorter">
-                <!-- single wizered start -->
-                <div class="rts-single-wized Categories service">
-                    <div class="wized-header">
-                        <h5 class="title">
-                            E-House Solutions
-                        </h5>
-                    </div>
-                    <div class="wized-body">
-                        <!-- single categories -->
-<ul class="single-categories"><li><a href="#e-house-design-engineering">E-House Design &amp; Engineering<i class="far fa-long-arrow-right"></i></a></li></ul>
-<ul class="single-categories"><li><a href="#e-house-integration-qc">Factory Integration &amp; Quality Control<i class="far fa-long-arrow-right"></i></a></li></ul>
-<ul class="single-categories"><li><a href="#e-house-fat">Factory Acceptance Testing (FAT)<i class="far fa-long-arrow-right"></i></a></li></ul>
-<ul class="single-categories"><li><a href="#e-house-offsite-commissioning">Off-Site Commissioning<i class="far fa-long-arrow-right"></i></a></li></ul>
-<ul class="single-categories"><li><a href="#e-house-sat-neta">Site Acceptance &amp; NETA Testing<i class="far fa-long-arrow-right"></i></a></li></ul>
-<ul class="single-categories"><li><a href="#e-house-documentation-handover">Documentation &amp; Handover<i class="far fa-long-arrow-right"></i></a></li></ul>
-</div>
-
-                </div>
-                <!-- single wizered End -->
-                <!-- single wizered start -->
-                <div class="rts-single-wized download service">
-                    <div class="wized-header">
-                        <h5 class="title">Download</h5>
-                    </div>
-                    <div class="wized-body">
-                        <!-- single Download area start -->
-                        <div class="single-download-area">
-                            <img loading="lazy" src="/img/Common-Items/Icons/pdf.svg" alt="View Company Documents & Brochures">
-                            <div class="mid">
-                                <h6 class="title">
-                                    Company Documents
-                                </h6>
-                                <span>& Brochures</span>
-                            </div>
-                            <a class=" rts-btn btn-primary" href="https://www.csicx.com/en/documents"><i class="fal fa-arrow-right"></i></a>
-                        </div>
-                        <!-- single Download area End -->
-                        <!-- single Download area start -->
-
-                        <!-- single Download area End -->
-                    </div>
-                </div>
-                <!-- single wizered End -->
-                <!-- single wizered start -->
-                <div class="rts-single-wized contact service">
-                    <div class="wized-header">
-                        <a href="https://www.csicx.com/en"><img loading="lazy" src="/img/Common-Items/Logo/CSI-Engineering-Logo-White.webp" alt="Business_logo"></a>
-                    </div>
-                    <div class="wized-body">
-                        <h5 class="title">
-                            Need Help? We Are Here
-                            To Help You
-                        </h5>
-                        <a class="rts-btn btn-primary btn-white" href="https://www.csicx.com/en/contact-us">Contact Us</a>
-                    </div>
-                </div>
-                <!-- single wizered End -->
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-    <!-- Footer -->
-    <div class="footer-8-area-bg bg_image pt--100">
-        <div class="container pb--65">
-            <div class="row" style="align-items:flex-start;">
-                <style>
-                    .footer-8-area-bg .footer-one-single-wized .links { margin-top: 0 !important; padding-top: 0 !important; }
-                    .footer-8-area-bg .footer-one-single-wized .links li { padding: 0 !important; }
-                    .footer-8-area-bg .footer-one-single-wized .wized-title { margin-bottom: 20px !important; padding-bottom: 0 !important; }
-                    .footer-8-area-bg .footer-one-single-wized > div > div[style*="display:flex"] { margin-top: 0 !important; padding-top: 0 !important; }
-                    .footer-links-wrap { margin: 0 !important; padding: 0 !important; }
-                </style>
-                <div class="col-lg-5 pe-5">
-                    <div class="footer-logo-area-left-8" style="margin-bottom:0px !important;">
-                        <a href="https://www.csicx.com/en" class="logo" style="margin-top:-10px !important;margin-bottom:10px !important;">
-                            <img loading="lazy" style="width:100px;" src="/img/Common-Items/Logo/CSI-Engineering-Logo-White.webp" alt="CSI logo">
-                        </a>
-                        <p class="disc" style="margin-bottom:-5px !important;">From concept to completion, we transform engineering into clear, controlled solutions that deliver performance, quality, and certainty.</p>
-                        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:0px !important;">
-                            <ul class="social-area-wrapper-two" style="margin:0; padding:0; list-style:none;">
-                                <li><a href="https://www.linkedin.com/company/csiglobal/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                            <a href="mailto:info@csicx.com" class="footer-email-link">
-                                <i class="fa-solid fa-envelope"></i>
-                                info@csicx.com
-                            </a>
-                        </div>
-                        <style>
-                            .footer-email-link {
-                                display: inline-flex;
-                                align-items: center;
-                                gap: 7px;
-                                color: #8B8F99;
-                                font-size: 14px;
-                                text-decoration: none;
-                                transition: color 0.3s;
-                                line-height: 1;
-                            }
-                            .footer-email-link:hover { color: #fff; }
-                            .footer-email-link i { font-size: 15px; flex-shrink: 0; }
-                        </style>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="footer-one-single-wized" style="margin-bottom:0!important;padding-bottom:0!important;">
-                        <div class="wized-title"  style="margin-bottom: 0px !important;">
-                            <h5 class="title">Quick Links</h5>
-                        </div>
-                        <div class="footer-links-wrap" style="display:flex;gap:0;align-items:flex-start;margin:0;padding:0;">
-                            <ul class="links" style="flex:1;margin:0;padding:0;">
-                                <li><a href="https://www.csicx.com/en"><i class="far fa-arrow-right"></i> Home</a></li>
-                                <li><a href="https://www.csicx.com/en/about"><i class="far fa-arrow-right"></i> About</a></li>
-                                <li><a href="https://www.csicx.com/en/contact-us"><i class="far fa-arrow-right"></i> Contact Us</a></li>
-                            </ul>
-                            <ul class="links" style="flex:1;margin:0;padding:0;">
-                                <li><a href="https://www.csicx.com/en/sectors-we-serve"><i class="far fa-arrow-right"></i> Sectors</a></li>
-                                <li><a href="https://www.csicx.com/en/projects"><i class="far fa-arrow-right"></i> Projects</a></li>
-                                <li><a href="https://www.csicx.com/en/news"><i class="far fa-arrow-right"></i> News</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="footer-one-single-wized">
-                        <div class="wized-title"><h5 class="title">Services</h5></div>
-                        <ul class="links" style="margin:0!important;padding:0!important;">
-                            <li><a href="https://www.csicx.com/en/services/overview/construction-management"><i class="far fa-arrow-right"></i> Construction Management</a></li>
-                            <li><a href="https://www.csicx.com/en/services/overview/design"><i class="far fa-arrow-right"></i> Design &amp; Engineering</a></li>
-                            <li><a href="https://www.csicx.com/en/services/overview/solution"><i class="far fa-arrow-right"></i> Solutions</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area-main-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright-8-wrapper">
-                            <p>CSI Engineering - Copyright 2026. All rights reserved.</p>
-                            <ul>
-                                <li><a href="https://www.csicx.com/en/privacy">Privacy Policy</a></li>
-                                <li><a href="https://www.csicx.com/en/cookies">Cookies Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+</main>
+<script type="importmap">{"imports":{"three":"/e-house-tour/vendor/three.module.js"}}</script>
+<script type="module" src="/e-house-tour/app.js"></script>
+<script>
+(function(){
+  var h=document.querySelector('.header-one');
+  function set(){if(h)document.documentElement.style.setProperty('--hh',h.offsetHeight+'px');var m=document.getElementById('ehx');if(m&&h)m.style.setProperty('--hh',h.offsetHeight+'px');}
+  set();addEventListener('resize',set);addEventListener('load',set);
+})();
+</script>
     <script defer src="/js/plugins/jquery.js"></script>
     <script defer src="/js/plugins/odometer.js"></script>
     <script defer src="/js/plugins/jquery-appear.js"></script>
     <script defer src="/js/plugins/gsap.js"></script>
     <script defer src="/js/plugins/split-text.js"></script>
     <script defer src="/js/plugins/scroll-trigger.js"></script>
-    <script defer src="/js/plugins/smooth-scroll.js"></script>
     <script defer src="/js/plugins/metismenu.js"></script>
     <script defer src="/js/plugins/popup.js"></script>
     <script defer src="/js/vendor/bootstrap.min.js"></script>
     <script defer src="/js/plugins/swiper.js"></script>
     <script defer src="/js/main.js"></script>
-        <script defer src="/js/service-scroll-reveal.js"></script>
-
-    
-    <div id="gdpr-banner" class="gdpr-banner" hidden>
-        <div class="gdpr-banner__inner">
-            <div class="gdpr-banner__text">
-                <i class="fa-solid fa-cookie-bite gdpr-banner__icon"></i>
-                <span>We use cookies to improve your experience. By continuing to use our site you accept our
-                    <a href="https://www.csicx.com/en/cookies">Cookies Policy</a> and
-                    <a href="https://www.csicx.com/en/privacy">Privacy Policy</a>.
-                </span>
-            </div>
-            <div class="gdpr-banner__actions">
-                <button id="gdpr-reject" class="gdpr-btn gdpr-btn--reject">Reject</button>
-                <button id="gdpr-accept" class="gdpr-btn gdpr-btn--accept">Accept All</button>
-            </div>
-        </div>
-    </div>
-
-    <style>
-    .gdpr-banner {
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 9998;
-        background: #000000 !important;
-        color: #e5e7eb;
-        padding: 14px 24px;
-        box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
-        animation: gdprSlideUp 0.35s ease;
-    }
-    .gdpr-banner[hidden] { display: none !important; }
-    @keyframes gdprSlideUp {
-        from { transform: translateY(100%); opacity: 0; }
-        to   { transform: translateY(0);    opacity: 1; }
-    }
-    .gdpr-banner__inner {
-        max-width: 1280px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-    .gdpr-banner__text {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        
-        line-height: 1.55;
-        flex: 1;
-        min-width: 0;
-    }
-    .gdpr-banner__icon {
-        font-size: 32px !important;
-        color: #f59e0b;
-        flex-shrink: 0;
-    }
-    .gdpr-banner__text a {
-        color: #93c5fd;
-        text-decoration: underline;
-        white-space: nowrap;
-    }
-    .gdpr-banner__text a:hover { color: #fff; }
-    .gdpr-banner__actions {
-        display: flex;
-        gap: 10px;
-        flex-shrink: 0;
-    }
-    .gdpr-btn {
-        padding: 8px 22px;
-        border-radius: 6px;
-        
-        font-weight: 600;
-        cursor: pointer;
-        border: 1.5px solid transparent;
-        transition: background 0.18s, color 0.18s, border-color 0.18s;
-        white-space: nowrap;
-    }
-    .gdpr-btn--reject {
-        background: transparent;
-        border-color: #6b7280;
-        color: #d1d5db;
-    }
-    .gdpr-btn--reject:hover { border-color: #9ca3af; color: #fff; }
-    .gdpr-btn--accept {
-        background: #2563eb;
-        border-color: #2563eb;
-        color: #fff;
-    }
-    .gdpr-btn--accept:hover { background: #1d4ed8; border-color: #1d4ed8; }
-    @media (max-width: 575px) {
-        .gdpr-banner { padding: 14px 16px; }
-        .gdpr-banner__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
-        .gdpr-banner__actions { width: 100%; justify-content: flex-end; }
-    }
-
-    /* Force sidebar menu visible at all screen sizes */
-    #side-bar .mobile-menu { display: block !important; }
-    .mobile-menu nav ul {
-    padding: 0 0px !important
-}
-    </style>
-
-    <script>
-    (function () {
-        var KEY    = 'csi_cookie_consent';
-        var banner = document.getElementById('gdpr-banner');
-        if (localStorage.getItem(KEY)) return; // already decided
-        banner.hidden = false;
-        document.getElementById('gdpr-accept').addEventListener('click', function () {
-            localStorage.setItem(KEY, 'accepted');
-            hideBanner();
-        });
-        document.getElementById('gdpr-reject').addEventListener('click', function () {
-            localStorage.setItem(KEY, 'rejected');
-            hideBanner();
-        });
-        function hideBanner() {
-            banner.style.animation = 'none';
-            banner.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-            banner.style.transform  = 'translateY(100%)';
-            banner.style.opacity    = '0';
-            setTimeout(function () { banner.hidden = true; }, 320);
-        }
-    })();
-    </script>
     <script>
     /* ── Dropdown hover-delay fix ────────────────────────────────────────────────
      * The theme drives dropdowns purely via CSS :hover on <li class="has-dropdown">.
@@ -1427,41 +997,5 @@ Prefabricated, climate-controlled power buildings that receive, protect and dist
     })();
     </script>
 
-<div class="ehx-modal" id="ehxModal" role="dialog" aria-modal="true" aria-label="E-house 3D walkthrough" hidden>
-  <button type="button" class="ehx-close" id="ehxClose" aria-label="Close walkthrough">&times;</button>
-  <iframe id="ehxFrame" title="E-house 3D walkthrough" allow="fullscreen"></iframe>
-</div>
-<style>
-.ehx-hero{position:relative;overflow:hidden;border-radius:6px;background:#0a1a30}
-.ehx-hero img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
-.ehx-hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,26,48,.88) 0%,rgba(10,26,48,.55) 45%,rgba(10,26,48,0) 75%)}
-.ehx-hero-copy{position:absolute;left:clamp(20px,4%,44px);top:50%;transform:translateY(-50%);max-width:420px;color:#fff}
-.ehx-kicker{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#5AA5D9;font-weight:600;margin-bottom:10px}
-.ehx-hero-copy h3{color:#fff;font-size:clamp(24px,3vw,36px);line-height:1.1;margin:0 0 12px}
-.ehx-hero-copy p{color:#d6e3f1;font-size:15px;line-height:1.55;margin:0 0 20px}
-.ehx-open{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer}
-.ehx-stops{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
-.ehx-stops .ehx-stop{width:auto!important;max-width:none!important;flex:0 0 auto;display:inline-flex;align-items:center;margin:0!important;line-height:1.2;border:1px solid rgba(23,62,106,.25);background:#fff;color:#173E6A;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
-.ehx-stops .ehx-stop span{color:#5AA5D9;margin-right:6px;font-variant-numeric:tabular-nums}
-.ehx-stop:hover,.ehx-stop:focus-visible{background:#173E6A;color:#fff;border-color:#173E6A}
-.ehx-thumb{position:relative;display:block;width:100%;padding:0 0 25px;border:0;background:none;cursor:pointer}
-.ehx-thumb img{object-fit:cover;height:250px;width:100%}
-.ehx-thumb-tag{position:absolute;left:10px;top:10px;background:rgba(10,26,48,.8);color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:4px}
-.ehx-modal{position:fixed;inset:0;z-index:100000;background:#0a1a30}
-.ehx-modal[hidden]{display:none}
-.ehx-modal iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.ehx-close{position:absolute;z-index:2;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(10,26,48,.6);color:#fff;font-size:26px;line-height:1;cursor:pointer}
-@media(max-width:767px){.ehx-hero img{aspect-ratio:4/5}.ehx-hero-shade{background:linear-gradient(0deg,rgba(10,26,48,.92) 0%,rgba(10,26,48,.6) 50%,rgba(10,26,48,0) 80%)}.ehx-hero-copy{top:auto;bottom:22px;transform:none;right:20px}}
-</style>
-<script>
-(function(){
-  var modal=document.getElementById('ehxModal'),frame=document.getElementById('ehxFrame'),closeBtn=document.getElementById('ehxClose'),last=null;
-  function open(stop,btn){last=btn;frame.src='/e-house-tour/?embed=1&stop='+(stop||0);modal.hidden=false;document.documentElement.style.overflow='hidden';closeBtn.focus();}
-  function close(){modal.hidden=true;frame.src='about:blank';document.documentElement.style.overflow='';if(last)last.focus();}
-  document.querySelectorAll('[data-stop]').forEach(function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-stop'),b);});});
-  closeBtn.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close();});
-})();
-</script>
 </body>
 </html>
