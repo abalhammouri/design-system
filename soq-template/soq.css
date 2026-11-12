@@ -1,0 +1,139 @@
+/* CSI SOQ template: simple, square, plain.
+   US Letter, 816 x 1056 px at 96 dpi. Every corner is square. */
+
+:root {
+  --navy: #14275A;      /* deep ground for cover, dividers, back */
+  --blue: #254593;      /* CSI Blue: titles, accents */
+  --ink: #0E1117;       /* body text */
+  --grey: #5B6472;      /* secondary text */
+  --line: #D5DAE3;      /* table rules */
+  --mist: #F3F5F9;      /* rail and table header tint */
+  --white: #FFFFFF;
+
+  --display: "Red Hat Display", "Segoe UI", Arial, sans-serif;
+  --text: "Red Hat Text", "Segoe UI", Arial, sans-serif;
+
+  --m: 64px;            /* page margin */
+  --g: 24px;            /* gutter */
+}
+
+@page { size: 8.5in 11in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+html { background: #C9CED8; }
+body { font-family: var(--text); color: var(--ink); font-size: 13.33px; line-height: 20px; }
+
+.page {
+  position: relative; width: 816px; height: 1056px; overflow: hidden;
+  background: var(--white); margin: 24px auto; page-break-after: always; break-after: page;
+}
+@media print { html { background: none; } .page { margin: 0; } }
+
+img { display: block; }
+
+/* ---------- running header and footer ---------- */
+.run-head {
+  position: absolute; top: 32px; left: var(--m); right: var(--m); height: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; color: var(--grey); letter-spacing: .02em;
+}
+.run-head img { height: 30px; width: auto; }
+.run-foot {
+  position: absolute; bottom: 32px; left: var(--m); right: var(--m);
+  display: flex; justify-content: space-between; font-size: 11px; color: var(--grey);
+  border-top: 1px solid var(--line); padding-top: 8px;
+}
+.run-foot .sep { margin: 0 8px; }
+
+.body { position: absolute; top: 112px; left: var(--m); right: var(--m); bottom: 96px; }
+
+/* ---------- type: four sizes per page at most ---------- */
+.page-title { font-family: var(--display); font-weight: 400; font-size: 32px; line-height: 38px;
+  color: var(--blue); margin-bottom: 24px; }
+.page-title.nomb { margin-bottom: 4px; }
+.subtitle { font-size: 15px; line-height: 22px; color: var(--grey); margin: -16px 0 24px; }
+.person .subtitle { margin: 0 0 8px; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 15px; line-height: 22px;
+  color: var(--ink); margin: 16px 0 4px; }
+h3:first-child { margin-top: 0; }
+p { margin-bottom: 12px; }
+.lead { font-size: 15px; line-height: 22px; color: var(--ink); margin-bottom: 16px; }
+.caption { font-size: 11px; line-height: 16px; color: var(--grey); margin: 8px 0 24px; }
+
+/* ---------- grid: main + rail ---------- */
+.grid { display: grid; grid-template-columns: 1fr 224px; gap: var(--g) 32px; }
+.grid > .main:only-child { grid-column: 1 / -1; }
+.steps + .grid { grid-template-columns: 1fr 1fr; margin-top: 32px; }
+
+/* ---------- photos: full width, square ---------- */
+.band-photo { height: 280px; margin: 0 calc(-1 * var(--m)); }
+.band-photo.tall { height: 288px; }
+.band-photo img, .toc-photo img, .cover-photo img { width: 100%; height: 100%; object-fit: cover; }
+.toc-photo { height: 360px; margin-top: 48px; }
+
+/* ---------- tables ---------- */
+table { border-collapse: collapse; width: 100%; }
+.facts { background: var(--mist); }
+.facts th, .facts td { display: block; text-align: left; padding: 0 16px; }
+.facts th { font-size: 11px; line-height: 16px; font-weight: 600; color: var(--blue); padding-top: 8px; }
+.facts td { padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.facts tr:last-child td { border-bottom: 0; }
+
+.toc td { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 22px; }
+.toc tr:first-child td { border-top: 1px solid var(--line); }
+.toc-n { width: 40px; color: var(--blue); font-weight: 600; }
+.toc-p { width: 48px; text-align: right; color: var(--grey); }
+
+.steps th { text-align: left; font-size: 11px; line-height: 16px; font-weight: 600; color: var(--white);
+  background: var(--blue); padding: 8px 12px; }
+.steps td { vertical-align: top; padding: 12px; border-bottom: 1px solid var(--line); }
+.steps td:first-child { width: 128px; color: var(--blue); }
+.steps td:last-child { width: 176px; color: var(--grey); }
+
+/* ---------- cover ---------- */
+.cover-photo { position: absolute; top: 0; left: 0; right: 0; height: 600px; }
+.cover-bar { position: absolute; top: 600px; left: 0; right: 0; height: 8px; background: var(--blue); }
+.cover-panel { position: absolute; top: 608px; left: 0; right: 0; bottom: 0; background: var(--navy);
+  color: var(--white); padding: 48px var(--m); }
+.cover-logo { position: absolute; top: 48px; right: var(--m); height: 64px; width: auto; }
+.cover-title { font-family: var(--display); font-weight: 300; font-size: 56px; line-height: 60px;
+  letter-spacing: -.01em; margin-bottom: 16px; }
+.cover-sub { font-size: 16px; line-height: 24px; opacity: .9; margin-bottom: 32px; max-width: 520px; }
+.cover-meta { width: auto; }
+.cover-meta th { text-align: left; font-weight: 400; font-size: 12px; color: #AEB9D6; padding: 2px 24px 2px 0; }
+.cover-meta td { font-size: 13.33px; padding: 2px 0; }
+
+/* ---------- letter ---------- */
+.letter { max-width: 560px; }
+.letter-date { margin-bottom: 24px; }
+.letter-addr { margin-bottom: 24px; }
+.letter-re { margin-bottom: 24px; }
+.sign-space { height: 48px; }
+
+/* ---------- résumé ---------- */
+.person { display: flex; gap: var(--g); align-items: center; margin-bottom: 32px;
+  padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.headshot { width: 120px; height: 144px; flex: none; background: var(--mist); color: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 32px; overflow: hidden; }
+.headshot img { width: 100%; height: 100%; object-fit: cover; }
+.person-line { color: var(--grey); margin: 0; }
+.proj { margin-bottom: 12px; }
+.proj p { margin: 0; }
+
+/* ---------- divider and back cover ---------- */
+.divider, .back { background: var(--navy); color: var(--white); }
+.divider::before, .back::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 8px; background: var(--blue); }
+.divider-logo { position: absolute; top: 48px; left: var(--m); height: 40px; width: auto; }
+.divider-text { position: absolute; left: var(--m); right: var(--m); bottom: 160px; }
+.divider-num { font-family: var(--display); font-weight: 300; font-size: 24px; color: #AEB9D6; margin-bottom: 8px; }
+.divider-title { font-family: var(--display); font-weight: 300; font-size: 64px; line-height: 68px; margin-bottom: 24px; }
+.divider-sub { font-size: 16px; line-height: 24px; color: #D7DEEE; max-width: 480px; }
+
+.back-logo { position: absolute; top: 360px; left: 50%; transform: translateX(-50%); height: 96px; width: auto; }
+.back-contact { position: absolute; left: 0; right: 0; bottom: 120px; text-align: center; }
+.back-contact p { margin: 0 0 4px; color: #D7DEEE; }
+.back-contact .back-name { font-size: 16px; line-height: 24px; color: var(--white); font-weight: 500; margin-bottom: 8px; }
+.back-contact .back-web { margin-top: 16px; color: var(--white); }
