@@ -172,3 +172,9 @@ table { border-collapse: collapse; width: 100%; }
 .back-in .line { font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 32px; }
 .back-in dt { font-size: 10.5px; color: #A9BBE4; font-weight: 600; }
 .back-in dd { font-size: 14px; line-height: 20px; margin-bottom: 12px; }
+
+/* ---------- contents grid (after the Behance report reference: a picture for each section) ---------- */
+.toc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+.toc-item .ph { height: 190px; margin-bottom: 10px; }
+.toc-no { font-family: var(--display); font-weight: 700; font-size: 28px; line-height: 30px; color: var(--blue); margin: 0; }
+.toc-t { font-family: var(--display); font-weight: 700; font-size: 15px; line-height: 20px; color: var(--navy); margin: 2px 0 4px; }
